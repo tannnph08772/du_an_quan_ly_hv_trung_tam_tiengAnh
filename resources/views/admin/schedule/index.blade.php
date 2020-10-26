@@ -14,7 +14,7 @@
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table class="table table-bordered text-dark"  id="dataTable" width="100%" cellspacing="0">
+                        <table class="table table-bordered text-dark text-center" id="dataTable" width="100%" cellspacing="0">
                             <thead>
                                 <tr>
                                     <th>Tên Ca Học</th>
@@ -30,14 +30,18 @@
                                     <td>{{$item->start_time}}</td>
                                     <td>{{$item->end_time}}</td>
                                     <td>
-                                        <div class="text-center">
-                                            <a href="{{ route ('schedule.edit', ['id' => $item->id ]) }}" class="btn btn-success"><i class="fas fa-edit"></i></a>
-                                        </div>
-                                        <div class="text-center">
-                                            <form action="{{ route ('schedule.delete' , [ 'id' => $item->id ]) }}"  method="POST">
-                                            @csrf
-                                            <button class="btn btn-danger"><i class="fas fa-trash"></i></button>
-                                        </form></div>
+                                        <div class="d-flex justify-content-center">
+                                            <div class="text-center mr-2">
+                                                <a href="{{ route ('schedule.edit', ['id' => $item->id ]) }}" class="btn btn-success"><i class="fas fa-edit"></i></a>
+                                            </div>
+
+                                            <div class="text-center">
+                                                <form action="{{ route ('schedule.delete' , [ 'id' => $item->id ]) }}"  method="POST">
+                                                @csrf
+                                                <button class="btn btn-danger"><i class="fas fa-trash"></i></button>
+                                                </form>
+                                            </div>
+                                    </div>
                                     </td> 
                                       
                                 </tr>
