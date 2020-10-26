@@ -30,12 +30,16 @@
                                     <td>{{$item->start_time}}</td>
                                     <td>{{$item->end_time}}</td>
                                     <td>
-                                        <a href="{{ route ('schedule.edit', ['id' => $item->id ]) }}" class="btn btn-success"><i class="fas fa-edit"></i></a>
-                                        <form action="{{ route ('schedule.delete' , [ 'id' => $item->id ]) }}"  method="POST">
+                                        <div class="text-center">
+                                            <a href="{{ route ('schedule.edit', ['id' => $item->id ]) }}" class="btn btn-success"><i class="fas fa-edit"></i></a>
+                                        </div>
+                                        <div class="text-center">
+                                            <form action="{{ route ('schedule.delete' , [ 'id' => $item->id ]) }}"  method="POST">
                                             @csrf
                                             <button class="btn btn-danger"><i class="fas fa-trash"></i></button>
-                                        </form>
-                                    </td>   
+                                        </form></div>
+                                    </td> 
+                                      
                                 </tr>
                                 @endforeach
                             </tbody>

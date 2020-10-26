@@ -33,11 +33,15 @@ class ScheduleController extends Controller
         $this->ScheduleServices->delete($id);
         return redirect()->route('schedule.index');
     }
-    public function update(Request $request)
+    public function edit($id)
     {
-        $id = request()->get('id');
         $edit = $this->ScheduleServices->findById($id);
         return view('admin.schedule.component.edit', compact('edit'));
         
+    }
+    public function update(Request $request, $id )
+    {
+        $data = $this->ScheduleServices->updateSchedule($id,$request->all());
+        return redirect()->route('schedule.index');
     }
 }

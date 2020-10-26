@@ -19,7 +19,7 @@ Route::group(['prefix' => 'ca-hoc'],function(){
     Route::get('/tao-ca-hoc', 'ScheduleController@add')->name('schedule.add');
     Route::post('/create','ScheduleController@create')->name('schedule.create');
     Route::post('/delete/{id}','ScheduleController@delete')->name('schedule.delete');
-    Route::get('/sua-ca-hoc/{id}','ScheduleController@update')->name('schedule.edit');
+    Route::get('/sua-ca-hoc/{id}','ScheduleController@edit')->name('showschedule.edit');
     Route::post('/sua-ca-hoc/{id}','ScheduleController@update')->name('schedule.edit');
 
 }

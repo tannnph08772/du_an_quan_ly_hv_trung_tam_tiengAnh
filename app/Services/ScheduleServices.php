@@ -24,11 +24,10 @@ class ScheduleServices extends BaseServices
     {
         return $this->repository->deleteSchedule($id);
     }
-    public function updateSchedule($request)
+    public function updateSchedule($id,$attribute)
     {
-        $id = $request->get('id');
-        $attribute = $request->all();
         return $this->repository->updateSchedule($id, $attribute);
+        
     }
 
 }
