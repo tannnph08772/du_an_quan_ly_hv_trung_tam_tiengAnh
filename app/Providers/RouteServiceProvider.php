@@ -46,7 +46,7 @@ class RouteServiceProvider extends ServiceProvider
 
         $this->mapWebRoutes();
         $this->mapscheduleRouter();
-
+        $this->mapplaceRouter();
         //
     }
 
@@ -69,7 +69,12 @@ class RouteServiceProvider extends ServiceProvider
              ->namespace($this->namespace)
              ->group(base_path('routes/schedule/schedule.php'));
     }
-
+    protected function mapplaceRouter()
+    {
+        Route::middleware('web')
+             ->namespace($this->namespace)
+             ->group(base_path('routes/place/place.php'));
+    }
     /**
      * Define the "api" routes for the application.
      *
