@@ -12,7 +12,7 @@
                             <label for="exampleInputEmail1">Tên Cơ Sở</label>
                             <input type="text" name="name_place" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
                                 value="">
-                                <p class="text-danger">@error('name')
+                                <p class="text-danger">@error('name_place')
                                     {{$message}}
                                 @enderror</p>
                         </div>
@@ -20,7 +20,7 @@
                             <label for="exampleInputEmail1">Địa Chỉ</label>
                             <input type="text" name="address" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
                                 value="">
-                                <p class="text-danger">@error('name')
+                                <p class="text-danger">@error('address')
                                     {{$message}}
                                 @enderror</p>
                         </div>

@@ -11,8 +11,8 @@
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Tên Cơ Sở</label>
                             <input  type="text" name="name_place" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-                                    value="{{ $edit->name_place }}">
-                                    <p class="text-danger">@error('name')
+                                    value="{{old('name_place',$edit->name_place) }}">
+                                    <p class="text-danger">@error('name_place')
                                         {{$message}}
                                     @enderror</p>
                             </div>
@@ -20,8 +20,8 @@
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Địa chỉ</label>
                                 <input type="text" name="address" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-                                    value="{{ $edit->address }}">
-                                    <p class="text-danger">@error('name')
+                                value="{{old('address',$edit->address) }}">
+                                    <p class="text-danger">@error('address')
                                         {{$message}}
                                     @enderror</p>
                             </div>
