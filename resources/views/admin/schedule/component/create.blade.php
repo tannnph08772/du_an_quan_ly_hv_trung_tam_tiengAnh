@@ -5,7 +5,7 @@
    <div class="row mt-5">
        <div class="col-lg-2"></div>
        <div class="row col-lg-8 justify-content-center bg-light pt-3 pb-3">
-        <form action="{{route('schedule.create')}}" method="POST">
+        <form action="{{route('schedule.create')}}" class="col-12" method="POST">
             
            <h1>Tạo Ca Học</h1>
                 @csrf
@@ -35,7 +35,6 @@
                 </div>
                 <button type="submit" class="btn btn-primary mb-2">Thêm</button>
                 <a href="{{route('schedule.index')}}" class="btn btn-danger mb-2">Hủy</a>
-            </div>
         </form>
     </div>
    </div>

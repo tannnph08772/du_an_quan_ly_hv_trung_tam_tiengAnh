@@ -28,8 +28,9 @@ class PlaceController extends Controller
         $this->PlaceServices->create($request);
         return redirect()->route('place.index');
     }
-    public function delete($id)
+    public function delete()
     {
+        $id = request()->get('id');
         $this->PlaceServices->delete($id);
         return redirect()->route('place.index');
     }

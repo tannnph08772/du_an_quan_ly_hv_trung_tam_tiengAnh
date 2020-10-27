@@ -38,19 +38,14 @@
             <span>Khóa học</span></a>
     </li>
     <li class="nav-item active">
-        <a class="nav-link" href="">
+        <a href="{{ route('place.index') }}" class="nav-link" href="">
             <i class="fas fa-fw fa-table"></i>
-            <span>Cơ sở học</span></a>
+            <span>Cơ Sở Học</span></a>
     </li>
     <li class="nav-item active">
         <a href="{{ route('schedule.index') }}" class="nav-link" href="">
             <i class="fas fa-fw fa-table"></i>
             <span>Ca học</span></a>
-    </li>
-    <li class="nav-item active">
-        <a href="{{ route('place.index') }}" class="nav-link" href="">
-            <i class="fas fa-fw fa-table"></i>
-            <span>Cơ Sở Học</span></a>
     </li>
     <hr class="sidebar-divider d-none d-md-block">
     <!-- Sidebar Toggler (Sidebar) -->

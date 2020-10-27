@@ -19,7 +19,7 @@ Route::group(['prefix' => 'co-so-hoc'],function(){
     Route::get('/tao-co-so-hoc', 'PlaceController@add')->name('place.add');
     Route::post('/tao-co-so-hoc','PlaceController@create')->name('place.create');
     //xoa-co-so-hoc
-    Route::post('/xoa-co-so-hoc/{id}','PlaceController@delete')->name('place.delete');
+    Route::post('/xoa-co-so-hoc','PlaceController@delete')->name('place.delete');
     // //sua-co-so-hoc
     Route::get('/sua-co-so-hoc/{id}','PlaceController@edit')->name('showplace.edit');
     Route::post('/sua-co-so-hoc/{id}','PlaceController@update')->name('place.edit');

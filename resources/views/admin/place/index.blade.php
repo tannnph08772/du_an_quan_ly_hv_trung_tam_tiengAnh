@@ -5,7 +5,7 @@
     <div id="content">
         @include('layouts/header')
         <div class="container-fluid">
-            <h1 class="h3 mb-2 text-gray-800">Danh Sách Ca Học</h1>
+            <h1 class="h3 mb-2 text-gray-800">Danh Sách Cơ Sở</h1>
             <div class="card shadow mb-4">
                 <div class="card-header py-3 d-flex justify-content-between align-items-center">
                     <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
@@ -34,10 +34,9 @@
                                             </div>
 
                                             <div class="text-center">
-                                                <form action="{{ route ('place.delete' , [ 'id' => $item->id ]) }}"  method="POST">
-                                                @csrf
-                                                <button class="btn btn-danger"><i class="fas fa-trash"></i></button>
-                                                </form>
+                                                <div class="text-center">
+                                                    <button class="btn btn-danger" onclick="confirmDelete({{$item->id}})"><i class="fas fa-trash"></i></button>
+                                                </div>
                                             </div>
                                     </div>
                                     </td> 
@@ -60,4 +59,36 @@
 
 </div>
 </section>
+@endsection
+@section('script')
+  <script>
+      var routeDeletePlace = "{{route('place.delete')}}"
+      function confirmDelete(id){
+          Swal.fire({
+            title: 'Xác nhận xóa cơ sở?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Xóa',
+            cancelButtonText: 'Hủy'
+            })
+            .then((result) => {
+            if (result.isConfirmed) {
+                axios.post(routeDeletePlace, {id: id}).then((result) => {
+                    window.location.reload()
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
+                Swal.fire(
+                'Xóa thành công !',
+                'Cơ sở của bạn đã bị xóa.',
+                'success'
+                )
+            }
+            })
+      }
+      
+</script>  
 @endsection
