@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\Place\CreatePlaceRequest;
 use App\Http\Requests\Place\EditPlaceRequest;
+use App\Http\Requests\Schedule\CreateScheduleRequest;
 use App\Http\Requests\Schedule\EditScheduleRequest;
 use App\Services\ScheduleServices;
 use Illuminate\Http\Request;
@@ -26,14 +27,15 @@ class ScheduleController extends Controller
     {
         return view('admin.schedule.component.create');
     }
-    public function create(EditScheduleRequest $request)
+    public function create(CreateScheduleRequest $request)
     {
         $this->ScheduleServices->create($request);
         Session::flash('message','Thêm thành công');
         return redirect()->route('schedule.index');
     }
-    public function delete($id)
+    public function delete()
     {
+        $id = request()->get('id');
         $this->ScheduleServices->delete($id);
         return redirect()->route('schedule.index');
     }

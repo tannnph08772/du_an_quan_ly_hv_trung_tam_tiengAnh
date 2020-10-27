@@ -32,6 +32,7 @@ class EditScheduleRequest extends FormRequest
             ],
             'end_time'=> [
             'required',
+            'after:start_time'
             ]
         ];
     }
@@ -42,7 +43,8 @@ class EditScheduleRequest extends FormRequest
 
             'start_time.required'=>'Giờ bắt đầu không được để trống',
 
-            'end_time.required'=>'Giờ kết thúc không được để trống'
+            'end_time.required'=>'Giờ kết thúc không được để trống',
+            'end_time.after' => 'Giờ kết thúc phải sau giờ bắt đầu'
 
         ];
     }
