@@ -53,5 +53,5 @@
     </div>
 </body>
 @include('layouts/js')
-
+@yield('script')
 </html>

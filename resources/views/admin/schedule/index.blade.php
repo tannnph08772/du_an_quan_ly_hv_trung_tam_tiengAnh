@@ -13,8 +13,13 @@
                     >Tạo Ca Học</a>
                 </div>
                 <div class="card-body">
+                    @if(Session::has('message'))
+                    <div class="alert alert-success" role="alert">
+                        {{Session::get('message') }}
+                      </div>
+                    @endif
                     <div class="table-responsive">
-                        <table class="table table-bordered text-dark"  id="dataTable" width="100%" cellspacing="0">
+                        <table class="table table-bordered text-dark text-center"  id="dataTable" width="100%" cellspacing="0">
                             <thead>
                                 <tr>
                                     <th>Tên Ca Học</th>
@@ -30,14 +35,17 @@
                                     <td>{{$item->start_time}}</td>
                                     <td>{{$item->end_time}}</td>
                                     <td>
-                                        <div class="text-center">
-                                            <a href="{{ route ('schedule.edit', ['id' => $item->id ]) }}" class="btn btn-success"><i class="fas fa-edit"></i></a>
-                                        </div>
-                                        <div class="text-center">
-                                            <form action="{{ route ('schedule.delete' , [ 'id' => $item->id ]) }}"  method="POST">
-                                            @csrf
-                                            <button class="btn btn-danger"><i class="fas fa-trash"></i></button>
-                                        </form></div>
+                                        <div class="d-flex justify-content-center">
+                                            <div class="text-center mr-2">
+                                                <a href="{{ route ('schedule.edit', ['id' => $item->id ]) }}" class="btn btn-success"><i class="fas fa-edit"></i></a>
+                                            </div>
+
+                                            <div class="text-center">
+                                                <div class="text-center">
+                                                    <button class="btn btn-danger" onclick="confirmDelete({{$item->id}})"><i class="fas fa-trash"></i></button>
+                                                </div>
+                                            </div>
+                                    </div>
                                     </td> 
                                       
                                 </tr>
@@ -58,4 +66,36 @@
 
 </div>
 </section>
+@endsection
+@section('script')
+  <script>
+      var routeDeletePlace = "{{route('schedule.delete')}}"
+      function confirmDelete(id){
+          Swal.fire({
+            title: 'Xác nhận xóa ca học?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Xóa',
+            cancelButtonText: 'Hủy'
+            })
+            .then((result) => {
+            if (result.isConfirmed) {
+                axios.post(routeDeletePlace, {id: id}).then((result) => {
+                    window.location.reload()
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
+                Swal.fire(
+                'Xóa thành công !',
+                'Ca học của bạn đã bị xóa.',
+                'success'
+                )
+            }
+            })
+      }
+      
+</script>  
 @endsection

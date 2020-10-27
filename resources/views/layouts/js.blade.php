@@ -14,3 +14,6 @@
 
   <!-- Page level custom scripts -->
   <script src={{asset("js/demo/datatables-demo.js")}}></script>
+  <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script> 
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>

@@ -17,8 +17,10 @@ Route::group(['prefix' => 'ca-hoc'],function(){
     Route::get('/', 'ScheduleController@index')->name('schedule.index');
     //tao-ca-hoc
     Route::get('/tao-ca-hoc', 'ScheduleController@add')->name('schedule.add');
-    Route::post('/create','ScheduleController@create')->name('schedule.create');
-    Route::post('/delete/{id}','ScheduleController@delete')->name('schedule.delete');
+    Route::post('/tao-khoa-hoc','ScheduleController@create')->name('schedule.create');
+    //xoa-khoa-hoc
+    Route::post('/xoa-khoa-hoc','ScheduleController@delete')->name('schedule.delete');
+    //sua-khoa-hoc
     Route::get('/sua-ca-hoc/{id}','ScheduleController@edit')->name('showschedule.edit');
     Route::post('/sua-ca-hoc/{id}','ScheduleController@update')->name('schedule.edit');
 
