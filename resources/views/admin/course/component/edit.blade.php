@@ -11,7 +11,7 @@
                         <div class="form-group">
                             <label for="exampleInputEmail1">Tên Khóa Học</label>
                             <input type="text" name="name_cource" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-                                value="{{ $edit->name_cource }}">
+                                value="{{old('name_cource',$edit->name_cource) }}">
                                 <p class="text-danger">@error('name_cource')
                                     {{$message}}
                                 @enderror</p>
@@ -20,7 +20,7 @@
                         <div class="form-group">
                             <label for="exampleInputEmail1">Số Buổi Học</label>
                             <input type="number" name="number_cource" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-                                value="{{ $edit->number_cource }}">
+                                value="{{old('number_cource', $edit->number_cource)}}">
                                 <p class="text-danger">@error('number_cource')
                                     {{$message}}
                                 @enderror</p>

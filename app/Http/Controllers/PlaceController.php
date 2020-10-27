@@ -43,6 +43,6 @@ class PlaceController extends Controller
     public function update(Request $request, $id )
     {
         $data = $this->PlaceServices->updatePlace($id,$request->all());
-        return redirect()->route('place.index');
+        return redirect()->route('place.index')->withInput();
     }
 }

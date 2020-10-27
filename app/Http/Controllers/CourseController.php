@@ -6,6 +6,7 @@ use App\Http\Requests\Course\CreateCourseRequest;
 use App\Http\Requests\Course\EditCourseRequest;
 use App\Services\CourseServices;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 use Whoops\Run;
 
 class CourseController extends Controller
@@ -27,6 +28,7 @@ class CourseController extends Controller
     public function create(CreateCourseRequest $request)
     {
         $this->CourseServices->create($request);
+        Session::flash('message','Thêm thành công');
         return redirect()->route('course.index');
     }
     public function delete()
@@ -44,6 +46,7 @@ class CourseController extends Controller
     public function update(EditCourseRequest $request, $id )
     {
         $data = $this->CourseServices->updateCourse($id,$request->all());
-        return redirect()->route('course.index');
+        Session::flash('message','Cập nhật thành công');
+        return redirect()->route('course.index')->withInput();
     }
 }
