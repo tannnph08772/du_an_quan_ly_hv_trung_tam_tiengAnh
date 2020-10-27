@@ -5,44 +5,49 @@
     <div id="content">
         @include('layouts/header')
         <div class="container-fluid">
-            <h1 class="h3 mb-2 text-gray-800">Danh Sách Cơ Sở</h1>
+            <h1 class="h3 mb-2 text-gray-800">Danh Sách Khóa Học</h1>
             <div class="card shadow mb-4">
                 <div class="card-header py-3 d-flex justify-content-between align-items-center">
                     <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
-                    <a class="btn btn-success"href="{{ route ('place.add' ) }}"
-                    >Tạo Cơ Sở Học</a>
+                    <a class="btn btn-success"href="{{ route ('course.add' ) }}"
+                    >Tạo Khóa Học</a>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
                         <table class="table table-bordered text-dark text-center" id="dataTable" width="100%" cellspacing="0">
                             <thead>
                                 <tr>
-                                    <th>Tên Cơ Sở</th>
-                                    <th>Địa Chỉ</th>
+                                    <th>Tên Khóa học</th>
+                                    <th>Số Buổi Học</th>
+                                    <th>Mô Tả</th>
                                     <th>Thao Tác</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach ($list as $item)
                                 <tr>
-                                <td>{{$item->name_place}}</td>
-                                    <td>{{$item->address}}</td>
+                                    <td>{{$item->name_cource}}</td>
+                                    <td>{{$item->number_cource}}</td>
+                                    <td>{{$item->discription}}</td>
                                     <td>
                                         <div class="d-flex justify-content-center">
                                             <div class="text-center mr-2">
-                                                <a href="{{ route ('showplace.edit', ['id' => $item->id ]) }}" class="btn btn-success"><i class="fas fa-edit"></i></a>
+                                                <a href="{{ route ('showcourse.edit', ['id' => $item->id ]) }}" class="btn btn-success"><i class="fas fa-edit"></i></a>
                                             </div>
 
                                             <div class="text-center">
-                                                <button class="btn btn-danger" onclick="confirmDelete({{$item->id}})"><i class="fas fa-trash"></i></button>
+                                                <div class="text-center">
+                                                    <button class="btn btn-danger" onclick="confirmDelete({{$item->id}})"><i class="fas fa-trash"></i></button>
+                                                </div>
                                             </div>
                                     </div>
                                     </td> 
+                                      
                                 </tr>
                                 @endforeach
                             </tbody>
                         </table>
-                    </div>                          
+                    </div>
                 </div>
             </div>
 
@@ -57,29 +62,30 @@
 </div>
 </section>
 @endsection
-
 @section('script')
   <script>
-      var routeDeletePlace = "{{route('place.delete')}}"
+      var routeDeletePlace = "{{route('course.delete')}}"
       function confirmDelete(id){
           Swal.fire({
-            title: 'Xác nhận xóa cơ sở?',
+            title: 'Xác nhận xóa khóa học?',
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
             confirmButtonText: 'Xóa',
             cancelButtonText: 'Hủy'
-            }).then((result) => {
+            })
+            .then((result) => {
             if (result.isConfirmed) {
                 axios.post(routeDeletePlace, {id: id}).then((result) => {
                     window.location.reload()
-                }).catch((err) => {
+                })
+                .catch((err) => {
                     console.log(err);
                 });
                 Swal.fire(
-                'Deleted!',
-                'Your file has been deleted.',
+                'Xóa thành công !',
+                'Khóa học của bạn đã bị xóa.',
                 'success'
                 )
             }

@@ -5,7 +5,7 @@
    <div class="row mt-5">
        <div class="col-lg-2"></div>
             <div class="row col-lg-8 justify-content-center bg-light pt-3 pb-3">
-                <form action="{{route('place.create')}}" method="POST">
+                <form action="{{route('place.create')}}" class="col-12" method="POST">
                     <h1>Tạo Cơ Sở Học</h1>
                         @csrf
                         <div class="form-group">
