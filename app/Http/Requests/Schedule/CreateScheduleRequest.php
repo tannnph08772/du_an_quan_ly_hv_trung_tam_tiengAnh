@@ -26,6 +26,7 @@ class CreateScheduleRequest extends FormRequest
         return [
             'name_schedule'=>[
                 'required',
+                'unique:schedule,name_schedule'
             ],
             'start_time' =>[
              'required'
@@ -40,7 +41,8 @@ class CreateScheduleRequest extends FormRequest
     {
         return [
             'name_schedule.required'=>'Tên ca học không được để trống',
-            
+            'name_schedule.unique'=>'Tên ca học đã tồn tại',
+
             'start_time.required' => 'Giờ bắt đầu không được để trống',
 
             'end_time.required' => 'Giờ kết thúc không được để trống',
