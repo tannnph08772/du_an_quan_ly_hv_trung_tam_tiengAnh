@@ -35,7 +35,7 @@
                         </div>
                         
                         <button type="submit" class="btn btn-primary mb-2">Thêm</button>
-                        <a href="{{route('place.index')}}" class="btn btn-danger mb-2">Hủy</a>
+                        <a href="{{route('course.index')}}" class="btn btn-danger mb-2">Hủy</a>
                 </form>
             </div>
     </div>
