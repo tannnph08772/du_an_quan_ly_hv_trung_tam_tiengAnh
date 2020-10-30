@@ -16,6 +16,4 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('client');
 });
-Route::get('/dang-ki', 'AuthController@register')->name('register.register');
-Route::post('/store', 'AuthController@store')->name('register.store');
-Route::get('/danh-sach-cho', 'AuthController@danh_sach_cho')->name('register.danh_sach_cho');
+

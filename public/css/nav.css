@@ -7,6 +7,11 @@
     margin: 0 0 0 20px;
 }
 
+.navbar-nav.text-uppercase .nav-item .dropdown-item {
+    color: gray;
+    font-size: 14px;
+}
+
 .navbar-nav.text-uppercase .nav-item a {
     color: white;
     font-size: 14px;
@@ -20,13 +25,13 @@
 .footer-bottom {
     background-color: #de6900;
     color: white;
+    line-height: 30px;
     text-align: center;
 }
 
-.footer-top {
+footer {
     background: #fc7700;
     color: white;
-    padding: 10px 0;
 }
 
 @media screen and (max-width: 850px) {
