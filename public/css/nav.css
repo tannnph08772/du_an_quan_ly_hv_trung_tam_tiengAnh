@@ -1,0 +1,52 @@
+.navbar {
+    background: #fc7700;
+    height: 43px;
+}
+
+.navbar-nav.text-uppercase .nav-item {
+    margin: 0 0 0 20px;
+}
+
+.navbar-nav.text-uppercase .nav-item a {
+    color: white;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.img-top {
+    height: 90px;
+}
+
+.footer-bottom {
+    background-color: #de6900;
+    color: white;
+    text-align: center;
+}
+
+.footer-top {
+    background: #fc7700;
+    color: white;
+    padding: 10px 0;
+}
+
+@media screen and (max-width: 850px) {
+    .img-top {
+        display: none;
+    }
+    .header_logo {
+        width: 200px;
+    }
+    .navbar-nav.text-uppercase .nav-item a {
+        color: black;
+        font-size: 14px;
+        font-weight: 600;
+    }
+    .navbar {
+        background: none;
+        height: 43px;
+    }
+    .navbar-toggler-icon {
+        width: 100%;
+        border: 1px solid black;
+    }
+}
