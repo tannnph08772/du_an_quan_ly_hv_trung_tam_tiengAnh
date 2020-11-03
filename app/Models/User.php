@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -15,8 +15,11 @@ class User extends Authenticatable
      *
      * @var array
      */
+    protected $table = 'users';
+	protected $primaryKey = 'id';
+
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'phone_number', 'address', 'birthday', 'sex', 'role', 'course_id'
     ];
 
     /**
@@ -36,4 +39,8 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function teacher(){
+        return $this->hasOne(Teacher::class, 'user_id', 'id');
+    }
 }

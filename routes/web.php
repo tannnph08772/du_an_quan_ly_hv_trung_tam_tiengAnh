@@ -13,6 +13,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('index');
+// Route::get('/', function () {
+//     return view('index');
+// });
+
+Route::group([
+    'prefix' => 'lop-hoc',
+    'as' => 'classes.'
+], function() {
+    Route::get('/', 'ClassController@index')->name('index');
+    Route::get('/tao-lop-hoc', 'ClassController@create')->name('create');
+    Route::post('/store', 'ClassController@store')->name('store');
 });
