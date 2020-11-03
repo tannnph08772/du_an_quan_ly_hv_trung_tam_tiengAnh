@@ -26,8 +26,6 @@
                 @include('layouts/header')
                 @yield('content')
             </div>
-
-
             <!-- Footer -->
             @include('layouts/footer')
             <!-- End of Footer -->

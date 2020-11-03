@@ -487,3 +487,7 @@ summary {
     width: 243px;
     margin-left: 10px;
 }
+
+.form-group {
+    text-align: left;
+}

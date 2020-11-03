@@ -16,6 +16,10 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('client');
 });
-Route::get('/dang-ki', 'AuthController@register')->name('register.register');
-Route::post('/store', 'AuthController@store')->name('register.store');
-Route::get('/danh-sach-cho', 'AuthController@danh_sach_cho')->name('register.danh_sach_cho');
+Route::get('/khoa-hoc', 'AuthController@danhSachKhoaHoc')->name('auth.danhSachKhoaHoc');
+Route::get('/khoa-hoc/{id}', 'AuthController@chiTietKhoaHoc')->name('auth.chiTietKhoaHoc');
+Route::post('/store', 'AuthController@store')->name('auth.store');
+Route::get('/danh-sach-cho', 'AuthController@danhSachCho')->name('auth.danhSachCho');
+Route::post('/export-csv','AuthController@export_csv');
+Route::post('/import-csv','AuthController@import_csv');
+

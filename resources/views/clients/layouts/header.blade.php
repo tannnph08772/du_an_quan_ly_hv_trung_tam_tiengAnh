@@ -46,9 +46,9 @@
                                 Khóa học
                             </a>
                             <div class="dropdown-menu mr-2" aria-labelledby="navbarDropdownMenuLink">
-                                <a class="dropdown-item" href="#">Action</a>
-                                <a class="dropdown-item" href="#">Another action</a>
-                                <a class="dropdown-item" href="#">Something else here</a>
+                            @foreach($courses as $item)
+                                <a class="dropdown-item" href="{{route('auth.chiTietKhoaHoc', ['id' => $item->id])}}">{{$item->name_course}}</a>
+                            @endforeach
                             </div>
                         </li>
                         <li class="nav-item">
