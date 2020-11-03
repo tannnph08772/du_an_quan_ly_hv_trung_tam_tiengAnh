@@ -1,4 +1,4 @@
-@extends('index')
+@extends('staff')
 @section('title', 'Sửa ca học')
 @section('content')
 <div class="container ">

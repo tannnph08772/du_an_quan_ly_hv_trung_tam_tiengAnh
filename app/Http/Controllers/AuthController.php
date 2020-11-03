@@ -88,7 +88,7 @@ class AuthController extends Controller
 
     public function export_csv()
     {
-        return Excel::download(new ExcelExport, 'danh_sach_hoc_vien_dang_ky.xlsx');
+        return Excel::download(new ExcelExport, 'danh_sach_hoc_vien.xlsx');
     }
 
     public function import_csv(Request $request)

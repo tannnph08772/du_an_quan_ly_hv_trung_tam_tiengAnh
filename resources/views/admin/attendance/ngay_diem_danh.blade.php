@@ -1,4 +1,4 @@
-@extends('index')
+@extends('teacher')
 @section('title', 'Ngày điểm danh')
 @section('content')
 <div class="card shadow mb-4">

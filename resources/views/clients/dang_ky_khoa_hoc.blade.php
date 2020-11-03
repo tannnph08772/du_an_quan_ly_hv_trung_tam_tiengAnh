@@ -1,12 +1,10 @@
 @extends('client')
 @section('content')
 <div class=" mt-4 container">
-
+<h3 class="text-center text-uppercase">Đăng kí khóa học</h3>
     <div class="card card-contact">
-
         <div id="container-form-register">
-            <form action="{{route('auth.store')}}" class="text-right p-4" method="post"
-                enctype="multipart/form-data">
+            <form action="{{route('auth.store')}}" class="text-right p-4" method="post" enctype="multipart/form-data">
                 @csrf
                 <div class="form-group">
                     <label>Họ và tên <span class="text-danger">*</span></label>
@@ -54,7 +52,6 @@
                         <input type="text" class="form-control" disabled value="{{$course->name_course}}">
                     </div>
                 </div>
-
                 <div class="form-group">
                     <label>Địa chỉ<span class="text-danger">*</span></label>
                     <input type="text" name="address" value="{{ old('address')}}" class="form-control"
@@ -64,7 +61,7 @@
                     @enderror
                 </div>
                 <div class="button">
-                    <button class="btn btn-success" type="submit">Gửi</button>
+                    <button class="btn btn-warning text-white" type="submit">Gửi</button>
                 </div>
             </form>
         </div>

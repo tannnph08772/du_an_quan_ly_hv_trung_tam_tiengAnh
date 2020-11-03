@@ -26,4 +26,8 @@ class Course extends Model
     public function waitList(){
     	return $this->belongsTo(WaitList::class, 'course_id');
     }
+
+    public function students(){
+    	return $this->hasMany(Student::class, 'course_id', 'id');
+    }
 }

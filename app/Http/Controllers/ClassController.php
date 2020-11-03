@@ -82,4 +82,12 @@ class ClassController extends Controller
 
 		return redirect()->route('classes.index');
 	}
+
+	public function getStudentByClass($id){
+		$classes = ClassRoom::find($id);
+		$students = Student::where('class_id', $classes->id)->get();
+		return view('classes/chi_tiet_lop_hoc', [
+			'students' => $students,
+		]);
+	}
 }

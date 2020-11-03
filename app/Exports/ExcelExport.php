@@ -3,7 +3,7 @@
 namespace App\Exports;
 
 use Maatwebsite\Excel\Concerns\FromCollection;
-use App\Models\WaitList;
+use App\Models\User;
 
 class ExcelExport implements FromCollection
 {
@@ -12,6 +12,6 @@ class ExcelExport implements FromCollection
     */
     public function collection()
     {
-        return WaitList::all();
+        return User::all();
     }
 }

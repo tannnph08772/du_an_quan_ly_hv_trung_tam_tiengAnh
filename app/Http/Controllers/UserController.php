@@ -162,4 +162,11 @@ class UserController extends Controller
         $save->save();
 		return redirect()->route('teacher.index');
     }
+    public function dsHocVien(){
+    	$students = Student::all();
+
+		return view('admin/staff/ds_hoc_vien_co_lop', [
+			'students' => $students,
+		]);
+    }
 }
