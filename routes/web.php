@@ -16,4 +16,5 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('client');
 });
-
+Route::get('/','CourseController@showcourse')->name('client.home');
+Route::get('single/{id}','CourseController@single')->name('english.single');

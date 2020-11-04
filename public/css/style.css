@@ -487,3 +487,20 @@ summary {
     width: 243px;
     margin-left: 10px;
 }
+.news .latest-news{
+    background-color: #fc7700; 
+    padding: 10px 15px; 
+    color: #fff; 
+    border-radius: 5px;
+}
+.news .row{
+    margin-top: 15px;
+}
+.news img{
+    width: 100%;
+    object-fit: cover;
+    height: 100%;
+}
+.news .col-4{
+    height: 88px;
+}

@@ -29,7 +29,7 @@
                         <div class="form-group">
                             <label for="exampleInputEmail1">Mô Tả</label>
                             <textarea id="summernote" name="discription"></textarea>
-                            <p class="text-danger">@error('discription')
+                            <p class="text-danger" id="">@error('discription')
                                 {{$message}}
                             @enderror</p>
                         </div>
@@ -47,5 +47,9 @@
         tabsize: 2,
       height: 100
         });
+
+        function PrintDescription(html){
+
+        }
     </script>
 @endsection

@@ -24,6 +24,8 @@ Route::group(['prefix' => 'khoa-hoc'],function(){
     Route::get('/sua-khoa-hoc/{id}','CourseController@edit')->name('showcourse.edit');
     Route::post('/sua-khoa-hoc/{id}','CourseController@update')->name('course.edit');
 
+    
+
 }
 );
 	

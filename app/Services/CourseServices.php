@@ -16,6 +16,10 @@ class CourseServices extends BaseServices
     {
         return $this->repository->getCourse();
     }
+    public function getSingleCourse($id)
+    {
+        return $this->repository->getSingleCourse($id);
+    }
     public function createCourse($arraydata)
     {
         return $this->repository->createCourse($arraydata);

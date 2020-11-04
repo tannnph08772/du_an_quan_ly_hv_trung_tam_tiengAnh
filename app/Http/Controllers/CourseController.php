@@ -49,4 +49,16 @@ class CourseController extends Controller
         Session::flash('message','Cập nhật thành công');
         return redirect()->route('course.index')->withInput();
     }
+    public function showcourse()
+    {
+        $listMenu = $this->CourseServices->getCourse();
+        return view('client',compact('listMenu'));
+    }
+    public function single(Request $request)
+    {   
+        $listMenu = $this->CourseServices->getCourse();
+        $id = $request->id;
+        $list = $this->CourseServices->getSingleCourse($id);
+        return view('single',compact('list', 'listMenu'));
+    }
 }

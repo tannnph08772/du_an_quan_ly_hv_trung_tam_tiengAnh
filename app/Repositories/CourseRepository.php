@@ -19,6 +19,9 @@ class CourseRepository extends BaseRepository implements CourseRepositoryInterfa
     public function getCourse(){
         return $this->model->get();
     }
+    public function getSingleCourse($id){
+        return $this->model->where('id', $id)->get();
+    }
     public function createCourse($arraydata){
         return $this->model->create($arraydata);
     }

@@ -29,11 +29,12 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($list as $item)
+                                @foreach ($list as $key => $item)
                                 <tr>
                                     <td>{{$item->name_cource}}</td>
                                     <td>{{$item->number_cource}}</td>
-                                    <td>{{$item->discription}}</td>
+                                    <td id="description-{{ $key }}">
+                                    </td>
                                     <td>
                                         <div class="d-flex justify-content-center">
                                             <div class="text-center mr-2">
@@ -69,6 +70,11 @@
 @endsection
 @section('script')
   <script>
+      function PrintDescription(key ,html){
+            console.log(html);
+            let element = '#description-'+key;
+            $(element).html(html)
+        }
       var routeDeletePlace = "{{route('course.delete')}}"
       function confirmDelete(id){
           Swal.fire({
@@ -96,6 +102,5 @@
             }
             })
       }
-      
 </script>  
 @endsection

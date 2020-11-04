@@ -24,7 +24,7 @@
                 <div class="collapse navbar-collapse" id="navbarNavDropdown">
                     <ul class="navbar-nav text-uppercase nav-center">
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Trang chủ</a>
+                            <a class="nav-link" href="{{ route('client.home') }}">Trang chủ</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">Giới thiệu</a>
@@ -46,9 +46,9 @@
                                 Khóa học
                             </a>
                             <div class="dropdown-menu mr-2" aria-labelledby="navbarDropdownMenuLink">
-                                <a class="dropdown-item" href="#">Action</a>
-                                <a class="dropdown-item" href="#">Another action</a>
-                                <a class="dropdown-item" href="#">Something else here</a>
+                                @foreach ($listMenu as $item)
+                                <a class="dropdown-item" href="{{route('english.single',['id'=>$item->id])}}">{{$item->name_cource}}</a>   
+                                @endforeach
                             </div>
                         </li>
                         <li class="nav-item">
