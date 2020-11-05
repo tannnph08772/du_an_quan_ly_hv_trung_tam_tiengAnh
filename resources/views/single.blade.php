@@ -5,7 +5,7 @@
         <div class="col-lg-8">
             @foreach ($list as $item)
             <h5 class="pt-5 ">{{$item->name_cource}}</h5>
-        <p>{{$item->discription}}</p>
+            <p>{{$item->discription}}</p>
             @endforeach
         </div>
         <div class="col-lg-4 pt-5">

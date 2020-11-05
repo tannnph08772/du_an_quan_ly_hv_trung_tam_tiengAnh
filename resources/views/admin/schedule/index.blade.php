@@ -42,7 +42,6 @@
                                             </div>
                                     </div>
                                     </td> 
-                                      
                                 </tr>
                                 @endforeach
                             </tbody>
@@ -50,11 +49,8 @@
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
-
-
 </div>
 </section>
 @endsection
