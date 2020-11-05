@@ -3,7 +3,6 @@
 @section('content')
 <div id="content-wrapper" class="d-flex flex-column">
     <div id="content">
-        @include('layouts/header')
         <div class="container-fluid">
             <h1 class="h3 mb-2 text-gray-800">Danh Sách Khóa Học</h1>
             <div class="card shadow mb-4">
@@ -62,7 +61,7 @@
 
 
     <!-- Footer -->
-    @include('layouts/footer')
+    {{-- @include('layouts/footer') --}}
     <!-- End of Footer -->
 
 </div>

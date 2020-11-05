@@ -21,16 +21,16 @@
         <!-- End of Sidebar -->
 
         <!-- Content Wrapper -->
-        @yield('content')
-        {{-- <div id="content-wrapper" class="d-flex flex-column">
+        {{-- @yield('content') --}}
+        <div id="content-wrapper" class="d-flex flex-column">
             <div id="content">
                 @include('layouts/header')
                 @yield('content')
-            </div> --}}
+            </div>
 
 
             <!-- Footer -->
-            {{-- @include('layouts/footer') --}}
+            @include('layouts/footer')
             <!-- End of Footer -->
 
         </div>
