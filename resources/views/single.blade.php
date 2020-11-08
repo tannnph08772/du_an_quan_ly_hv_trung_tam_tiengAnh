@@ -5,7 +5,12 @@
         <div class="col-lg-8">
             @foreach ($list as $item)
             <h5 class="pt-5 ">{{$item->name_cource}}</h5>
-            <p>{{$item->discription}}</p>
+            <div id="htmldesc" class="d-none">
+                {{$item->discription}}
+            </div>
+            <div id="description">
+
+            </div>
             @endforeach
         </div>
         <div class="col-lg-4 pt-5">
@@ -47,4 +52,9 @@
         </div>
     </div>
 </div>
+<script>
+  var html = $('#htmldesc').text();
+  $('#description').html(html)
+</script>
 @endsection
+    

@@ -23,7 +23,6 @@
                                 <tr>
                                     <th>Tên Khóa học</th>
                                     <th>Số Buổi Học</th>
-                                    <th>Mô Tả</th>
                                     <th>Thao Tác</th>
                                 </tr>
                             </thead>
@@ -32,7 +31,6 @@
                                 <tr>
                                     <td>{{$item->name_cource}}</td>
                                     <td>{{$item->number_cource}}</td>
-                                    <td id="description-{{ $key }}">
                                     </td>
                                     <td>
                                         <div class="d-flex justify-content-center">

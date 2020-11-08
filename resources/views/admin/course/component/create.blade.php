@@ -45,11 +45,7 @@
     <script>
         $('#summernote').summernote({
         tabsize: 2,
-      height: 100
+        height: 100
         });
-
-        function PrintDescription(html){
-
-        }
     </script>
 @endsection
