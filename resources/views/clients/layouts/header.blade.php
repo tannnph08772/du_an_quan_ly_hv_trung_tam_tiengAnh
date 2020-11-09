@@ -28,23 +28,23 @@
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
                 <ul class="navbar-nav text-uppercase nav-center">
                     <li class="nav-item">
-                        <a class="nav-link" href="{{url('/trang-chu')}}">Trang chủ</a>
+                        <a class="nav-link" href="{{url('/')}}">Trang chủ</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{url('/gioi-thieu')}}">Giới thiệu</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{url('/trang-chu')}}">Đội ngũ đào tạo</a>
+                        <a class="nav-link" href="{{url('/doi-ngu-dao-tao')}}">Đội ngũ đào tạo</a>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="{{url('/trang-chu')}}" id="navbarDropdownMenuLink"
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink"
                             role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Phương pháp học</a>
                         <div class="dropdown-menu mr-2" aria-labelledby="navbarDropdownMenuLink">
-                            <a class="dropdown-item" href="#">Phương pháp TPR</a>
-                            <a class="dropdown-item" href="#">Phương pháp shadowing</a>
-                            <a class="dropdown-item" href="#">Phương pháp NLP</a>
-                            <a class="dropdown-item" href="#">Phương pháp ALE</a>
+                            <a class="dropdown-item" href="{{url('/phuong-phap-tpr')}}">Phương pháp TPR</a>
+                            <a class="dropdown-item" href="{{url('/phuong-phap-shadowing')}}">Phương pháp shadowing</a>
+                            <a class="dropdown-item" href="{{url('/phuong-phap-nlp')}}">Phương pháp NLP</a>
+                            <a class="dropdown-item" href="{{url('/phuong-phap-ale')}}">Phương pháp ALE</a>
                         </div>
                     </li>
                     <li class="nav-item dropdown">
@@ -60,7 +60,7 @@
                         </div>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Cảm nhận học viên</a>
+                        <a class="nav-link" href="{{url('/cam-nhan-cua-hoc-vien')}}">Cảm nhận học viên</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link"
@@ -68,7 +68,7 @@
                             dụng</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{url('/tin-tuc-')}}">Tin tức</a>
+                        <a class="nav-link" href="{{url('/tin-tuc')}}">Tin tức</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{url('/lien-he')}}">Liên hệ</a>

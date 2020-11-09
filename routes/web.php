@@ -90,3 +90,23 @@ Route::get('/gioi-thieu', function () {
 Route::get('/cam-nhan-cua-hoc-vien', function () {
     return view('clients.feelOfStudent');
 })->name('feelOfStudent');
+
+Route::get('/doi-ngu-dao-tao', function () {
+    return view('clients.trainingTeam');
+})->name('trainingTeam');
+
+Route::get('/phuong-phap-tpr', function () {
+    return view('study-methods.tpr-method');
+})->name('tpr-method');
+
+Route::get('/phuong-phap-shadowing', function () {
+    return view('study-methods.shadowing-method');
+})->name('shadowing-method');
+
+Route::get('/phuong-phap-nlp', function () {
+    return view('study-methods.nlp-method');
+})->name('nlp-method');
+
+Route::get('/phuong-phap-ale', function () {
+    return view('study-methods.ale-method');
+})->name('ale-method');
