@@ -6,13 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Course extends Model
 {
-    protected $table = 'courses';
-	protected $primaryKey = 'id';
-
-    protected $fillable = [
-        'name_course', 'number_course', 'description'
-    ];
-
     public function teachers(){
     	return $this->hasMany(Teacher::class, 'course_id', 'id');
     }
