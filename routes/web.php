@@ -25,3 +25,8 @@ Route::group([
     Route::get('/tao-lop-hoc', 'ClassController@create')->name('create');
     Route::post('/store', 'ClassController@store')->name('store');
 });
+
+Route::get('/', function() {
+    return view('client');
+});
+
