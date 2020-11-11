@@ -17,7 +17,7 @@ class ClassController extends Controller
     public function index(){
     	$classes = ClassRoom::orderBy('id', 'desc')->get();
 
-		return view('classes.index', [
+		return view('classes.danh_sach_lop', [
 			'classes' => $classes,
 		]);
     }
@@ -29,7 +29,7 @@ class ClassController extends Controller
     	$courses = Course::all();        
     	$places = Place::all();
 
-    	return view('classes.create', [
+    	return view('classes.tao_lop', [
 			'schedules' => $schedules,
 			'weekdays' => $weekdays,
             'teachers' => $teachers,

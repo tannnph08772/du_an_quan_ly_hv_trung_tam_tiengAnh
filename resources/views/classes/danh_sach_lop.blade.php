@@ -1,4 +1,5 @@
 @extends('index')
+@section('title', 'Danh sách lớp')
 @section('content')
 <h1 class="h3 mb-2 text-gray-800">Danh sách lớp</h1>
 <div class="card shadow mb-4">
