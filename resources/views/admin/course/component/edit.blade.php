@@ -10,26 +10,26 @@
                         @csrf
                         <div class="form-group">
                             <label for="exampleInputEmail1">Tên Khóa Học</label>
-                            <input type="text" name="name_cource" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-                                value="{{old('name_cource',$edit->name_cource) }}">
-                                <p class="text-danger">@error('name_cource')
+                            <input type="text" name="name_course" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                                value="{{old('name_course',$edit->name_course) }}">
+                                <p class="text-danger">@error('name_course')
                                     {{$message}}
                                 @enderror</p>
                         </div>
 
                         <div class="form-group">
                             <label for="exampleInputEmail1">Số Buổi Học</label>
-                            <input type="number" name="number_cource" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-                                value="{{old('number_cource', $edit->number_cource)}}">
-                                <p class="text-danger">@error('number_cource')
+                            <input type="number" name="number_course" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                                value="{{old('number_course', $edit->number_course)}}">
+                                <p class="text-danger">@error('number_course')
                                     {{$message}}
                                 @enderror</p>
                         </div>
                         
                         <div class="form-group">
                             <label for="exampleInputEmail1">Mô Tả</label>
-                            <textarea id="summernote" name="discription">{{ $edit->discription }}</textarea>
-                                <p class="text-danger">@error('discription')
+                            <textarea id="summernote" name="description">{{ $edit->description }}</textarea>
+                                <p class="text-danger">@error('description')
                                     {{$message}}
                                 @enderror</p>
                         </div>

@@ -27,7 +27,7 @@ class CourseController extends Controller
     }
     public function create(CreateCourseRequest $request)
     {
-        $this->CourseServices->create($request);
+        $this->CourseServices->create($request);       
         Session::flash('message','Thêm thành công');
         return redirect()->route('course.index');
     }

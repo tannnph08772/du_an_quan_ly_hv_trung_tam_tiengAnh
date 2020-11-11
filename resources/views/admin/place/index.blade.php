@@ -12,6 +12,11 @@
                     >Tạo Cơ Sở Học</a>
                 </div>
                 <div class="card-body">
+                    @if(Session::has('message'))
+                    <div class="alert alert-success" role="alert">
+                        {{Session::get('message') }}
+                      </div>
+                    @endif
                     <div class="table-responsive">
                         <table class="table table-bordered text-dark text-center" id="dataTable" width="100%" cellspacing="0">
                             <thead>

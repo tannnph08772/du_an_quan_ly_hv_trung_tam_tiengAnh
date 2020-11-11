@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\User\CreateUserRequest;
+use App\Http\Requests\Place\CreatePlaceRequest;
+use App\Http\Requests\Place\EditPlaceRequest;
+use Illuminate\Support\Facades\Session;
 use App\Services\PlaceServices;
 use Illuminate\Http\Request;
 use Whoops\Run;
@@ -23,9 +25,10 @@ class PlaceController extends Controller
     {
         return view('admin.place.component.create');
     }
-    public function create(Request $request)
+    public function create(CreatePlaceRequest $request)
     {
         $this->PlaceServices->create($request);
+        Session::flash('message','Thêm thành công !');
         return redirect()->route('place.index');
     }
     public function delete()
@@ -40,9 +43,10 @@ class PlaceController extends Controller
         return view('admin.Place.component.edit', compact('edit'));
         
     }
-    public function update(Request $request, $id )
+    public function update(EditPlaceRequest $request, $id )
     {
         $data = $this->PlaceServices->updatePlace($id,$request->all());
+        Session::flash('message','Cập nhật thành công !');
         return redirect()->route('place.index')->withInput();
     }
 }

@@ -17,7 +17,7 @@ Route::get('/', function () {
     return view('client');
 });
 Route::get('/','CourseController@showcourse')->name('client.home');
-Route::get('single/{id}','CourseController@single')->name('english.single');
+Route::get('chi-tiet-khoa-hoc/{id}','CourseController@single')->name('english.single');
 
 // khoa-hoc
 Route::group(['prefix' => 'khoa-hoc'],function(){
@@ -55,7 +55,7 @@ Route::group(['prefix' => 'ca-hoc'],function(){
     Route::get('/tao-ca-hoc', 'ScheduleController@add')->name('schedule.add');
     Route::post('/tao-ca-hoc','ScheduleController@create')->name('schedule.create');
     //xoa-ca-hoc
-    Route::post('/xoa-ca-hoc/{id}','ScheduleController@delete')->name('schedule.delete');
+    Route::post('/xoa-ca-hoc','ScheduleController@delete')->name('schedule.delete');
     //sua-ca-hoc
     Route::get('/sua-ca-hoc/{id}','ScheduleController@edit')->name('showschedule.edit');
     Route::post('/sua-ca-hoc/{id}','ScheduleController@update')->name('schedule.edit');

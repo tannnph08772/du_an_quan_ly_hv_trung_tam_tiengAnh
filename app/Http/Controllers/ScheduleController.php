@@ -2,9 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\User\CreateUserRequest;
+use App\Http\Requests\Place\CreatePlaceRequest;
+use App\Http\Requests\Place\EditPlaceRequest;
+use App\Http\Requests\Schedule\CreateScheduleRequest;
+use App\Http\Requests\Schedule\EditScheduleRequest;
 use App\Services\ScheduleServices;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 use Whoops\Run;
 
 class ScheduleController extends Controller
@@ -23,13 +27,15 @@ class ScheduleController extends Controller
     {
         return view('admin.schedule.component.create');
     }
-    public function create(Request $request)
+    public function create(CreateScheduleRequest $request)
     {
         $this->ScheduleServices->create($request);
+        Session::flash('message','Thêm thành công');
         return redirect()->route('schedule.index');
     }
-    public function delete($id)
+    public function delete()
     {
+        $id = request()->get('id');
         $this->ScheduleServices->delete($id);
         return redirect()->route('schedule.index');
     }
@@ -39,9 +45,10 @@ class ScheduleController extends Controller
         return view('admin.schedule.component.edit', compact('edit'));
         
     }
-    public function update(Request $request, $id )
+    public function update(EditScheduleRequest $request, $id )
     {
         $data = $this->ScheduleServices->updateSchedule($id,$request->all());
-        return redirect()->route('schedule.index');
+        Session::flash('message','Cập nhật thành công');
+        return redirect()->route('schedule.index')->withInput();
     }
 }

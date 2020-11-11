@@ -29,8 +29,8 @@
                             <tbody>
                                 @foreach ($list as $key => $item)
                                 <tr>
-                                    <td>{{$item->name_cource}}</td>
-                                    <td>{{$item->number_cource}}</td>
+                                    <td>{{$item->name_course}}</td>
+                                    <td>{{$item->number_course}}</td>
                                     </td>
                                     <td>
                                         <div class="d-flex justify-content-center">

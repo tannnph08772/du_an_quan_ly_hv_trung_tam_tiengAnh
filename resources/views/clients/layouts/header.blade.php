@@ -24,7 +24,7 @@
                 <div class="collapse navbar-collapse" id="navbarNavDropdown">
                     <ul class="navbar-nav text-uppercase nav-center">
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('client.home') }}">Trang chủ</a>
+                            <a class="nav-link" href="">Trang chủ</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">Giới thiệu</a>

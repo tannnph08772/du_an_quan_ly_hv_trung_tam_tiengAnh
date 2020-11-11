@@ -10,26 +10,26 @@
                         @csrf
                         <div class="form-group">
                             <label for="exampleInputEmail1">Tên Khóa Học</label>
-                            <input type="text" name="name_cource" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                            <input type="text" name="name_course" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
                                 value="">
-                                <p class="text-danger">@error('name_cource')
-                                    {{$message}}
-                                @enderror</p>
+                                @error('name_course')
+								<small style="color: red">{{ $message }}</small>
+							@enderror
                         </div>
 
                         <div class="form-group">
                             <label for="exampleInputEmail1">Số Buổi Học</label>
-                            <input type="number" name="number_cource" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                            <input type="number" name="number_course" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
                                 value="">
-                                <p class="text-danger">@error('number_cource')
-                                    {{$message}}
-                                @enderror</p>
+                                @error('number_course')
+								<small style="color: red">{{ $message }}</small>
+							@enderror
                         </div>
                         
                         <div class="form-group">
                             <label for="exampleInputEmail1">Mô Tả</label>
-                            <textarea id="summernote" name="discription"></textarea>
-                            <p class="text-danger" id="">@error('discription')
+                            <textarea id="summernote" name="description"></textarea>
+                            <p class="text-danger" id="">@error('description')
                                 {{$message}}
                             @enderror</p>
                         </div>

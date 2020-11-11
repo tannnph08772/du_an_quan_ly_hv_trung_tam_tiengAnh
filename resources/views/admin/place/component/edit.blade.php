@@ -11,19 +11,19 @@
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Tên Cơ Sở</label>
                                 <input  type="text" name="name_place" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-                                    value="{{ $edit->name_place }}">
-                                    <p class="text-danger">@error('name')
-                                        {{$message}}
-                                    @enderror</p>
+                                    value="{{old('name_place',$edit->name_place) }}">
+                                    @error('name_place')
+								        <small style="color: red">{{ $message }}</small>
+						            @enderror
                             </div>
                         
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Địa chỉ</label>
                                 <input type="text" name="address" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-                                    value="{{ $edit->address }}">
-                                    <p class="text-danger">@error('name')
-                                        {{$message}}
-                                    @enderror</p>
+                                    value="{{old('address',$edit->address) }}">
+                                    @error('address')
+								        <small style="color: red">{{ $message }}</small>
+						            @enderror
                             </div>
 
                         <button type="submit" class="btn btn-primary mb-2">Cập nhật</button>

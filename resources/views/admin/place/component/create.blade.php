@@ -12,17 +12,17 @@
                             <label for="exampleInputEmail1">Tên Cơ Sở</label>
                             <input type="text" name="name_place" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
                                 value="">
-                                <p class="text-danger">@error('name')
-                                    {{$message}}
-                                @enderror</p>
+                                @error('name_place')
+								<small style="color: red">{{ $message }}</small>
+							@enderror
                         </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1">Địa Chỉ</label>
                             <input type="text" name="address" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
                                 value="">
-                                <p class="text-danger">@error('name')
-                                    {{$message}}
-                                @enderror</p>
+                                @error('address')
+								<small style="color: red">{{ $message }}</small>
+							@enderror
                         </div>
                         <button type="submit" class="btn btn-primary mb-2">Thêm</button>
                         <a href="{{route('place.index')}}" class="btn btn-danger mb-2">Hủy</a>

@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Course;
+namespace App\Http\Requests\Place;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class EditCourseRequest extends FormRequest
+class EditPlaceRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,25 +24,20 @@ class EditCourseRequest extends FormRequest
     public function rules()
     {
         return [
-            'name_course'=> [
-                'required'
-            ],
-            'number_course'=>[
+            'name_place'=> [
                 'required',
             ],
-            'description'=>[
-                'required',
+            'address'=>[
+            'required',
             ]
         ];
     }
     public function messages()
     {
         return [
-            'name_course.required'=>'Tên khóa học không được để trống',
+            'name_place.required'=>'Tên cơ sở không được để trống',
 
-            'number_course.required'=>'Số buổi học không được để trống',
-
-            'description.required'=>'Mô tả không được để trống',
+            'address.required'=>'Địa chỉ không được để trống'
         ];
-}
+    }
 }
