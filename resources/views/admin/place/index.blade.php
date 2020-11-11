@@ -21,14 +21,19 @@
                         <table class="table table-bordered text-dark text-center" id="dataTable" width="100%" cellspacing="0">
                             <thead>
                                 <tr>
+                                    <th>STT</th>
                                     <th>Tên Cơ Sở</th>
                                     <th>Địa Chỉ</th>
                                     <th>Thao Tác</th>
                                 </tr>
                             </thead>
                             <tbody>
+                                @php
+                                    $i = 0
+                                @endphp
                                 @foreach ($list as $item)
                                 <tr>
+                                <td>{{++$i}}</td>
                                 <td>{{$item->name_place}}</td>
                                     <td>{{$item->address}}</td>
                                     <td>

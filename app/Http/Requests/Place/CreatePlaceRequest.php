@@ -27,7 +27,7 @@ class CreatePlaceRequest extends FormRequest
         return [
             'name_place'=> [
                 'required',
-                'unique:place,name_place'
+                'unique:places,name_place'
             ],
             'address'=>[
             'required',

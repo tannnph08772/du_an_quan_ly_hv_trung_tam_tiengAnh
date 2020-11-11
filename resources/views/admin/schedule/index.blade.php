@@ -21,6 +21,7 @@
                         <table class="table table-bordered text-dark text-center"  id="dataTable" width="100%" cellspacing="0">
                             <thead>
                                 <tr>
+                                    <th>STT</th>
                                     <th>Tên Ca Học</th>
                                     <th>Giờ Bắt Đầu</th>
                                     <th>Giờ Kết Thúc</th>
@@ -28,9 +29,13 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                @php
+                                    $i = 0
+                                @endphp
                                 @foreach ($list as $item)
                                 <tr>
-                                <td>{{$item->name_schedule}}</td>
+                                    <td>{{++$i}}</td>
+                                    <td>{{$item->name_schedule}}</td>
                                     <td>{{$item->start_time}}</td>
                                     <td>{{$item->end_time}}</td>
                                     <td>

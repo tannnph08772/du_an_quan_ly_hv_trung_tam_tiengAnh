@@ -28,7 +28,7 @@ class CreateCourseRequest extends FormRequest
             'required',
             'max:100',
             'min:5',
-            'unique:course,name_cource',
+            'unique:courses,name_cource',
         ],
         'number_cource'=>[
         'required',

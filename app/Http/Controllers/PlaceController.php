@@ -1,13 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use App\Http\Requests\Place\CreatePlaceRequest;
 use App\Http\Requests\Place\EditPlaceRequest;
 use Illuminate\Support\Facades\Session;
 use App\Services\PlaceServices;
 use Illuminate\Http\Request;
-use Whoops\Run;
 
 class PlaceController extends Controller
 {
