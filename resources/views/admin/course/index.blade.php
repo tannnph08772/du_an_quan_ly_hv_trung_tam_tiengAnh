@@ -1,13 +1,12 @@
 @extends('index')
-@section('title', 'View')
+@section('title', 'Danh sách khóa học')
 @section('content')
 <div id="content-wrapper" class="d-flex flex-column">
     <div id="content">
         <div class="container-fluid">
-            <h1 class="h3 mb-2 text-gray-800">Danh Sách Khóa Học</h1>
             <div class="card shadow mb-4">
                 <div class="card-header py-3 d-flex justify-content-between align-items-center">
-                    <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
+                    <h4 class="m-0 font-weight-bold text-primary">Danh Sách Khóa Học</h4>
                     <a class="btn btn-success"href="{{ route ('course.add' ) }}"
                     >Tạo Khóa Học</a>
                 </div>
@@ -60,12 +59,6 @@
 
         </div>
     </div>
-
-
-    <!-- Footer -->
-    {{-- @include('layouts/footer') --}}
-    <!-- End of Footer -->
-
 </div>
 </section>
 @endsection

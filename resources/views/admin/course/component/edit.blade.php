@@ -1,5 +1,5 @@
 @extends('index')
-@section('title', 'View')
+@section('title', 'Sửa khóa học')
 @section('content')
 <div class="container ">
     <div class="row mt-5">

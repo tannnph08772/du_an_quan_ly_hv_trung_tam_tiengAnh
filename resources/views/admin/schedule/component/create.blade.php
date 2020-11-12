@@ -1,5 +1,5 @@
 @extends('index')
-@section('title', 'View')
+@section('title', 'Thêm ca học')
 @section('content')
 <div class="container ">
    <div class="row mt-5">
@@ -10,24 +10,24 @@
                 @csrf
                 <div class="form-group">
                     <label for="exampleInputEmail1">Tên Ca Học</label>
-                    <input type="text" name="name_schedule" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-                        value="">
+                    <input type="text" name="name_schedule" class="form-control" 
+                value="{{old('name_schedule')}}">
                         @error('name_schedule')
 								<small style="color: red">{{ $message }}</small>
 						@enderror
                 </div>
                 <div class="form-group">
                     <label for="exampleInputEmail1">Giờ bắt đầu</label>
-                    <input type="time" name="start_time" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-                        value="">
+                    <input type="time" name="start_time" class="form-control" 
+                        value="{{old('start_time')}}">
                         @error('start_time')
 								<small style="color: red">{{ $message }}</small>
 						@enderror
                 </div>
                 <div class="form-group">
                     <label for="exampleInputEmail1">Giờ kết thúc</label>
-                    <input type="time" name="end_time" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-                        value="">
+                    <input type="time" name="end_time" class="form-control" 
+                        value="{{old('end_time')}}">
                         @error('end_time')
 								<small style="color: red">{{ $message }}</small>
 						@enderror

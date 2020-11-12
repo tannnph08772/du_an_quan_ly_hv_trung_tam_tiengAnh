@@ -1,5 +1,5 @@
 @extends('index')
-@section('title', 'View')
+@section('title', 'Thêm cơ sở')
 @section('content')
 <div class="container ">
    <div class="row mt-5">
@@ -11,7 +11,7 @@
                         <div class="form-group">
                             <label for="exampleInputEmail1">Tên Cơ Sở</label>
                             <input type="text" name="name_place" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-                                value="">
+                                value="{{old('name_place')}}">
                                 @error('name_place')
 								<small style="color: red">{{ $message }}</small>
 							@enderror
@@ -19,7 +19,7 @@
                         <div class="form-group">
                             <label for="exampleInputEmail1">Địa Chỉ</label>
                             <input type="text" name="address" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-                                value="">
+                                value="{{old('address')}}">
                                 @error('address')
 								<small style="color: red">{{ $message }}</small>
 							@enderror

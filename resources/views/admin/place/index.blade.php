@@ -1,13 +1,12 @@
 @extends('index')
-@section('title', 'View')
+@section('title', 'Danh sách cơ sở')
 @section('content')
 <div id="content-wrapper" class="d-flex flex-column">
     <div id="content">
         <div class="container-fluid">
-            <h1 class="h3 mb-2 text-gray-800">Danh Sách Cơ Sở</h1>
             <div class="card shadow mb-4">
                 <div class="card-header py-3 d-flex justify-content-between align-items-center">
-                    <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
+                    <h4 class="m-0 font-weight-bold text-primary">Danh Sách Cơ Sở</h4>
                     <a class="btn btn-success"href="{{ route ('place.add' ) }}"
                     >Tạo Cơ Sở Học</a>
                 </div>
@@ -87,8 +86,8 @@
                     console.log(err);
                 });
                 Swal.fire(
-                'Deleted!',
-                'Your file has been deleted.',
+                'Xóa thành công !',
+                'Cơ sở của bạn đã bị xóa.',
                 'success'
                 )
             }

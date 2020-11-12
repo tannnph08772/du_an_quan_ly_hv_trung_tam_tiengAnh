@@ -1,12 +1,11 @@
-@extends('clients/layouts/index')
+@extends('client')
 @section('content')
 <div class="container">
     <div class="row">
         <div class="col-lg-8">
             @foreach ($list as $item)
-            <h5 class="pt-5 ">{{$item->name_cource}}</h5>
             <div id="htmldesc" class="d-none">
-                {{$item->discription}}
+                {{$item->description}}
             </div>
             <div id="description">
 

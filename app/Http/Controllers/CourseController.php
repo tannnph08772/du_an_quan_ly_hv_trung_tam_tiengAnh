@@ -59,6 +59,6 @@ class CourseController extends Controller
         $listMenu = $this->CourseServices->getCourse();
         $id = $request->id;
         $list = $this->CourseServices->getSingleCourse($id);
-        return view('single',compact('list', 'listMenu'));
+        return view('admin/course/single',compact('list', 'listMenu'));
     }
 }

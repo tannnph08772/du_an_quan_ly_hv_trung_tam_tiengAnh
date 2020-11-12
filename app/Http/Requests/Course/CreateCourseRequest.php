@@ -24,31 +24,24 @@ class CreateCourseRequest extends FormRequest
     public function rules()
     {
         return [
-            'name_cource'=> [
-            'required',
-            'max:100',
-            'min:5',
-            'unique:courses,name_cource',
-        ],
-        'number_cource'=>[
+        'name_course'=>
+        'required|unique:courses,name_course',
+
+        'number_course'=>
+        'required|regex:/^[0-9]*$/',
+
+        'description'=>
         'required',
-        ],
-        'discription'=> [
-        'required',
-        ]
         ];
     }
     public function messages()
     {
         return [
-            'name_cource.required'=>'Tên khóa học không được để trống',
-            'name_cource.max'=>'Tên khóa học phải dưới 100 kí tự',
-            'name_cource.min'=>'Tên khóa học phải trên 5 kí tự',
-            'name_cource.unique'=>'Tên khóa học đã tồn tại',
-
-            'number_cource.required'=>'Số buổi học không được để trống',
-
-            'discription.required'=>'Mô tả không được để trống',
+            'name_course.required'=>'Tên khóa học không được để trống',
+            'name_course.unique'=>'Tên khóa học đã tồn tại',
+            'number_course.required'=>'Số buổi học không được để trống',
+            'number_course.regex'=>'Số buổi học không được âm',
+            'description.required'=>'Mô tả không được để trống',
 
 
         ];

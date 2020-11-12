@@ -1,5 +1,5 @@
 @extends('index')
-@section('title', 'View')
+@section('title', 'Sửa ca học')
 @section('content')
 <div class="container ">
     <div class="row mt-5">
@@ -16,7 +16,6 @@
 								        <small style="color: red">{{ $message }}</small>
 						            @enderror
                             </div>
-                        
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Giờ bắt đầu</label>
                                 <input type="time" name="start_time" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
@@ -25,7 +24,6 @@
 								        <small style="color: red">{{ $message }}</small>
 						            @enderror
                             </div>
-
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Giờ kết thúc</label>
                                 <input type="time" name="end_time" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
@@ -34,7 +32,6 @@
 								        <small style="color: red">{{ $message }}</small>
 						            @enderror
                             </div>
-
                         <button type="submit" class="btn btn-primary mb-2">Cập nhật</button>
                         <a href="{{route('schedule.index')}}" class="btn btn-danger mb-2">Hủy</a>
                 </form>
