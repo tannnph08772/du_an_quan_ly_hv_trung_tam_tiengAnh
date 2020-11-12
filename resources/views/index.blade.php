@@ -17,6 +17,7 @@
         @include('layouts/sidebar')
         <!-- End of Sidebar -->
         <!-- Content Wrapper -->
+        {{-- @yield('content') --}}
         <div id="content-wrapper" class="d-flex flex-column">
             <div id="content">
                 <!-- Header -->
@@ -60,4 +61,5 @@
     </div>
 </body>
 @include('layouts/js')
+@yield('script')
 </html>
