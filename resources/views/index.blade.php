@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -12,30 +11,27 @@
 </head>
 
 <body id="page-top">
-
     <!-- Page Wrapper -->
     <div id="wrapper">
-
         <!-- Sidebar -->
         @include('layouts/sidebar')
         <!-- End of Sidebar -->
-
         <!-- Content Wrapper -->
         {{-- @yield('content') --}}
         <div id="content-wrapper" class="d-flex flex-column">
             <div id="content">
-                @include('layouts/header')
-                @yield('content')
+                <!-- Header -->
+                @include('layouts/header') 
+                <!-- End of Header -->   
+                <div class="container-fluid"> 
+                    @yield('content')
+                </div>      
+                <!-- Footer -->
+                @include('layouts/footer')
+                <!-- End of Footer -->
             </div>
-
-
-            <!-- Footer -->
-            @include('layouts/footer')
-            <!-- End of Footer -->
-
         </div>
         <!-- End of Content Wrapper -->
-
     </div>
     <!-- End of Page Wrapper -->
 
