@@ -13,10 +13,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/', function () {
-//     return view('index');
-// });
-
 Route::group([
     'prefix' => 'lop-hoc',
     'as' => 'classes.'
@@ -43,8 +39,7 @@ Route::group(['prefix' => 'khoa-hoc'],function(){
     // // //sua-co-so-hoc
     Route::get('/sua-khoa-hoc/{id}','CourseController@edit')->name('showcourse.edit');
     Route::post('/sua-khoa-hoc/{id}','CourseController@update')->name('course.edit');
-}
-);
+});
 
 // co-so-hoc
 Route::group(['prefix' => 'co-so-hoc'],function(){
@@ -75,3 +70,6 @@ Route::group(['prefix' => 'ca-hoc'],function(){
 
 }
 );
+
+Route::get('/thong-tin/{id}', 'UserController@getInfoHV')->name('users.getInfoHV');
+Route::post('/store/{id}', 'UserController@store')->name('users.store');
