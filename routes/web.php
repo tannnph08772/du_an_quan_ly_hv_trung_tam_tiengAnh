@@ -22,10 +22,6 @@ Route::group([
     Route::post('/store', 'ClassController@store')->name('store');
 });
 
-Route::get('/', function() {
-    return view('client');
-});
-Route::get('/','CourseController@showcourse')->name('client.home');
 Route::get('chi-tiet-khoa-hoc/{id}','CourseController@single')->name('english.single');
 
 // khoa-hoc
@@ -73,3 +69,43 @@ Route::group(['prefix' => 'ca-hoc'],function(){
 
 Route::get('/thong-tin/{id}', 'UserController@getInfoHV')->name('users.getInfoHV');
 Route::post('/store/{id}', 'UserController@store')->name('users.store');
+
+Route::get('/', function () {
+    return view('clients.home');
+})->name('home');
+
+Route::get('/lien-he', function () {
+    return view('clients.contact');
+})->name('contact');
+
+Route::get('/tin-tuc', function () {
+    return view('clients.news');
+})->name('news');
+
+Route::get('/gioi-thieu', function () {
+    return view('clients.intro');
+})->name('mission');
+
+Route::get('/cam-nhan-cua-hoc-vien', function () {
+    return view('clients.feelOfStudent');
+})->name('feelOfStudent');
+
+Route::get('/doi-ngu-dao-tao', function () {
+    return view('clients.trainingTeam');
+})->name('trainingTeam');
+
+Route::get('/phuong-phap-tpr', function () {
+    return view('study-methods.tpr-method');
+})->name('tpr-method');
+
+Route::get('/phuong-phap-shadowing', function () {
+    return view('study-methods.shadowing-method');
+})->name('shadowing-method');
+
+Route::get('/phuong-phap-nlp', function () {
+    return view('study-methods.nlp-method');
+})->name('nlp-method');
+
+Route::get('/phuong-phap-ale', function () {
+    return view('study-methods.ale-method');
+})->name('ale-method');
