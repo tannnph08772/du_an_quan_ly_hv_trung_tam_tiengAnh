@@ -13,18 +13,10 @@ use Illuminate\Support\Facades\Mail;
 
 class UserController extends Controller
 {
-
-    public function dsCho(){
-        $waitLists = WaitList::all();
-		return view('admin.index', [
-		'waitLists' => $waitLists,
-		]);
-    }
-
     public function getInfoHV($id){
         $waitList = Waitlist::find($id);
         $classes = CLassRoom::where('course_id',$waitList->course_id)->get();
-		return view('admin/them_hoc_vien_vao_lop', [
+		return view('admin/staff/them_hoc_vien_vao_lop', [
             'waitList' => $waitList,
             'classes' => $classes
 		]);
@@ -52,15 +44,13 @@ class UserController extends Controller
         }
         Student::create($student);
         $del->delete();
-
-       Mail::send('email/email',[
-           'email' => $param['email'],
-           function ($mail) use($param){
-               $mail->to($param['email']);
-               $mail->from('tannnPH08772fpt.edu.vn');
-               $mail->subject('Tham gia vào lớp học thành công!');
-           }
-       ]);
+        Mail::send('email.email', [
+            'email' => $param['email'],
+        ], function($mail) use($param){
+            $mail->to($param['email']);
+            $mail->from('cheesehiep3110@gmail.com');
+            $mail->subject('Tham gia lớp học thành công!');
+        });
 		return redirect()->route('classes.chiTietLophoc');
     }
 }
