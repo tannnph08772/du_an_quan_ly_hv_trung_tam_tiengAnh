@@ -13,7 +13,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('client');
-});
 
+
+Route::get('/index', 'UserController@dsCho')->name('users.index');
+Route::get('/thong-tin/{id}', 'UserController@getInfoHV')->name('users.getInfoHV');
+Route::post('/store/{id}', 'UserController@store')->name('users.store');
