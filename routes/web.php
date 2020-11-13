@@ -13,11 +13,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-<<<<<<< HEAD
-// Route::get('/', function () {
-//     return view('index');
-// });
-
 Route::group([
     'prefix' => 'lop-hoc',
     'as' => 'classes.'
@@ -76,7 +71,6 @@ Route::group(['prefix' => 'ca-hoc'],function(){
 
 }
 );
-=======
+
 Route::get('/thong-tin/{id}', 'UserController@getInfoHV')->name('users.getInfoHV');
 Route::post('/store/{id}', 'UserController@store')->name('users.store');
->>>>>>> ec2f049... tannn_them_hoc_vien_vao_lop
