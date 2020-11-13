@@ -53,7 +53,7 @@
                             Khóa học
                         </a>
                         <div class="dropdown-menu mr-2" aria-labelledby="navbarDropdownMenuLink">
-                            @foreach ($listMenu as $item)
+                            @foreach($courses as $item)
                             <a class="dropdown-item"
                                 href="{{route('english.single',['id'=>$item->id])}}">{{$item->name_course}}</a>
                             @endforeach

@@ -22,7 +22,6 @@ Route::group([
     Route::post('/store', 'ClassController@store')->name('store');
 });
 
-Route::get('/','CourseController@showcourse')->name('client.home');
 Route::get('chi-tiet-khoa-hoc/{id}','CourseController@single')->name('english.single');
 
 // khoa-hoc
