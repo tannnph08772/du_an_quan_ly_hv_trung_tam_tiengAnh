@@ -13,10 +13,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/', function () {
-//     return view('index');
-// });
-
 Route::group([
     'prefix' => 'lop-hoc',
     'as' => 'classes.'
@@ -26,9 +22,6 @@ Route::group([
     Route::post('/store', 'ClassController@store')->name('store');
 });
 
-Route::get('/', function() {
-    return view('client');
-});
 Route::get('/','CourseController@showcourse')->name('client.home');
 Route::get('chi-tiet-khoa-hoc/{id}','CourseController@single')->name('english.single');
 
@@ -43,8 +36,7 @@ Route::group(['prefix' => 'khoa-hoc'],function(){
     // // //sua-co-so-hoc
     Route::get('/sua-khoa-hoc/{id}','CourseController@edit')->name('showcourse.edit');
     Route::post('/sua-khoa-hoc/{id}','CourseController@update')->name('course.edit');
-}
-);
+});
 
 // co-so-hoc
 Route::group(['prefix' => 'co-so-hoc'],function(){
@@ -75,3 +67,26 @@ Route::group(['prefix' => 'ca-hoc'],function(){
 
 }
 );
+
+Route::get('/thong-tin/{id}', 'UserController@getInfoHV')->name('users.getInfoHV');
+Route::post('/store/{id}', 'UserController@store')->name('users.store');
+
+Route::get('/', function () {
+    return view('clients.home');
+})->name('home');
+
+Route::get('/lien-he', function () {
+    return view('clients.contact');
+})->name('contact');
+
+Route::get('/tin-tuc', function () {
+    return view('clients.news');
+})->name('news');
+
+Route::get('/gioi-thieu', function () {
+    return view('clients.intro');
+})->name('mission');
+
+Route::get('/cam-nhan-cua-hoc-vien', function () {
+    return view('clients.feelOfStudent');
+})->name('feelOfStudent');
