@@ -11,4 +11,10 @@ class Student extends Model
         'image', 'status', 'user_id', 'class_id', 'course_id'
     ];
     
+    public function user(){
+    	return $this->belongsTo(User::class, 'user_id');
+    }
+    public function attendanceDetail(){
+        return $this->hasOne(AttendanceDetail::class, 'student_id', 'id');
+    }
 }
