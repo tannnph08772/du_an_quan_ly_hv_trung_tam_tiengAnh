@@ -22,6 +22,14 @@ Route::group([
     Route::post('/store', 'ClassController@store')->name('store');
 });
 
+Route::get('lop-hoc/{id}', 'AttendanceController@index')->name('attendance.index');
+Route::get('diem-danh/{id}', 'AttendanceController@create')->name('attendance.create');
+Route::post('diem-danh/store', 'AttendanceController@store')->name('attendance.store');
+
+Route::get('/', function() {
+    return view('client');
+});
+Route::get('/','CourseController@showcourse')->name('client.home');
 Route::get('chi-tiet-khoa-hoc/{id}','CourseController@single')->name('english.single');
 
 // khoa-hoc

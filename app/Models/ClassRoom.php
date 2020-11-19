@@ -10,7 +10,7 @@ class ClassRoom extends Model
 	protected $primaryKey = 'id';
 
     protected $fillable = [
-        'name_class', 'start_day', 'end_day', 'status', 'teacher_id', 'course_id', 'place_id'
+        'name_class', 'start_day', 'end_day', 'status', 'teacher_id', 'course_id', 'place_id', 'schedule_id'
     ];
 
     public function teacher(){
@@ -23,5 +23,9 @@ class ClassRoom extends Model
 
     public function place(){
     	return $this->belongsTo(Place::class, 'place_id');
+    }
+
+    public function attendances(){
+    	return $this->hasMany(Attendance::class, 'class_id', 'id');
     }
 }
