@@ -27,9 +27,6 @@ class User extends Authenticatable
      *
      * @var array
      */
-    protected $hidden = [
-        'password', 'remember_token',
-    ];
 
     /**
      * The attributes that should be cast to native types.
@@ -41,6 +38,10 @@ class User extends Authenticatable
     ];
 
     public function teacher(){
+        return $this->hasOne(Teacher::class, 'user_id', 'id');
+    }
+
+    public function student(){
         return $this->hasOne(Teacher::class, 'user_id', 'id');
     }
 }
