@@ -23,6 +23,7 @@ Route::group([
 });
 
 Route::get('chi-tiet-khoa-hoc/{id}','CourseController@single')->name('english.single');
+Route::get('gop-y-cua-hoc-vien','FeedbackController@showfeedback')->name('feedback.showfeedback');
 
 // khoa-hoc
 Route::group(['prefix' => 'khoa-hoc'],function(){
