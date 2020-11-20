@@ -28,4 +28,8 @@ class ClassRoom extends Model
     public function attendances(){
     	return $this->hasMany(Attendance::class, 'class_id', 'id');
     }
+
+    public function students(){
+    	return $this->hasMany(Student::class, 'class_id', 'id');
+    }
 }

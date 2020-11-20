@@ -17,4 +17,7 @@ class Student extends Model
     public function attendanceDetail(){
         return $this->hasOne(AttendanceDetail::class, 'student_id', 'id');
     }
+    public function class(){
+    	return $this->belongsTo(ClassRoom::class, 'class_id');
+    }
 }

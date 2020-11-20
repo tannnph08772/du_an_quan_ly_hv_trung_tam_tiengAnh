@@ -29,14 +29,6 @@
 						</td>
 					</tr>
 					<tr>
-						<td>Ngày kết thúc</td>
-						<td>
-							@error('end_day')
-								<small style="color: red">{{ $message }}</small>
-							@enderror<input type="date" class="form-control" name="end_day" value="{{ old('end_day') }}">
-						</td>
-					</tr>
-					<tr>
 						<td>Ca học</td>
 						<td>
 							<select class="form-control" name="schedule_id">
