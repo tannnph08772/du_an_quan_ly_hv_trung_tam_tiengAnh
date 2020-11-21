@@ -31,7 +31,6 @@ class AuthController extends Controller
             }else{
                 return redirect()->route('staffs.dashboard');
             }
-
         }else{
             return view('auth.login', [
                 'message' => "Đăng nhập không thành công.Vui lòng kiểm tra lại!",

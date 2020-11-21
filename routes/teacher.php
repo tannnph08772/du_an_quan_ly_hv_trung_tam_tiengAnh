@@ -16,8 +16,8 @@ use Illuminate\Support\Facades\Route;
 Route::group([
     'middleware' => 'checkTeacher',
 ], function(){
-Route::get('giang-vien/dashboard', 'UserController@dashboardTeacher')->name('teachers.dashboardTeacher');
-Route::get('lop-hoc/{id}', 'AttendanceController@index')->name('attendance.index');
-Route::get('diem-danh/{id}', 'AttendanceController@create')->name('attendance.create');
-Route::post('diem-danh/store', 'AttendanceController@store')->name('attendance.store'); 
+    Route::get('giang-vien/dashboard', 'UserController@dashboardTeacher')->name('teachers.dashboardTeacher');
+    Route::get('lop-hoc/{id}', 'AttendanceController@index')->name('attendance.index');
+    Route::get('diem-danh/{id}', 'AttendanceController@create')->name('attendance.create');
+    Route::post('diem-danh/store', 'AttendanceController@store')->name('attendance.store'); 
 });

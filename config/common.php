@@ -13,9 +13,9 @@
 			'nam' => 1,
 			'nu' => 2,
 		],
-		'active' =>[
-			'on' => true,
-			'off' => false,
+		'statusUser' =>[
+			'active' => 1,
+			'disable' => 2,
 		],
 		'role' => [
 			'admin' => 1,
