@@ -13,6 +13,18 @@ use Illuminate\Support\Facades\Mail;
 
 class UserController extends Controller
 {
+    public function dashboardStaff(){
+		return view('admin/staff/dashboard');
+    }
+
+    public function dashboardAdmin(){
+		return view('admin/dashboard');
+    }
+
+    public function dashboardTeacher(){
+		return view('admin/teacher/dashboard');
+    }
+
     public function getInfoHV($id){
         $waitList = Waitlist::find($id);
         $classes = CLassRoom::where('course_id',$waitList->course_id)->get();

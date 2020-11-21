@@ -13,14 +13,14 @@
 			'nam' => 1,
 			'nu' => 2,
 		],
-		'active' =>[
-			'on' => 1,
-			'off' => 2,
+		'statusUser' =>[
+			'active' => 1,
+			'disable' => 2,
 		],
 		'role' => [
-			'admin' => 'admin',
-			'student' => 'student',
-			'staff' => 'staff',
-			'teacher' => 'teacher',
-		],
+			'admin' => 1,
+			'staff' =>2,
+			'teacher' => 3,
+			'student' => 4
+		]
 	];
