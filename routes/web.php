@@ -14,69 +14,66 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::group([
-    'prefix' => 'lop-hoc',
-    'as' => 'classes.'
-], function() {
-    Route::get('/', 'ClassController@index')->name('index');
-    Route::get('/tao-lop-hoc', 'ClassController@create')->name('create');
-    Route::post('/store', 'ClassController@store')->name('store');
+	'as' => 'auth.'
+], function () {
+    Route::get('login', 'AuthController@showLoginForm')->name('showLoginForm');
+	Route::post('login', 'AuthController@login')->name('login');
+	Route::get('logout', 'AuthController@logOut')->name('logOut');
+});
+Route::group([
+    'middleware' => 'checkAdmin',
+], function(){
+    Route::get('/dashboard', 'UserController@dashboardAdmin')->name('admin.dashboardAdmin');
+// khoa-hoc
+    Route::group(['prefix' => 'khoa-hoc'],function(){
+        Route::get('/', 'CourseController@index')->name('course.index');
+        //tao-khoa-hoc
+        Route::get('/tao-khoa-hoc', 'CourseController@add')->name('course.add');
+        Route::post('/tao-khoa-hoc','CourseController@create')->name('course.create');
+        // //xoa-co-so-hoc
+        Route::post('/xoa-khoa-hoc','CourseController@delete')->name('course.delete');
+        // // //sua-co-so-hoc
+        Route::get('/sua-khoa-hoc/{id}','CourseController@edit')->name('showcourse.edit');
+        Route::post('/sua-khoa-hoc/{id}','CourseController@update')->name('course.edit');
+    });
+    // co-so-hoc
+    Route::group(['prefix' => 'co-so-hoc'],function(){
+        Route::get('/', 'PlaceController@index')->name('place.index');
+        // tao-co-so-hoc
+        Route::get('/tao-co-so-hoc', 'PlaceController@add')->name('place.add');
+        Route::post('/tao-co-so-hoc','PlaceController@create')->name('place.create');
+        //xoa-co-so-hoc
+        Route::post('/xoa-co-so-hoc','PlaceController@delete')->name('place.delete');
+        // //sua-co-so-hoc
+        Route::get('/sua-co-so-hoc/{id}','PlaceController@edit')->name('showplace.edit');
+        Route::post('/sua-co-so-hoc/{id}','PlaceController@update')->name('place.edit');
+
+    });
+    Route::group([
+        'prefix' => 'nhan-vien'
+    ],function(){
+        Route::get('/', 'UserController@indexStaff')->name('staff.index');
+        Route::get('/tao-tai-khoan', 'UserController@createStaff')->name('staff.create');
+        Route::post('/store', 'UserController@storeStaff')->name('staff.store');
+        Route::post('/status/{id}', 'UserController@statusStaff')->name('staff.status');
+        Route::get('/sua-tai-khoan/{id}', 'UserController@editStaff')->name('staff.edit');
+        Route::post('/update/{id}', 'UserController@updateStaff')->name('staff.update');
+    });
+    
+    Route::group([
+        'prefix' => 'giang-vien'
+    ],function(){
+        Route::get('/', 'UserController@indexTeacher')->name('teacher.index');
+        Route::get('/tao-tai-khoan', 'UserController@createTeacher')->name('teacher.create');
+        Route::post('/store', 'UserController@storeTeacher')->name('teacher.store');
+        Route::post('/status/{id}', 'UserController@statusTeacher')->name('teacher.status');
+        Route::get('/sua-tai-khoan/{id}', 'UserController@editTeacher')->name('teacher.edit');
+        Route::post('/update/{id}', 'UserController@updateTeacher')->name('teacher.update');
+    });
 });
 
-Route::get('lop-hoc/{id}', 'AttendanceController@index')->name('attendance.index');
-Route::get('diem-danh/{id}', 'AttendanceController@create')->name('attendance.create');
-Route::post('diem-danh/store', 'AttendanceController@store')->name('attendance.store');
-
-Route::get('/', function() {
-    return view('client');
-});
 Route::get('/','CourseController@showcourse')->name('client.home');
 Route::get('chi-tiet-khoa-hoc/{id}','CourseController@single')->name('english.single');
-
-// khoa-hoc
-Route::group(['prefix' => 'khoa-hoc'],function(){
-    Route::get('/', 'CourseController@index')->name('course.index');
-    //tao-khoa-hoc
-    Route::get('/tao-khoa-hoc', 'CourseController@add')->name('course.add');
-    Route::post('/tao-khoa-hoc','CourseController@create')->name('course.create');
-    // //xoa-co-so-hoc
-    Route::post('/xoa-khoa-hoc','CourseController@delete')->name('course.delete');
-    // // //sua-co-so-hoc
-    Route::get('/sua-khoa-hoc/{id}','CourseController@edit')->name('showcourse.edit');
-    Route::post('/sua-khoa-hoc/{id}','CourseController@update')->name('course.edit');
-});
-
-// co-so-hoc
-Route::group(['prefix' => 'co-so-hoc'],function(){
-    Route::get('/', 'PlaceController@index')->name('place.index');
-    // tao-co-so-hoc
-    Route::get('/tao-co-so-hoc', 'PlaceController@add')->name('place.add');
-    Route::post('/tao-co-so-hoc','PlaceController@create')->name('place.create');
-    //xoa-co-so-hoc
-    Route::post('/xoa-co-so-hoc','PlaceController@delete')->name('place.delete');
-    // //sua-co-so-hoc
-    Route::get('/sua-co-so-hoc/{id}','PlaceController@edit')->name('showplace.edit');
-    Route::post('/sua-co-so-hoc/{id}','PlaceController@update')->name('place.edit');
-
-}
-);
-
-// ca-hoc
-Route::group(['prefix' => 'ca-hoc'],function(){
-    Route::get('/', 'ScheduleController@index')->name('schedule.index');
-    //tao-ca-hoc
-    Route::get('/tao-ca-hoc', 'ScheduleController@add')->name('schedule.add');
-    Route::post('/tao-ca-hoc','ScheduleController@create')->name('schedule.create');
-    //xoa-ca-hoc
-    Route::post('/xoa-ca-hoc','ScheduleController@delete')->name('schedule.delete');
-    //sua-ca-hoc
-    Route::get('/sua-ca-hoc/{id}','ScheduleController@edit')->name('showschedule.edit');
-    Route::post('/sua-ca-hoc/{id}','ScheduleController@update')->name('schedule.edit');
-
-}
-);
-
-Route::get('/thong-tin/{id}', 'UserController@getInfoHV')->name('users.getInfoHV');
-Route::post('/store/{id}', 'UserController@store')->name('users.store');
 
 Route::get('/', function () {
     return view('clients.home');
