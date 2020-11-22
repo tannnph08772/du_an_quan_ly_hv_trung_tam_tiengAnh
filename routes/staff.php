@@ -37,4 +37,5 @@ Route::group([
 
     Route::get('/thong-tin/{id}', 'UserController@getInfoHV')->name('users.getInfoHV');
     Route::post('/store/{id}', 'UserController@store')->name('users.store');
+    Route::get('/danh-sach-cho', 'AuthController@danh_sach_cho')->name('register.danh_sach_cho');
 });

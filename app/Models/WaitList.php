@@ -7,7 +7,17 @@ use Illuminate\Database\Eloquent\Model;
 class WaitList extends Model
 {
     protected $table = 'wait_list';
-    protected $fillable = [
-        'name', 'email', 'phone_number', 'sex', 'birthday', 'address', 'course_id'
+	protected $primaryKey = 'id';
+     protected $fillable = [
+        'name',
+        'email',
+        'phone_number',
+        'birthday',
+        'sex',
+        'address',
+        'course_id'
     ];
+    public function course(){
+    	return $this->belongsTo(Course::class, 'course_id');
+    }
 }

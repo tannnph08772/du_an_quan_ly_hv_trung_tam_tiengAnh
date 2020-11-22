@@ -49,6 +49,27 @@ Route::group([
         Route::post('/sua-co-so-hoc/{id}','PlaceController@update')->name('place.edit');
 
     });
+    Route::group([
+        'prefix' => 'nhan-vien'
+    ],function(){
+        Route::get('/', 'UserController@indexStaff')->name('staff.index');
+        Route::get('/tao-tai-khoan', 'UserController@createStaff')->name('staff.create');
+        Route::post('/store', 'UserController@storeStaff')->name('staff.store');
+        Route::post('/status/{id}', 'UserController@statusStaff')->name('staff.status');
+        Route::get('/sua-tai-khoan/{id}', 'UserController@editStaff')->name('staff.edit');
+        Route::post('/update/{id}', 'UserController@updateStaff')->name('staff.update');
+    });
+    
+    Route::group([
+        'prefix' => 'giang-vien'
+    ],function(){
+        Route::get('/', 'UserController@indexTeacher')->name('teacher.index');
+        Route::get('/tao-tai-khoan', 'UserController@createTeacher')->name('teacher.create');
+        Route::post('/store', 'UserController@storeTeacher')->name('teacher.store');
+        Route::post('/status/{id}', 'UserController@statusTeacher')->name('teacher.status');
+        Route::get('/sua-tai-khoan/{id}', 'UserController@editTeacher')->name('teacher.edit');
+        Route::post('/update/{id}', 'UserController@updateTeacher')->name('teacher.update');
+    });
 });
 
 Route::get('/','CourseController@showcourse')->name('client.home');
@@ -93,3 +114,6 @@ Route::get('/phuong-phap-nlp', function () {
 Route::get('/phuong-phap-ale', function () {
     return view('study-methods.ale-method');
 })->name('ale-method');
+Route::get('/dang-ki', 'AuthController@register')->name('register.register');
+Route::post('/store', 'AuthController@store')->name('register.store');
+
