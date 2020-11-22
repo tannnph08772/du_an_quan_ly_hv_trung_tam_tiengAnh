@@ -40,6 +40,7 @@ class UserController extends Controller
         $data = $request->all();
 		$param = \Arr::except($data,['_token','class_id','image','course_id']);
         $param['password'] = bcrypt(123456);
+        $param['status'] = config('common.active.on');
         $param['role'] = config('common.role.student');
         $a = User::create($param);
         //insert students
@@ -65,7 +66,7 @@ class UserController extends Controller
             $mail->from('cheesehiep3110@gmail.com');
             $mail->subject('Tham gia lớp học thành công!');
         });
-		return redirect()->route('classes.chiTietLophoc');
+		return redirect()->route('users.dsHocVien');
     }
 
     public function indexStaff() {
