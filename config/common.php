@@ -9,18 +9,19 @@
 			'friday' => 5,
 			'saturday' => 6,
 		],
-		'sex' =>[
+		'sex' => [
 			'nam' => 1,
 			'nu' => 2,
 		],
-		'statusUser' =>[
+		'statusUser' => [
 			'active' => 1,
 			'disable' => 2,
 		],
 		'role' => [
 			'admin' => 1,
-			'staff' =>2,
+			'staff' => 2, 
 			'teacher' => 3,
-			'student' => 4
+			'student' => 4,
+			
 		]
 	];
