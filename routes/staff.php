@@ -23,6 +23,7 @@ Route::group([
         Route::get('/', 'ClassController@index')->name('index');
         Route::get('/tao-lop-hoc', 'ClassController@create')->name('create');
         Route::post('/store', 'ClassController@store')->name('store');
+        Route::get('/chi-tiet-lop-hoc/{id}', 'ClassController@getStudentByClass')->name('getStudentByClass');
     });
 
     // ca-hoc
@@ -37,4 +38,7 @@ Route::group([
 
     Route::get('/thong-tin/{id}', 'UserController@getInfoHV')->name('users.getInfoHV');
     Route::post('/store/{id}', 'UserController@store')->name('users.store');
+    Route::get('/danh-sach-cho', 'AuthController@danhSachCho')->name('auth.danhSachCho');
+    Route::get('/danh-sach-hoc-vien', 'UserController@dsHocVien')->name('users.dsHocVien');
+    Route::post('remove/{id}', 'AuthController@remove')->name('auth.remove');
 });

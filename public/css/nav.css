@@ -55,3 +55,11 @@ footer {
         border: 1px solid black;
     }
 }
+
+.col-6.d-flex {
+    width: 15px;
+}
+
+.bd-highlight .upload_file {
+    width: 230px;
+}

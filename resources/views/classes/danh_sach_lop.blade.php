@@ -1,4 +1,4 @@
-@extends('index')
+@extends('staff')
 @section('title', 'Danh sách lớp')
 @section('content')
 <div class="card shadow mb-4">
@@ -19,6 +19,7 @@
                         <th>Giảng viên</th>
                         <th>Khóa học</th>
                         <th>Cơ sở</th>
+                        <th>Chi tiết</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -40,6 +41,7 @@
                         <td>{{ $class->teacher->user->name }}</td>
                         <td>{{ $class->course->name_course }}</td>
                         <td>{{ $class->place->name_place }}</td>
+                        <td class="text-center"><a href="{{ route('classes.getStudentByClass',['id' => $class->id]) }}" class="btn"><i class="fas fa-info-circle text-success"></i></a></td>
                     </tr>
                     @endforeach
                     @endif

@@ -114,3 +114,9 @@ Route::get('/phuong-phap-nlp', function () {
 Route::get('/phuong-phap-ale', function () {
     return view('study-methods.ale-method');
 })->name('ale-method');
+Route::post('/store', 'AuthController@store')->name('auth.store');
+
+Route::get('/thank-you', function () {
+    return view('clients.thankiu');
+})->name('thankyou');
+

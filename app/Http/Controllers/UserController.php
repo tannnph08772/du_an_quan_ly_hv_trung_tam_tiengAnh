@@ -16,23 +16,43 @@ use Illuminate\Support\Facades\Mail;
 class UserController extends Controller
 {
     public function dashboardStaff(){
-		return view('admin/staff/dashboard');
+        $classes = ClassRoom::all();
+        return view('admin/staff/dashboard',[
+            'classes' => $classes
+        ]);
     }
 
     public function dashboardAdmin(){
-		return view('admin/dashboard');
+        $places = Place::all();
+		return view('admin/dashboard',[
+            'places' => $places
+        ]);
     }
 
     public function dashboardTeacher(){
-		return view('admin/teacher/dashboard');
+        $classes = ClassRoom::all();
+        return view('admin/teacher/dashboard',[
+            'classes' => $classes
+        ]);
     }
 
     public function getInfoHV($id){
         $waitList = Waitlist::find($id);
-        $classes = CLassRoom::where('course_id',$waitList->course_id)->get();
+        $classes = ClassRoom::where('classes.course_id','=',$waitList->course_id)
+        ->where('classes.place_id',$waitList->place_id)
+        ->get();
+        foreach ($classes as $key => $value) {
+            $value->count_hs = count($value->students);
+            $value->schedule;
+        };
+        $filteredArray = Arr::where($classes->toArray(), function ($value, $key) {
+            return $value['count_hs'] < 25;
+        });
+
 		return view('admin/staff/them_hoc_vien_vao_lop', [
             'waitList' => $waitList,
-            'classes' => $classes
+            'classes' => $classes,
+            'filteredArray' => $filteredArray
 		]);
     }
 
@@ -40,6 +60,7 @@ class UserController extends Controller
         $data = $request->all();
 		$param = \Arr::except($data,['_token','class_id','image','course_id']);
         $param['password'] = bcrypt(123456);
+        $param['status'] = config('common.active.on');
         $param['role'] = config('common.role.student');
         $a = User::create($param);
         //insert students
@@ -65,7 +86,7 @@ class UserController extends Controller
             $mail->from('cheesehiep3110@gmail.com');
             $mail->subject('Tham gia lớp học thành công!');
         });
-		return redirect()->route('classes.chiTietLophoc');
+		return redirect()->route('users.dsHocVien');
     }
 
     public function indexStaff() {
@@ -161,5 +182,12 @@ class UserController extends Controller
         $save->course_id = $params['course_id'];
         $save->save();
 		return redirect()->route('teacher.index');
+    }
+    public function dsHocVien(){
+    	$students = Student::all();
+
+		return view('admin/staff/ds_hoc_vien_co_lop', [
+			'students' => $students,
+		]);
     }
 }

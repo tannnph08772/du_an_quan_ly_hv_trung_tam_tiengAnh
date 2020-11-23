@@ -7,17 +7,17 @@
             <div class="card shadow mb-4">
                 <div class="card-header py-3 d-flex justify-content-between align-items-center">
                     <h4 class="m-0 font-weight-bold text-primary">Danh Sách Khóa Học</h4>
-                    <a class="btn btn-success"href="{{ route ('course.add' ) }}"
-                    >Tạo Khóa Học</a>
+                    <a class="btn btn-success" href="{{ route ('course.add' ) }}">Tạo Khóa Học</a>
                 </div>
                 <div class="card-body">
                     @if(Session::has('message'))
                     <div class="alert alert-success" role="alert">
                         {{Session::get('message') }}
-                      </div>
+                    </div>
                     @endif
                     <div class="table-responsive">
-                        <table class="table table-bordered text-dark text-center" id="dataTable" width="100%" cellspacing="0">
+                        <table class="table table-bordered text-dark text-center" id="dataTable" width="100%"
+                            cellspacing="0">
                             <thead>
                                 <tr>
                                     <th>STT</th>
@@ -28,7 +28,7 @@
                             </thead>
                             <tbody>
                                 @php
-                                    $i = 0
+                                $i = 0
                                 @endphp
                                 @foreach ($list as $key => $item)
                                 <tr>
@@ -37,18 +37,11 @@
                                     <td>{{$item->number_course}}</td>
                                     </td>
                                     <td>
-                                        <div class="d-flex justify-content-center">
-                                            <div class="text-center mr-2">
-                                                <a href="{{ route ('showcourse.edit', ['id' => $item->id ]) }}" class="btn btn-success"><i class="fas fa-edit"></i></a>
-                                            </div>
-
-                                            <div class="text-center">
-                                                <div class="text-center">
-                                                    <button class="btn btn-danger" onclick="confirmDelete({{$item->id}})"><i class="fas fa-trash"></i></button>
-                                                </div>
-                                            </div>
-                                    </div>
-                                    </td> 
+                                        <div class="text-center mr-2">
+                                            <a href="{{ route ('showcourse.edit', ['id' => $item->id ]) }}"
+                                                class="btn btn-success"><i class="fas fa-edit"></i></a>
+                                        </div>
+                                    </td>
                                 </tr>
                                 @endforeach
                             </tbody>
@@ -63,15 +56,16 @@
 </section>
 @endsection
 @section('script')
-  <script>
-      function PrintDescription(key ,html){
-            console.log(html);
-            let element = '#description-'+key;
-            $(element).html(html)
-        }
-      var routeDeletePlace = "{{route('course.delete')}}"
-      function confirmDelete(id){
-          Swal.fire({
+<script>
+function PrintDescription(key, html) {
+    console.log(html);
+    let element = '#description-' + key;
+    $(element).html(html)
+}
+var routeDeletePlace = "{{route('course.delete')}}"
+
+function confirmDelete(id) {
+    Swal.fire({
             title: 'Xác nhận xóa khóa học?',
             icon: 'warning',
             showCancelButton: true,
@@ -79,22 +73,24 @@
             cancelButtonColor: '#d33',
             confirmButtonText: 'Xóa',
             cancelButtonText: 'Hủy'
-            })
-            .then((result) => {
+        })
+        .then((result) => {
             if (result.isConfirmed) {
-                axios.post(routeDeletePlace, {id: id}).then((result) => {
-                    window.location.reload()
-                })
-                .catch((err) => {
-                    console.log(err);
-                });
+                axios.post(routeDeletePlace, {
+                        id: id
+                    }).then((result) => {
+                        window.location.reload()
+                    })
+                    .catch((err) => {
+                        console.log(err);
+                    });
                 Swal.fire(
-                'Xóa thành công !',
-                'Khóa học của bạn đã bị xóa.',
-                'success'
+                    'Xóa thành công !',
+                    'Khóa học của bạn đã bị xóa.',
+                    'success'
                 )
             }
-            })
-      }
-</script>  
+        })
+}
+</script>
 @endsection

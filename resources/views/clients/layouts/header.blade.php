@@ -15,9 +15,6 @@
                         src="https://alibabaenglish.edu.vn/wp-content/uploads/2019/03/53623352_1918711798257815_8196010289078992896_n.png"
                         style="height:90px"></li>
                 </div>
-                <div class="container">
-                    <div class="top-divider full-width"></div>
-                </div>
             </div>
         </div>
         <nav class="navbar navbar-expand-lg nav-center">
