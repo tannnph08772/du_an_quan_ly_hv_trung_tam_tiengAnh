@@ -31,11 +31,11 @@ class AuthController extends Controller
             if(Auth::user()->role == 1){
                 return redirect()->route('admin.dashboardAdmin');
             }else if(Auth::user()->role == 2){
-                return redirect()->route('home');
+                return redirect()->route('staffs.dashboardStaff');
             }else if(Auth::user()->role == 3){
-                return redirect()->route('teachers.dashboard');
+                return redirect()->route('teachers.dashboardTeacher');
             }else{
-                return redirect()->route('staffs.dashboard');
+                return redirect()->route('home');
             }
         }else{
             return view('auth.login', [
@@ -50,40 +50,25 @@ class AuthController extends Controller
         return redirect()->route('auth.login');
     }
 
-    public function danhSachKhoaHoc()
-    {
-        $courses = Course::all();
-        return view('client', [
-            'courses' => $courses,
-        ]);
-    }
-    public function chiTietKhoaHoc($id){
-        $courses = Course::all();
-        $course = Course::find($id);
-		return view('clients/dang_ky_khoa_hoc', [
-            'course' => $course,
-            'courses' => $courses,
-		]);
-    }
-
-    public function store(RegisterRequest $request, $id)
+    public function store(RegisterRequest $request)
     {
         $data = $request->all();
-        $course = Course::find($id);
         $param = \Arr::except($data, ['_token']);
-        $params['course_id'] = $course;
         WaitList::create($param);
-        
-        dd($param);
-        return redirect()->route('auth.danh_sach_cho');
+        return redirect()->route('thankyou');
     }
     
     public function danhSachCho()
     {
         $waitList = WaitList::all();
         return view('admin/danh_sach_hoc_vien_dang_ky', [
-            'waitList' => $waitList,
+            'waitList' => $waitList,  
         ]);
+    }
+    
+    public function remove(WaitList $id){
+    	$id->delete() ;
+		return back();
     }
 
     public function export_csv()

@@ -4,6 +4,8 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use App\Models\Course;
+use App\Models\ClassRoom;
+use Auth;
 use Illuminate\Support\Facades\View;
 
 class AppServiceProvider extends ServiceProvider
@@ -28,6 +30,13 @@ class AppServiceProvider extends ServiceProvider
         View::composer('*', function ($view) {
             $courses = Course::all();
             $view->with('courses', $courses );
+        });
+
+        View::composer('*', function ($view) {
+            $teacher = Auth::user()->teacher->id;
+		    $classes = ClassRoom::where('teacher_id', $teacher)->get();
+		
+            $view->with('classes', $classes );
         });
     }
 }

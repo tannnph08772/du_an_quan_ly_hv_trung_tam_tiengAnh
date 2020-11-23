@@ -12,7 +12,7 @@
 
     <!-- Nav Item - Dashboard -->
     <li class="nav-item active">
-        <a class="nav-link" href="#">
+        <a class="nav-link" href="{{route('staffs.dashboardStaff')}}">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Dashboard</span></a>
     </li>
@@ -22,7 +22,7 @@
             <i class="fas fa-users"></i>
             <span>Quản lý học viên</span>
         </a>
-        <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordionSidebar"
+        <div id="collapseTwo" class="collapse show" data-parent="#accordionSidebar"
             style="">
             <div class="collapse-inner rounded">
                 <a class="collapse-item" href="{{ route('users.dsHocVien') }}"><i class="far fa-circle"></i> Tất cả học viên</a>

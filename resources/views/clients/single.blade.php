@@ -3,14 +3,89 @@
 <div class="container">
     <div class="row">
         <div class="col-md-8 col-sm-12 mt-5">
-            @foreach ($list as $item)
+
             <div id="htmldesc" class="d-none">
-                {{$item->description}}
+                {{$course->description}}
             </div>
             <div id="description">
-
             </div>
-            @endforeach
+            <div class=" mt-4 container mb-3">
+                <h4 class="text-center text-uppercase">Form đăng ký</h4>
+                <div class="card card-contact">
+                    <div id="container-form-register">
+                        <form action="{{route('auth.store')}}" class="text-right p-4" method="post"
+                            enctype="multipart/form-data">
+                            @csrf
+                            <div class="form-group">
+                                <label>Họ và tên <span class="text-danger">*</span></label>
+                                <input type="text" name="name" value="{{ old('name') }}" class="form-control"
+                                    placeholder="Ví dụ: Nguyễn Văn A">
+                                @error('name')
+                                <small style="color: red;">{{ $message }}</small>
+                                @enderror
+                            </div>
+                            <div class="form-group">
+                                <label>Email <span class="text-danger">*</span></label>
+                                <input type="email" name="email" value="{{ old('email') }}" class="form-control"
+                                    placeholder="Ví dụ: abc123@gmail.com">
+                                @error('email')
+                                <small style="color: red;">{{ $message }}</small>
+                                @enderror
+                            </div>
+                            <div class="form-group">
+                                <label>Số điện thoại<span class="text-danger">*</span></label>
+                                <input type="text" name="phone_number" value="{{ old('phone_number') }}"
+                                    class="form-control" placeholder="Ví dụ: 0123456789">
+                                @error('phone_number')
+                                <small style="color: red;">{{ $message }}</small>
+                                @enderror
+                            </div>
+                            <div class="form-group ">
+                                <label>Ngày sinh<span class="text-danger">*</span></label>
+                                <input type="date" name="birthday" value="{{ old('birthday') }}" class="form-control">
+                                @error('birthday')
+                                <small style="color: red;">{{ $message }}</small>
+                                @enderror
+                            </div>
+                            <div class="form-group ">
+                                <label class="my-1 mr-2" for="inlineFormCustomSelectPref">Cở sở học</label>
+                                <select name="place_id" class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
+                                    @foreach($places as $place)
+                                    <option value="{{$place->id}}">{{$place->name_place}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="d-flex justify-content-between">
+                                <div class="form-group">
+                                    <label>Giới tính<span class="text-danger">*</span></label> <br>
+                                    <input type="radio" name="sex" checked id="" value="1">Nam
+                                    <input type="radio" name="sex" value="2"> Nữ
+                                    @error('sex')
+                                    <small style="color: red;">{{ $message }}</small>
+                                    @enderror
+                                </div>
+                                <div class="form-group">
+                                    <label for="">Khóa học</label>
+                                    <input type="text" disabled class="form-control" value="{{$course->name_course}}">
+                                    <input type="hidden" name="course_id" id="course" value="{{$course->id}}">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Địa chỉ<span class="text-danger">*</span></label>
+                                <input type="text" name="address" value="{{ old('address')}}" class="form-control"
+                                    placeholder="Ví dụ: 122 Cầu giấy, Hà nội">
+                                @error('address')
+                                <small style="color: red;">{{ $message }}</small>
+                                @enderror
+                            </div>
+                            <div class="button">
+                                <button class="btn btn-warning text-white" onclick="confirmSuccess()"
+                                    type="submit">Gửi</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="col-md-4 col-sm-12">
             <aside id="widget_posts_new-5" class="widget widget_widget_posts_new">

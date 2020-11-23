@@ -19,6 +19,7 @@
                         <th>Giảng viên</th>
                         <th>Khóa học</th>
                         <th>Cơ sở</th>
+                        <th>Chi tiết</th>
                     </tr>
                 </thead>
                 <tbody>

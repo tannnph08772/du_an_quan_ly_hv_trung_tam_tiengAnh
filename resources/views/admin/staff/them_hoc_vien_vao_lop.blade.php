@@ -1,4 +1,4 @@
-@extends('index')
+@extends('staff')
 @section('title' , 'Thêm học viên vào lớp')
 @section('content')
 <div class="card shadow mb-4">
@@ -30,7 +30,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td>Image</td>
+                        <td>Ảnh hóa đơn</td>
                         <td>
                             @error('image')
                             <small style="color: red">{{ $message }}</small>
@@ -63,8 +63,8 @@
                             @error('sex')
                             <small style="color: red">{{ $message }}</small> <br>
                             @enderror
-                            <input type="radio" name="sex" default value="1"> Nam
-                            <input type="radio" name="sex" value="2"> Nữ
+                            <input type="radio" name="sex" @if($waitList->sex ==1) checked @endif value="1"> Nam
+                            <input type="radio" name="sex" @if($waitList->sex ==2) checked @endif value="2"> Nữ
                         </td>
                     </tr>
                     <tr>
@@ -80,8 +80,8 @@
                         <td>Lớp học</td>
                         <td>
                             <select class="custom-select mr-sm-2" name="class_id" id="inlineFormCustomSelect">
-                                @foreach($classes as $class)
-                                <option value="{{$class->id}}">{{$class->name_class}}</option>
+                                @foreach($filteredArray as $class)
+                                <option value="{{$class['id']}}">{{$class['name_class']}} ({{ $class['schedule']['name_schedule'] }})</option>
                                 @endforeach
                             </select>
                         </td>

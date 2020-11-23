@@ -114,6 +114,9 @@ Route::get('/phuong-phap-nlp', function () {
 Route::get('/phuong-phap-ale', function () {
     return view('study-methods.ale-method');
 })->name('ale-method');
-Route::get('/dang-ki', 'AuthController@register')->name('register.register');
-Route::post('/store', 'AuthController@store')->name('register.store');
+Route::post('/store', 'AuthController@store')->name('auth.store');
+
+Route::get('/thank-you', function () {
+    return view('clients.thankiu');
+})->name('thankyou');
 

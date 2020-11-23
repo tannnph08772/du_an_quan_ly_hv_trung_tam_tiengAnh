@@ -9,8 +9,10 @@ use App\Models\Schedule;
 use App\Models\Teacher;
 use App\Models\Course;
 use App\Models\Place;
+use App\Models\Student;
 use App\Models\Attendance;
 use Carbon\Carbon;
+use Auth;
 
 class ClassController extends Controller
 {
@@ -88,6 +90,15 @@ class ClassController extends Controller
 		$students = Student::where('class_id', $classes->id)->get();
 		return view('classes/chi_tiet_lop_hoc', [
 			'students' => $students,
+		]);
+	}
+
+	public function getClassByTeacher(){
+		$teacher = Auth::user()->teacher->id;
+		$classes = ClassRoom::where('teacher_id', $teacher)->get();
+		
+		return view('admin/teacher/dashboard', [
+			'classes' => $classes,
 		]);
 	}
 }
