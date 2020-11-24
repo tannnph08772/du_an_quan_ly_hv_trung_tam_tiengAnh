@@ -20,55 +20,60 @@ Route::group([
 	Route::post('login', 'AuthController@login')->name('login');
 	Route::get('logout', 'AuthController@logOut')->name('logOut');
 });
-Route::group([
-    'middleware' => 'checkAdmin',
-], function(){
-    Route::get('/dashboard', 'UserController@dashboardAdmin')->name('admin.dashboardAdmin');
-// khoa-hoc
-    Route::group(['prefix' => 'khoa-hoc'],function(){
-        Route::get('/', 'CourseController@index')->name('course.index');
-        //tao-khoa-hoc
-        Route::get('/tao-khoa-hoc', 'CourseController@add')->name('course.add');
-        Route::post('/tao-khoa-hoc','CourseController@create')->name('course.create');
-        // //xoa-co-so-hoc
-        Route::post('/xoa-khoa-hoc','CourseController@delete')->name('course.delete');
-        // // //sua-co-so-hoc
-        Route::get('/sua-khoa-hoc/{id}','CourseController@edit')->name('showcourse.edit');
-        Route::post('/sua-khoa-hoc/{id}','CourseController@update')->name('course.edit');
-    });
-    // co-so-hoc
-    Route::group(['prefix' => 'co-so-hoc'],function(){
-        Route::get('/', 'PlaceController@index')->name('place.index');
-        // tao-co-so-hoc
-        Route::get('/tao-co-so-hoc', 'PlaceController@add')->name('place.add');
-        Route::post('/tao-co-so-hoc','PlaceController@create')->name('place.create');
-        //xoa-co-so-hoc
-        Route::post('/xoa-co-so-hoc','PlaceController@delete')->name('place.delete');
-        // //sua-co-so-hoc
-        Route::get('/sua-co-so-hoc/{id}','PlaceController@edit')->name('showplace.edit');
-        Route::post('/sua-co-so-hoc/{id}','PlaceController@update')->name('place.edit');
 
-    });
+Route::group([
+    'middleware' => 'checkAuth',
+], function(){
     Route::group([
-        'prefix' => 'nhan-vien'
-    ],function(){
-        Route::get('/', 'UserController@indexStaff')->name('staff.index');
-        Route::get('/tao-tai-khoan', 'UserController@createStaff')->name('staff.create');
-        Route::post('/store', 'UserController@storeStaff')->name('staff.store');
-        Route::post('/status/{id}', 'UserController@statusStaff')->name('staff.status');
-        Route::get('/sua-tai-khoan/{id}', 'UserController@editStaff')->name('staff.edit');
-        Route::post('/update/{id}', 'UserController@updateStaff')->name('staff.update');
-    });
-    
-    Route::group([
-        'prefix' => 'giang-vien'
-    ],function(){
-        Route::get('/', 'UserController@indexTeacher')->name('teacher.index');
-        Route::get('/tao-tai-khoan', 'UserController@createTeacher')->name('teacher.create');
-        Route::post('/store', 'UserController@storeTeacher')->name('teacher.store');
-        Route::post('/status/{id}', 'UserController@statusTeacher')->name('teacher.status');
-        Route::get('/sua-tai-khoan/{id}', 'UserController@editTeacher')->name('teacher.edit');
-        Route::post('/update/{id}', 'UserController@updateTeacher')->name('teacher.update');
+        'middleware' => 'checkAdmin',
+    ], function(){
+        Route::get('/dashboard', 'UserController@dashboardAdmin')->name('admin.dashboardAdmin');
+    // khoa-hoc
+        Route::group(['prefix' => 'khoa-hoc'],function(){
+            Route::get('/', 'CourseController@index')->name('course.index');
+            //tao-khoa-hoc
+            Route::get('/tao-khoa-hoc', 'CourseController@add')->name('course.add');
+            Route::post('/tao-khoa-hoc','CourseController@create')->name('course.create');
+            // //xoa-co-so-hoc
+            Route::post('/xoa-khoa-hoc','CourseController@delete')->name('course.delete');
+            // // //sua-co-so-hoc
+            Route::get('/sua-khoa-hoc/{id}','CourseController@edit')->name('showcourse.edit');
+            Route::post('/sua-khoa-hoc/{id}','CourseController@update')->name('course.edit');
+        });
+        // co-so-hoc
+        Route::group(['prefix' => 'co-so-hoc'],function(){
+            Route::get('/', 'PlaceController@index')->name('place.index');
+            // tao-co-so-hoc
+            Route::get('/tao-co-so-hoc', 'PlaceController@add')->name('place.add');
+            Route::post('/tao-co-so-hoc','PlaceController@create')->name('place.create');
+            //xoa-co-so-hoc
+            Route::post('/xoa-co-so-hoc','PlaceController@delete')->name('place.delete');
+            // //sua-co-so-hoc
+            Route::get('/sua-co-so-hoc/{id}','PlaceController@edit')->name('showplace.edit');
+            Route::post('/sua-co-so-hoc/{id}','PlaceController@update')->name('place.edit');
+
+        });
+        Route::group([
+            'prefix' => 'nhan-vien'
+        ],function(){
+            Route::get('/', 'UserController@indexStaff')->name('staff.index');
+            Route::get('/tao-tai-khoan', 'UserController@createStaff')->name('staff.create');
+            Route::post('/store', 'UserController@storeStaff')->name('staff.store');
+            Route::post('/status/{id}', 'UserController@statusStaff')->name('staff.status');
+            Route::get('/sua-tai-khoan/{id}', 'UserController@editStaff')->name('staff.edit');
+            Route::post('/update/{id}', 'UserController@updateStaff')->name('staff.update');
+        });
+        
+        Route::group([
+            'prefix' => 'giang-vien'
+        ],function(){
+            Route::get('/', 'UserController@indexTeacher')->name('teacher.index');
+            Route::get('/tao-tai-khoan', 'UserController@createTeacher')->name('teacher.create');
+            Route::post('/store', 'UserController@storeTeacher')->name('teacher.store');
+            Route::post('/status/{id}', 'UserController@statusTeacher')->name('teacher.status');
+            Route::get('/sua-tai-khoan/{id}', 'UserController@editTeacher')->name('teacher.edit');
+            Route::post('/update/{id}', 'UserController@updateTeacher')->name('teacher.update');
+        });
     });
 });
 
