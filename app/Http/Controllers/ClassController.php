@@ -96,9 +96,7 @@ class ClassController extends Controller
 	public function getClassByTeacher(){
 		$teacher = Auth::user()->teacher->id;
 		$classes = ClassRoom::where('teacher_id', $teacher)->get();
-		
-		return view('admin/teacher/dashboard', [
-			'classes' => $classes,
-		]);
+
+		return view('admin/teacher/dashboard', compact('classes'));
 	}
 }

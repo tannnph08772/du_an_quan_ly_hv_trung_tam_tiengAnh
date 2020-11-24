@@ -33,10 +33,13 @@ class AppServiceProvider extends ServiceProvider
         });
 
         View::composer('*', function ($view) {
-            $teacher = Auth::user()->teacher->id;
-		    $classes = ClassRoom::where('teacher_id', $teacher)->get();
-		
-            $view->with('classes', $classes );
+            if (Auth::check()){
+                $teacher = Auth::user()->teacher->id;
+                $classes = ClassRoom::where('teacher_id', $teacher)->get();
+            
+                $view->with('classes', $classes );
+            }
+          
         });
     }
 }
