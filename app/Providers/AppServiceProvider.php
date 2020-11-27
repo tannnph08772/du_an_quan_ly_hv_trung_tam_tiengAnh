@@ -33,7 +33,7 @@ class AppServiceProvider extends ServiceProvider
         });
 
         View::composer('*', function ($view) {
-            if (Auth::check()){
+            if (Auth::check() && Auth::user()->role == 3){
                 $teacher = Auth::user()->teacher->id;
                 $classes = ClassRoom::where('teacher_id', $teacher)->get();
             

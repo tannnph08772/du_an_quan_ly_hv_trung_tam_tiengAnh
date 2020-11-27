@@ -11,10 +11,10 @@
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Cơ Sở
                             </div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">count($places)</div>
+                            <div class="h4 mb-0 font-weight-bold text-gray-800">{{count($places)}}</div>
                         </div>
                         <div class="col-auto">
-                            <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                            <i class="fas fa-map-marker-alt fa-2x text-gray-300"></i>
                         </div>
                     </div>
                 </div>
@@ -26,12 +26,12 @@
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Earnings (Annual)
+                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Giảng viên
                             </div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">$215,000</div>
+                            <div class="h4 mb-0 font-weight-bold text-gray-800">{{count($teachers)}}</div>
                         </div>
                         <div class="col-auto">
-                            <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                            <i class="fas fa-user-friends fa-2x text-gray-300"></i>
                         </div>
                     </div>
                 </div>
@@ -43,10 +43,10 @@
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Tasks</div>
+                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Nhân viên</div>
                             <div class="row no-gutters align-items-center">
                                 <div class="col-auto">
-                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">50%</div>
+                                    <div class="h4 mb-0 mr-3 font-weight-bold text-gray-800">{{count($staffs)}}</div>
                                 </div>
                                 <div class="col">
                                     <div class="progress progress-sm mr-2">
@@ -57,7 +57,7 @@
                             </div>
                         </div>
                         <div class="col-auto">
-                            <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
+                        <i class="fas fa-users fa-2x text-gray-300"></i>
                         </div>
                     </div>
                 </div>
@@ -69,9 +69,9 @@
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Pending Requests
+                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Số khóa học
                             </div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
+                            <div class="h4 mb-0 font-weight-bold text-gray-800">{{count($courses)}}</div>
                         </div>
                         <div class="col-auto">
                             <i class="fas fa-comments fa-2x text-gray-300"></i>
