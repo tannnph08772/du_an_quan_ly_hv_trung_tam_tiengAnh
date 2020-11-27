@@ -45,5 +45,7 @@ Route::group([
         Route::get('/danh-sach-cho', 'AuthController@danhSachCho')->name('auth.danhSachCho');
         Route::get('/danh-sach-hoc-vien', 'UserController@dsHocVien')->name('users.dsHocVien');
         Route::post('remove/{id}', 'AuthController@remove')->name('auth.remove');
+        Route::post('/add-hoc-vien', 'AuthController@addHocVien')->name('auth.addhocvien');
+        Route::post('/status/{id}', 'UserController@statusHV')->name('student.status');
     });
 });

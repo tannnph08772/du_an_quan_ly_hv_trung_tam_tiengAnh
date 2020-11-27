@@ -27,7 +27,7 @@ class AddStudentRequest extends FormRequest
             'name' => 'required|min:4',
             'birthday' => 'required|date|before:now',
             'phone_number' => 'required|numeric|digits:10',
-            'email' => 'required|email|unique:users,email',
+            'email' => 'required|email',
             'address' => 'required|min:4',
             'sex' => 'required',
         ];
