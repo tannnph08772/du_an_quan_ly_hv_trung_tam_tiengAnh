@@ -9,6 +9,8 @@ use App\Models\ClassRoom;
 use App\Models\Student;
 use App\Models\Teacher;
 use App\Models\Course;
+use App\Models\Place;
+use Arr;
 use App\Http\Requests\AddStudentRequest;
 use Illuminate\Support\Facades\Mail;
 
@@ -16,16 +18,24 @@ use Illuminate\Support\Facades\Mail;
 class UserController extends Controller
 {
     public function dashboardStaff(){
-        $classes = ClassRoom::all();
+        $classes = ClassRoom::where('status', 1)->get();
+        $waitList = WaitList::all();
         return view('admin/staff/dashboard',[
-            'classes' => $classes
+            'classes' => $classes,
+            'waitList' => $waitList 
         ]);
     }
 
     public function dashboardAdmin(){
         $places = Place::all();
+        $staffs = User::where('role',2)->get();
+        $teachers = User::where('role',3)->get();
+        $courses = Course::all();
 		return view('admin/dashboard',[
-            'places' => $places
+            'places' => $places,
+            'staffs' => $staffs,
+            'teachers' => $teachers,
+            'courses' => $courses
         ]);
     }
 
@@ -60,7 +70,7 @@ class UserController extends Controller
         $data = $request->all();
 		$param = \Arr::except($data,['_token','class_id','image','course_id']);
         $param['password'] = bcrypt(123456);
-        $param['status'] = config('common.active.on');
+        $param['status'] = 1;
         $param['role'] = config('common.role.student');
         $a = User::create($param);
         //insert students
@@ -68,7 +78,7 @@ class UserController extends Controller
         $student = \Arr::except($data,['_token', 'name', 'email', 'phone_number', 'sex', 'address', 'birthday']);
         $student['user_id'] = $a['id'];
         $student['course_id'] = $del->course_id;
-        $student['status'] = config('common.active.on');
+        $student['status'] = 1;
         if ($request->hasfile('image')) {
 			$file = $request->file('image');
 			$filename = $file->getClientOriginalName();
@@ -189,5 +199,12 @@ class UserController extends Controller
 		return view('admin/staff/ds_hoc_vien_co_lop', [
 			'students' => $students,
 		]);
+    }
+
+    public function statusHV($id){
+        $student = User::find($id);
+        $student->status = $student->status == 1 ? 2 : 1;
+    	$student->save();
+    	return redirect()->route('users.dsHocVien');
     }
 }

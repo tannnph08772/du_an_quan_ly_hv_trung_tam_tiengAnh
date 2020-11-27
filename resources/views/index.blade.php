@@ -25,9 +25,10 @@
                 <!-- End of Header -->   
                 <div class="container-fluid"> 
                     @yield('content')
+                    @include('layouts/footer')
                 </div>      
                 <!-- Footer -->
-                @include('layouts/footer')
+               
                 <!-- End of Footer -->
             </div>
         </div>

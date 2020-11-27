@@ -1,5 +1,5 @@
 <footer>
-    <div class="container">
+    <div class="container py-5">
         <h3>Liên Hệ</h3>
         <div class="row footer-top">
             <div class="col-md-6">
