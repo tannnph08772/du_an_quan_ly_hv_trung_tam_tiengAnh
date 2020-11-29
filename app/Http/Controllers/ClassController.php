@@ -20,7 +20,7 @@ use Illuminate\Support\Facades\Mail;
 class ClassController extends Controller
 {
     public function index(){
-    	$classes = ClassRoom::orderBy('id', 'desc')->get();
+    	$classes = ClassRoom::with('students')->orderBy('id', 'desc')->get();
 
 		return view('classes.danh_sach_lop', [
 			'classes' => $classes,
@@ -45,19 +45,17 @@ class ClassController extends Controller
 
     public function store(ClassRequest $request){
 		$data = request()->all();
-
 		$params = \Arr::except($data, ['_token', 'weekday']);
 		$params['status'] = 1;
 
-		$result = ClassRoom::create($params);
-
 		$start_day = Carbon::create($params['start_day']);
-        $end_day = Carbon::create($params['end_day']);
-		$diffInDays = $start_day->diffInDays($end_day);
+		$course = Course::find($params['course_id']);
+		$number_course = $course->number_course;
+
 		$dayOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 		$days = request()->get('weekday');
 
-		for($i=0; $i<=$diffInDays; $i++) {
+		for($i=0; $i<=$number_course; $i++) {
 			$dates[] = (clone $start_day)->addDays($i)->toDateString();
 		}
 		foreach($dates as $date) {
@@ -77,6 +75,10 @@ class ClassController extends Controller
 			$dayLearnSort[] = date('Y-m-d', strtotime($value));
 			sort($dayLearnSort);
 		}
+
+		$params['end_day'] = array_pop($dayLearnSort);
+		$result = ClassRoom::create($params);
+
 		foreach($dayLearnSort as $value) {
 			$attendance['date'] = $value;
 			$attendance['teacher_id'] = $params['teacher_id'];
