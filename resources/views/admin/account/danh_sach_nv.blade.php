@@ -43,7 +43,7 @@
                         <td>
                             <form method="POST" action="{{ route('staff.status', ['id' => $staff->id]) }}">
                                 @csrf
-                                <button onclick="return confirm('Are you sure ?')" class="btn btn-outline-light">@if(($staff->status) === 1)
+                                <button onclick="return confirm('Bạn có muốn thực hiện thao tác này ?')" class="btn btn-outline-light">@if(($staff->status) === 1)
                                     <i class="fas fa-check-circle" style="color: #4ad295"></i>
                                 @else
                                     <i class="fas fa-times-circle" style="color: #000"></i> 
