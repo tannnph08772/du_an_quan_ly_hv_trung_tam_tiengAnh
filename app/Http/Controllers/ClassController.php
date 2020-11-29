@@ -7,12 +7,15 @@ use App\Http\Requests\ClassRequest;
 use App\Models\ClassRoom;
 use App\Models\Schedule;
 use App\Models\Teacher;
+use App\Models\Student;
 use App\Models\Course;
 use App\Models\Place;
-use App\Models\Student;
 use App\Models\Attendance;
+use App\Models\AttendanceDetail;
+use App\Models\SampleForm;
 use Carbon\Carbon;
 use Auth;
+use Illuminate\Support\Facades\Mail;
 
 class ClassController extends Controller
 {
@@ -98,5 +101,49 @@ class ClassController extends Controller
 		$classes = ClassRoom::where('teacher_id', $teacher)->get();
 
 		return view('admin/teacher/dashboard', compact('classes'));
+	}
+	
+	public function classTransferList() {
+		$sampleForms = SampleForm::orderBy('id', 'desc')->get();
+
+		return view('admin/staff/danh_sach_chuyen_lop', [
+			'sampleForms' => $sampleForms,
+    	]);
+	}
+
+	public function classTransferById($id) {
+		$sampleForm = SampleForm::find($id);
+		$countStuInClass = Student::where('class_id', $sampleForm->class_id)->get()->count();
+		
+		return view('admin/staff/single_chuyen_lop', [
+			'sampleForm' => $sampleForm,
+			'countStuInClass' => $countStuInClass
+    	]);
+	}
+
+	public function storeTransfer($id) {
+		$sampleForm = SampleForm::find($id);
+		$sampleForm->status = 2;
+		$sampleForm->save();
+		$student = Student::find($sampleForm->student_id);
+		$student->class_id = $sampleForm->class_id;
+		$student->save();
+
+		$att_old = AttendanceDetail::where('student_id', $student->id)->get();
+		foreach($att_old as $value) {
+			$value->delete();
+		}
+
+		$class = ClassRoom::find($student->class_id);
+
+		Mail::send('email.chuyen_lop', [
+            'class' => $class,
+        ], function($mail) use($student){
+            $mail->to($student->user->email);
+            $mail->from('cheesehiep3110@gmail.com');
+            $mail->subject('Xác nhận đơn chuyển lớp!');
+		});
+		
+		return redirect()->route('staff.classTransferList')->with('success', 'Chuyển lớp thành công');
 	}
 }

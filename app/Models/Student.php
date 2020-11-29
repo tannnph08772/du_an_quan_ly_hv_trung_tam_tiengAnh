@@ -23,6 +23,14 @@ class Student extends Model
     }
 
     public function classRoom(){
-    	return $this->belongsTo(ClassRoom::class, 'class_id', 'id');
+        return $this->belongsTo(ClassRoom::class, 'class_id', 'id');
+    }
+
+    public function class(){
+    	return $this->belongsTo(ClassRoom::class, 'class_id');
+    }
+    
+    public function sampleForms(){
+    	return $this->hasMany(SampleForm::class, 'student_id');
     }
 }
