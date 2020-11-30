@@ -7,6 +7,9 @@
         <a class="btn btn-success" href="{{ route('classes.create') }}">Tạo Lớp</a>
     </div>
     <div class="card-body">
+        @if (Session::has('success'))
+            <div class="alert alert-success">{{ Session::get('success') }}</div>
+        @endif
         <div class="table-responsive">
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                 <thead>

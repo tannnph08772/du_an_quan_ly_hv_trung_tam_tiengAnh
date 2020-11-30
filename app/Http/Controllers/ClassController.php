@@ -15,7 +15,18 @@ use Carbon\Carbon;
 class ClassController extends Controller
 {
     public function index(){
-    	$classes = ClassRoom::with('students')->orderBy('id', 'desc')->get();
+		$classes = ClassRoom::with('students')->orderBy('id', 'desc')->get();
+		$now = Carbon::now()->toDateString();
+		foreach($classes as $class) {
+			if($class->status == 1 && $class->start_day >= $now) {
+				$class->status = 2;
+				$class->save();
+			}
+			if($class->status == 2 && $class->end_day < $now) {
+				$class->status = 3;
+				$class->save();
+			}
+		}
 
 		return view('classes.danh_sach_lop', [
 			'classes' => $classes,
@@ -82,6 +93,6 @@ class ClassController extends Controller
 			Attendance::create($attendance);
 		}
 
-		return redirect()->route('classes.index');
+		return redirect()->route('classes.index')->with('success', 'Tạo lớp thành công');
 	}
 }
