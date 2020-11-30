@@ -32,5 +32,4 @@ class CourseServices extends BaseServices
     {
         return $this->repository->updateCourse($id, $attribute);
     }
-
 }

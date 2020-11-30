@@ -4,6 +4,7 @@ namespace App\Repositories;
 
 use App\Models\Feedback;
 use App\Repositories\BaseRepository;
+use Illuminate\Support\Facades\DB;
 
 class FeedbackRepository extends BaseRepository implements FeedbackRepositoryInterface
 {
@@ -16,20 +17,23 @@ class FeedbackRepository extends BaseRepository implements FeedbackRepositoryInt
     public function getModel(){
         return Feedback::class;
     }
-    // public function getCourse(){
-    //     return $this->model->get();
-    // }
-    // public function getSingleCourse($id){
-    //     return $this->model->where('id', $id)->get();
-    // }
-    // public function createCourse($arraydata){
-    //     return $this->model->create($arraydata);
-    // }
-    // public function deleteCourse($id){
-    //     return $this->model->where('id',$id)->delete();
-    // }
-    // public function updateCourse($id, $attribute =[]){
-    //     return $this->model->find($id)->update($attribute);
-    // }
-
+    public function getClassInCourse($id)
+    {
+        $data = DB::table('classes')
+            ->join('courses', 'classes.course_id', '=', 'courses.id')
+            ->where('course_id', $id)
+            ->select('classes.id', 'classes.course_id', 'classes.name_class')
+            ->get();
+        return $data;
+    }
+    public function getFeedback(){
+        return $this->model->get();
+    }
+    public function createFeedback($arraydata){
+        $this->model->create($arraydata);
+    }
+    public function deleteFeedback($id){
+        
+         return  $this->model->where('id',$id)->delete();
+    }
 }

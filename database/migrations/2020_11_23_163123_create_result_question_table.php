@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class UpdatePlaceTable extends Migration
+class CreateResultQuestionTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,11 @@ class UpdatePlaceTable extends Migration
      */
     public function up()
     {
-        Schema::table('place', function (Blueprint $table){
+        Schema::create('result_question', function (Blueprint $table) {
+            $table->id();
+            $table->integer('id_feedback');
+            $table->integer('id_question');
+            $table->integer('id_answer');
             $table->timestamps();
         });
     }
@@ -25,6 +29,6 @@ class UpdatePlaceTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('result_question');
     }
 }

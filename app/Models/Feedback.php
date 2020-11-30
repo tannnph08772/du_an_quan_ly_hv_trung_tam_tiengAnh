@@ -8,6 +8,11 @@ class Feedback extends Model
 {
     protected $table = 'feedback';
     protected $fillable = [
-        'content', 'student_id'
+        'content', 
+        'name_student',
+        'email',
+        'phone',
+        'course_id',
+        'class_id'
     ];
 }

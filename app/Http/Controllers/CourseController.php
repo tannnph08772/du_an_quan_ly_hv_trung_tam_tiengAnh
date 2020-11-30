@@ -19,7 +19,7 @@ class CourseController extends Controller
     public function index()
     {
         $list = $this->CourseServices->getCourse();
-        return view('admin.course.index',compact('list', ));
+        return view('admin.course.index',compact('list'));
     }
     public function add()
     {

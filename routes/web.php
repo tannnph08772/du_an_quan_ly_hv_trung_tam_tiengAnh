@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Feedback;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -110,3 +111,12 @@ Route::get('/phuong-phap-nlp', function () {
 Route::get('/phuong-phap-ale', function () {
     return view('study-methods.ale-method');
 })->name('ale-method');
+
+
+//feedback
+Route::get('/danh-sach-gop-y', 'FeedbackController@index')->name('feedback.index');
+// create
+Route::post('/','FeedbackController@store')->name('feedback.store');
+Route::post('/chon-lop', 'FeedbackController@findClassByCourse')->name('feedback.apiFindClass');
+//delete
+Route::post('/xoa-gop-y','FeedbackController@delete')->name('feedback.delete');
