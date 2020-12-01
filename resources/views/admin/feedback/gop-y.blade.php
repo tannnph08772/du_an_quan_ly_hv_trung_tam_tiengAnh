@@ -13,16 +13,27 @@
                     </div>
                     <div class="col-md-12 bg-white mb-3 border border-primary rounded">
                         <h5 class="pt-3">Nhập tên của bạn ! <span class="text-danger">*</span></h5>
-                        <input class="form-control mb-3" type="text" name="name_student" placeholder="Vui lòng nhập tên ...">
+                        <input class="form-control mb-3" type="text" name="name_student" 
+                            placeholder="Vui lòng nhập tên ...">
+                            @error('name_student')
+								<small style="color: red">{{ $message }}</small>
+							@enderror
                     </div>
                     <div class="col-md-12 bg-white mb-3 border border-primary rounded">
                         <h5 class="pt-3">Nhập email của bạn ! <span class="text-danger">*</span></h5>
-                        <input class="form-control mb-3" type="text" name="email" placeholder="Vui lòng nhập email ...">
+                        <input class="form-control mb-3" type="text" name="email" 
+                            placeholder="Vui lòng nhập email ...">
+                            @error('email')
+								<small style="color: red">{{ $message }}</small>
+							@enderror
                     </div>
                     <div class="col-md-12 bg-white mb-3 border border-primary rounded">
                         <h5 class="pt-3">Nhập số điện thoại của bạn ! <span class="text-danger">*</span></h5>
                         <input class="form-control mb-3" type="text" name="phone"
                             placeholder="Vui lòng nhập số điện thoại ...">
+                            @error('phone')
+								<small style="color: red">{{ $message }}</small>
+							@enderror
                     </div>
                     <div class="col-md-12 bg-white mb-3 border border-primary rounded">
                         <select id="khoaHoc" class="form-control mt-3 mb-3" name="course_id">
@@ -31,11 +42,17 @@
                             <option value="{{$main->id}}">{{$main->name_course}}</option>
                             @endforeach
                         </select>
+                            @error('course_id')
+								<small style="color: red">{{ $message }}</small>
+							@enderror
                     </div>
                     <div class="col-md-12 bg-white mb-3 border border-primary rounded">
                         <select id="ClassInCourseID" class="form-control mt-3 mb-3" name="class_id" id="">
                             <option  value="">--Chọn lớp--</option>
                         </select>
+                            @error('class_id')
+								<small style="color: red">{{ $message }}</small>
+							@enderror
                     </div>
                     @foreach ($question as $index=>$item)
                     <div class="col-md-12 bg-white mb-3 border border-primary rounded pt-2 pb-4">
@@ -52,11 +69,17 @@
                         </div>
                         @endif
                         @endforeach
+                            @error('answer')
+								<small style="color: red">{{ $message }}</small>
+							@enderror
                     </div>
                     @endforeach
                     <div class="col-md-12 bg-white mt-3 mb-3 border border-primary rounded">
                         <h5 class="pt-3">Ý kiến cá nhân <span class="text-danger">*</span></h5>
                         <textarea name="content" id="" cols="91" rows="5"></textarea>
+                            @error('content')
+								<small style="color: red">{{ $message }}</small>
+							@enderror   
                     </div>
                     <button class="btn btn-danger mr-2 mb-3">Hủy</button>
                     <button class="btn btn-primary mb-3" type="submit">Gửi</button>

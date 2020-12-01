@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Feedback\CreateFeedbackRequest;
 use App\Models\Answer;
 use App\Models\Question;
 use App\Models\ClassRoom;
@@ -33,7 +34,7 @@ class FeedbackController extends Controller
         return view('admin.feedback.gop-y', compact('listMenu','question','answer','class','course'));
 
     }
-    public function store(Request $request){
+    public function store(CreateFeedbackRequest $request){
         $question=$request->get('question');
         $answer=$request->get('answer');
         $feedback=$this->FeedbackServices->create($request); 
