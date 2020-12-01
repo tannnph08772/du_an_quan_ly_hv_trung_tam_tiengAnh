@@ -10,4 +10,12 @@ class Schedule extends Model
     protected $fillable = [
         'name_schedule', 'start_time', 'end_time', 
     ];
+
+    public function students(){
+    	return $this->hasMany(Student::class, 'class_id', 'id');
+    }
+
+    public function classes(){
+    	return $this->hasMany(ClassRoom::class, 'schedule_id', 'id');
+    }
 }

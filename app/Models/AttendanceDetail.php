@@ -11,4 +11,10 @@ class AttendanceDetail extends Model
         'status', 'attendance_id', 'student_id',
     ];
     
+    public function student(){
+    	return $this->belongsTo(Student::class, 'student_id');
+    }
+    public function attendance(){
+    	return $this->belongsTo(Attendance::class, 'attendance_id');
+    }
 }

@@ -1,4 +1,4 @@
-@extends('index')
+@extends('staff')
 @section('title', 'Tạo lớp')
 @section('content')
 <!-- <h1 class="h3 mb-2 text-gray-800">Tạo lớp</h1> -->
@@ -26,14 +26,6 @@
 							@error('start_day')
 								<small style="color: red">{{ $message }}</small>
 							@enderror<input type="date" class="form-control" name="start_day" value="{{ old('start_day') }}">
-						</td>
-					</tr>
-					<tr>
-						<td>Ngày kết thúc</td>
-						<td>
-							@error('end_day')
-								<small style="color: red">{{ $message }}</small>
-							@enderror<input type="date" class="form-control" name="end_day" value="{{ old('end_day') }}">
 						</td>
 					</tr>
 					<tr>

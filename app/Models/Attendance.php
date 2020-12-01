@@ -8,6 +8,13 @@ class Attendance extends Model
 {
     protected $table = 'attendance';
     protected $fillable = [
-        'date','class_id', 'teacher_id', 'schedule_id'
+        'date', 'class_id', 'teacher_id', 'schedule_id'
     ];
+
+    public function class(){
+    	return $this->belongsTo(ClassRoom::class, 'class_id');
+    }
+    public function attendanceDetail(){
+    	return $this->hasMany(AttendanceDetail::class, 'attendance_id', 'id');
+    }
 }

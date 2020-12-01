@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
+
 class Course extends Model
 {
     protected $table = 'courses';
@@ -19,5 +20,14 @@ class Course extends Model
 
     public function classes(){
     	return $this->hasMany(ClassRoom::class, 'course_id', 'id');
+
+    }
+    
+    public function waitList(){
+    	return $this->belongsTo(WaitList::class, 'course_id');
+    }
+
+    public function students(){
+    	return $this->hasMany(Student::class, 'course_id', 'id');
     }
 }

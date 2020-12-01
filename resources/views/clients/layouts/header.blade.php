@@ -15,9 +15,6 @@
                         src="https://alibabaenglish.edu.vn/wp-content/uploads/2019/03/53623352_1918711798257815_8196010289078992896_n.png"
                         style="height:90px"></li>
                 </div>
-                <div class="container">
-                    <div class="top-divider full-width"></div>
-                </div>
             </div>
         </div>
         <nav class="navbar navbar-expand-lg nav-center">
@@ -25,8 +22,8 @@
                 aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"><i class="fas fa-bars"></i></span>
             </button>
-            <div class="collapse navbar-collapse" id="navbarNavDropdown">
-                <ul class="navbar-nav text-uppercase nav-center">
+            <div class="collapse navbar-collapse nav justify-content-center" id="navbarNavDropdown">
+                <ul class="text-uppercase nav justify-content-center">
                     <li class="nav-item">
                         <a class="nav-link" href="{{url('/')}}">Trang chủ</a>
                     </li>

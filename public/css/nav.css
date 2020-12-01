@@ -7,12 +7,12 @@
     margin: 0 0 0 20px;
 }
 
-.navbar-nav.text-uppercase .nav-item .dropdown-item {
+.nav.text-uppercase .nav-item .dropdown-item {
     color: gray;
     font-size: 14px;
 }
 
-.navbar-nav.text-uppercase .nav-item a {
+.nav.text-uppercase .nav-item a {
     color: white;
     font-size: 14px;
     font-weight: 600;
@@ -41,7 +41,7 @@ footer {
     .header_logo {
         width: 200px;
     }
-    .navbar-nav.text-uppercase .nav-item a {
+    .text-uppercase .nav-item a {
         color: black;
         font-size: 14px;
         font-weight: 600;
@@ -54,4 +54,12 @@ footer {
         width: 100%;
         border: 1px solid black;
     }
+}
+
+.col-6.d-flex {
+    width: 15px;
+}
+
+.bd-highlight .upload_file {
+    width: 230px;
 }

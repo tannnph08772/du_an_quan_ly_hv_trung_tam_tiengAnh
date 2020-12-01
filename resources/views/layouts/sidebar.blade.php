@@ -13,7 +13,7 @@
 
     <!-- Nav Item - Dashboard -->
     <li class="nav-item active">
-        <a class="nav-link" href="#">
+        <a class="nav-link" href="{{route('admin.dashboardAdmin')}}">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Dashboard</span></a>
     </li>
@@ -21,16 +21,6 @@
         <a class="nav-link" href="">
             <i class="fas fa-fw fa-table"></i>
             <span>Danh sách tài khoản</span></a>
-    </li>
-    <li class="nav-item active">
-        <a class="nav-link" href="">
-            <i class="fas fa-fw fa-table"></i>
-            <span>Học viên</span></a>
-    </li>
-    <li class="nav-item active">
-        <a class="nav-link" href="">
-            <i class="fas fa-fw fa-table"></i>
-            <span>Lớp</span></a>
     </li>
     <li class="nav-item active">
         <a href="{{ route('course.index') }}" class="nav-link" href="">
@@ -57,5 +47,4 @@
     <div class="text-center d-none d-md-inline">
         <button class="rounded-circle border-0" id="sidebarToggle"></button>
     </div>
-
 </ul>

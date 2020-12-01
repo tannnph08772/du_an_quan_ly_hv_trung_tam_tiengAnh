@@ -25,8 +25,7 @@ class ClassRequest extends FormRequest
     {
         return [
             'name_class' => 'required|unique:classes,name_class|min:3',
-            'start_day' => 'required|date',
-            'end_day' => 'required|date|after:start_day',
+            'start_day' => 'required|date|after:today',
             'weekday' => 'required|min:2',
         ];
     }
@@ -36,7 +35,7 @@ class ClassRequest extends FormRequest
             'required' => 'Không được để trống',
             'name_class.unique' => 'Lớp đã tồn tại',
             'name_class.min' => 'Tên lớp phải lơn hơn 3 ký tự',
-            'end_day.after' => 'Ngày kết thúc phải lớn hơn ngày bắt đầu',
+            'start_day.after' => 'Ngày bắt đầu phải sau ngày hiện tại', 
             'weekday.min' => 'Một tuần phải có 2 buổi học'
         ];
     }

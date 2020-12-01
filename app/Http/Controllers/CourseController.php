@@ -6,6 +6,8 @@ use App\Http\Requests\Course\CreateCourseRequest;
 use App\Http\Requests\Course\EditCourseRequest;
 use App\Services\CourseServices;
 use Illuminate\Http\Request;
+use App\Models\Course;
+use App\Models\Place;
 use Illuminate\Support\Facades\Session;
 use Whoops\Run;
 
@@ -18,6 +20,7 @@ class CourseController extends Controller
     }
     public function index()
     {
+        
         $list = $this->CourseServices->getCourse();
         return view('admin.course.index',compact('list'));
     }
@@ -50,11 +53,13 @@ class CourseController extends Controller
         return redirect()->route('course.index')->withInput();
     }
     
-    public function single(Request $request)
+    public function single($id)
     {   
-        $listMenu = $this->CourseServices->getCourse();
-        $id = $request->id;
-        $list = $this->CourseServices->getSingleCourse($id);
-        return view('admin/course/single',compact('list', 'listMenu'));
+        $places = Place::all();
+        $course = Course::find($id);
+        return view('clients/single', [
+            'course' => $course,
+            'places' => $places
+		]);
     }
 }

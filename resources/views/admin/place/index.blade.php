@@ -36,16 +36,9 @@
                                     <td>{{$item->name_place}}</td>
                                     <td>{{$item->address}}</td>
                                     <td>
-                                        <div class="d-flex justify-content-center">
-                                            <div class="text-center mr-2">
-                                                <a href="{{ route ('showplace.edit', ['id' => $item->id ]) }}"
-                                                    class="btn btn-success"><i class="fas fa-edit"></i></a>
-                                            </div>
-
-                                            <div class="text-center">
-                                                <button class="btn btn-danger" onclick="confirmDelete({{$item->id}})"><i
-                                                        class="fas fa-trash"></i></button>
-                                            </div>
+                                        <div class="text-center mr-2">
+                                            <a href="{{ route ('showplace.edit', ['id' => $item->id ]) }}"
+                                                class="btn btn-success"><i class="fas fa-edit"></i></a>
                                         </div>
                                     </td>
                                 </tr>
@@ -63,31 +56,33 @@
 
 @section('script')
 <script>
-    var routeDeletePlace = "{{route('place.delete')}}"
-      function confirmDelete(id){
-          Swal.fire({
-            title: 'Xác nhận xóa cơ sở?',
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Xóa',
-            cancelButtonText: 'Hủy'
+var routeDeletePlace = "{{route('place.delete')}}"
+
+function confirmDelete(id) {
+    Swal.fire({
+        title: 'Xác nhận xóa cơ sở?',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Xóa',
+        cancelButtonText: 'Hủy'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            axios.post(routeDeletePlace, {
+                id: id
             }).then((result) => {
-            if (result.isConfirmed) {
-                axios.post(routeDeletePlace, {id: id}).then((result) => {
-                    window.location.reload()
-                }).catch((err) => {
-                    console.log(err);
-                });
-                Swal.fire(
+                window.location.reload()
+            }).catch((err) => {
+                console.log(err);
+            });
+            Swal.fire(
                 'Xóa thành công !',
                 'Cơ sở của bạn đã bị xóa.',
                 'success'
-                )
-            }
-            })
-      }
-      
+            )
+        }
+    })
+}
 </script>
 @endsection
