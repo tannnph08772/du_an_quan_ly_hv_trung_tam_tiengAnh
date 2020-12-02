@@ -17,14 +17,15 @@
         @include('layouts/sidebarStaff')
         <!-- End of Sidebar -->
         <!-- Content Wrapper -->
-        {{-- @yield('content') --}}
         <div id="content-wrapper" class="d-flex flex-column">
             <div id="content">
                 <!-- Header -->
                 @include('layouts/header') 
                 <!-- End of Header -->   
                 <div class="container-fluid"> 
+                <div class="ccc" style="min-height:500px;">
                     @yield('content')
+                </div>
                 </div>      
                 <!-- Footer -->
                 @include('layouts/footer')

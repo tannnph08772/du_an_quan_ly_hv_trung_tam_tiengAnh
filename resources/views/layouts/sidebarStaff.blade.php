@@ -25,8 +25,8 @@
         <div id="collapseTwo" class="collapse show" data-parent="#accordionSidebar"
             style="">
             <div class="collapse-inner rounded">
-                <a class="collapse-item" href="{{ route('users.dsHocVien') }}"><i class="far fa-circle"></i> Tất cả học viên</a>
-                <a class="collapse-item" href="{{ route('auth.danhSachCho') }}"><i class="far fa-circle"></i>
+                <a class="collapse-item" href="{{ route('users.dsHocVien') }}"><i class="fas fa-circle"></i> Tất cả học viên</a>
+                <a class="collapse-item" href="{{ route('auth.danhSachCho') }}"><i class="fas fa-circle"></i>
                     Danh sách chờ</a>
             </div>
         </div>

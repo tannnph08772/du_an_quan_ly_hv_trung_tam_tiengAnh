@@ -66,5 +66,6 @@ class Kernel extends HttpKernel
         'checkStaff' => \App\Http\Middleware\CheckStaff::class,
         'checkTeacher' => \App\Http\Middleware\CheckTeacher::class,
         'checkAuth' => \App\Http\Middleware\CheckAuth::class,
+        'checkStudent' => \App\Http\Middleware\Student::class,
     ];
 }

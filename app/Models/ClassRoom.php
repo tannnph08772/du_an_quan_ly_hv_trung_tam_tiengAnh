@@ -40,4 +40,8 @@ class ClassRoom extends Model
     public function sampleForms(){
     	return $this->hasMany(SampleForm::class, 'class_id', 'id');
     }
+
+    public function homeworks(){
+    	return $this->hasMany(Homework::class, 'class_id');
+    }
 }
