@@ -16,4 +16,8 @@ class Place extends Model
     public function classes(){
     	return $this->hasMany(ClassRoom::class, 'place_id', 'id');
     }
+
+    public function waitList(){
+    	return $this->hasOne(WaitList::class, 'place_id', 'id');
+    }
 }

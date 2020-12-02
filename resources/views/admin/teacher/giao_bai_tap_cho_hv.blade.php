@@ -7,7 +7,7 @@
     </div>
     <div class="card-body">
         <div class="table-responsive">
-            <form method="POST" action="{{ route('homework.store')}}"
+            <form method="POST" action="{{ route('homeworks.storeBT')}}"
                 enctype="multipart/form-data">
                 @csrf
                 <table class="table table-bordered">
@@ -54,7 +54,7 @@
                             @error('note')
                             <small style="color: red">{{ $message }}</small>
                             @enderror
-                            <textarea class="form-control" value="{{old('note')}}" name="note"></textarea>
+                            <textarea rows="8" class="form-control" name="note">{{old('note')}}</textarea>
                         </td>
                     </tr>
                     <td></td>

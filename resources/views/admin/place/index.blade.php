@@ -7,7 +7,7 @@
             <div class="card shadow mb-4">
                 <div class="card-header py-3 d-flex justify-content-between align-items-center">
                     <h4 class="m-0 font-weight-bold text-primary">Danh Sách Cơ Sở</h4>
-                    <a class="btn btn-success" href="{{ route ('place.add' ) }}">Tạo Cơ Sở Học</a>
+                    <a class="btn btn-success" href="{{ route ('place.add')}}">Tạo Cơ Sở Học</a>
                 </div>
                 <div class="card-body">
                     @if(Session::has('message'))

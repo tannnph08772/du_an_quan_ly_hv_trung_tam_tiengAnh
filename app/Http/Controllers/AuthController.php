@@ -39,7 +39,7 @@ class AuthController extends Controller
             }else if(Auth::user()->role == 3){
                 return redirect()->route('teachers.dashboardTeacher');
             }else{
-                return redirect()->route('home');
+                return redirect()->route('student.showCalendarStu');
             }
         }else{
             return view('auth.login', [
@@ -70,6 +70,7 @@ class AuthController extends Controller
         foreach ($classes as $value) {
             $value->count_hs = count($value->students);
             $value->schedule;
+            $value->place;
         };
 
         $filteredArray = Arr::where($classes->toArray(), function ($value, $key) {
@@ -114,7 +115,7 @@ class AuthController extends Controller
             
             $hoc_vien['class_id'] = $lop_id;
             $hoc_vien['user_id'] = $id;
-            $hoc_vien['image'] = 'https://image.shutterstock.com/image-vector/man-avatar-profile-picture-vector-260nw-153720509.jpg';
+            $hoc_vien['image'] = null;
             Student::create($hoc_vien->toArray());
             WaitList::destroy($value);
             Mail::send('email.email', [

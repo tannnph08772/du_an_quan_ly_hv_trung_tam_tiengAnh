@@ -2,19 +2,19 @@
 
 namespace App\Repositories;
 
-use App\Models\Places;
+use App\Models\Place;
 use App\Repositories\BaseRepository;
 
 class PlaceRepository extends BaseRepository implements PlaceRepositoryInterface
 {
     protected $model;
-    public function __construct(Places $model)
+    public function __construct(Place $model)
     {
         parent::__construct();
         $this->model = $model;
     }
     public function getModel(){
-        return Places::class;
+        return Place::class;
     }
     public function getPlace(){
         return $this->model->get();

@@ -17,15 +17,12 @@ Route::group([
     'middleware' => 'checkAuth',
 ], function(){
     Route::group([
-        'middleware' => 'checkAdmin',
+        'middleware' => 'checkStudent',
     ], function(){
+        Route::get('/bai-tap', 'HomeWorkController@show')->name('homework.show'); 
+        Route::get('/chi-tiet-bai-tap/{id}', 'HomeWorkController@chiTietBT')->name('chiTietBT');
+        Route::post('/nop-bai/{id}', 'HomeWorkController@nopBai')->name('nopBai');
     });
 });
-
-Route::get('/student', function () {
-    return view('student');
-})->name('student');
-
-Route::get('/bt', function () {
-    return view('students.bai_tap_cho_hv');
-})->name('student.bt');
+Route::get('/download/{file}', 'HomeWorkController@download')->name('download');
+Route::post('/store', 'AuthController@store')->name('auth.store');
