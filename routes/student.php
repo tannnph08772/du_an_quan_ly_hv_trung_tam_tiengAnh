@@ -17,15 +17,19 @@ Route::group([
     'middleware' => 'checkAuth',
 ], function(){
     Route::group([
-        'middleware' => 'checkAdmin',
+        'middleware' => 'checkStudent',
     ], function(){
+        Route::get('/bai-tap', 'HomeWorkController@show')->name('homework.show'); 
+        Route::get('/chi-tiet-bai-tap/{id}', 'HomeWorkController@chiTietBT')->name('chiTietBT');
+        Route::post('/nop-bai/{id}', 'HomeWorkController@nopBai')->name('nopBai');
+        Route::get('sinh-vien/lich-hoc','AttendanceController@showCalendarStu')->name('student.showCalendarStu');
+        Route::get('sinh-vien/diem-danh','AttendanceController@showAttendance')->name('student.showAttendance');
+        Route::get('sinh-vien/don-chuyen-lop','IndexController@showForm')->name('student.showForm');
+        Route::post('sinh-vien/don-chuyen-lop/store','IndexController@storeForm')->name('student.storeForm');
     });
 });
+Route::get('/download/{file}', 'HomeWorkController@download')->name('download');
+Route::post('/store', 'AuthController@store')->name('auth.store');
+        
 
-Route::get('/student', function () {
-    return view('student');
-})->name('student');
 
-Route::get('/bt', function () {
-    return view('students.bai_tap_cho_hv');
-})->name('student.bt');

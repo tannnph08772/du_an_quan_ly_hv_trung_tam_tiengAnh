@@ -79,14 +79,10 @@ class UserController extends Controller
         $student['user_id'] = $a['id'];
         $student['course_id'] = $del->course_id;
         $student['status'] = 1;
-        if ($request->hasfile('image')) {
 			$file = $request->file('image');
 			$filename = $file->getClientOriginalName();
 			$file->move(public_path('bill-image'), $filename);
 			$student['image'] = 'bill-image/'.$filename;
-		}else{
-			return "không thành công!";
-        }
         Student::create($student);
         $del->delete();
         Mail::send('email.email', [

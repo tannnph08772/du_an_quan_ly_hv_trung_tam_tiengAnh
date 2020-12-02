@@ -9,7 +9,6 @@
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
                 Chọn lớp
             </button>
-
             <!-- Modal -->
             <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
                 aria-hidden="true">
@@ -25,7 +24,7 @@
                             <select class="custom-select mr-sm-2" name="class_id" id="inlineFormCustomSelect">
                                 @foreach($filteredArray as $class)
                                 <option value="{{$class['id']}}">{{$class['name_class']}}
-                                    ({{ $class['schedule']['name_schedule'] }})</option>
+                                    ({{ $class['schedule']['name_schedule'] }} - {{ $class['place']['name_place'] }})</option>
                                 @endforeach
                             </select>
                         </div>
@@ -42,7 +41,7 @@
                 <table class="table table-bordered text-dark" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                         <tr>
-                            <th><input type="checkbox" onClick="toggle(this)"> Select all</th>
+                            <th><input type="checkbox" onClick="toggle(this)"></th>
                             <th>STT</th>
                             <th>Họ và tên</th>
                             <th>Email</th>
@@ -50,6 +49,7 @@
                             <th>Ngày sinh</th>
                             <th>Giới tính</th>
                             <th>Khoá học</th>
+                            <th>Cơ sở</th>
                             <th>Chuyển</th>
                             <th>Xóa</th>
                         </tr>
@@ -68,8 +68,9 @@
                             <td>{{$item->email}}</td>
                             <td>{{$item->phone_number}}</td>
                             <td>{{$item->birthday}}</td>
-                            <td>{{$item->sex}}</td>
+                            <td>{{$item->sex == 1? 'Nam' : 'Nữ'}}</td>
                             <td>{{$item->course->name_course}}</td>
+                            <td>{{$item->place->name_place}}</td>
                             <td>
                                 <a href="{{ route('users.getInfoHV',['id' => $item->id]) }}" class="btn">Chọn lớp <i
                                         class="fas fa-arrow-circle-right"></i></a>

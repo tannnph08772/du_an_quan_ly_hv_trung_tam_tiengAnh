@@ -24,5 +24,10 @@ Route::group([
         Route::get('diem-danh/{id}', 'AttendanceController@create')->name('attendance.create');
         Route::get('danh-sach-lop-dang-day', 'ClassController@getClassByTeacher')->name('classes.getClassByTeacher');
         Route::post('diem-danh/store', 'AttendanceController@store')->name('attendance.store'); 
+        Route::get('danh-sach-bai-tap', 'HomeWorkController@index')->name('homework.index');
+        Route::get('tao-bai-tap', 'HomeWorkController@showFormHomework')->name('homework.showFormHomework');
+        Route::post('tao-bai-tap', 'HomeWorkController@storeBT')->name('homeworks.storeBT');
+        Route::get('danh-sach-nop-bai/{id}', 'HomeWorkController@dsNopBai')->name('homework.dsNopBai');
+        Route::get('lich-day','AttendanceController@showCalendarTea')->name('teachers.showCalendarTea');
     });
 });
