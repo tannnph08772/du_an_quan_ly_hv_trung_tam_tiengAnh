@@ -157,7 +157,6 @@ class ClassController extends Controller
             $mail->from('cheesehiep3110@gmail.com');
             $mail->subject('Xác nhận đơn chuyển lớp!');
 		});
-		
 		return redirect()->route('staff.classTransferList')->with('success', 'Chuyển lớp thành công');
 	}
 }
