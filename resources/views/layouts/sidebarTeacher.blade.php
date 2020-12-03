@@ -20,8 +20,7 @@
             <i class="fas fa-university"></i>
             <span>Danh sách lớp đang dạy</span>
         </a>
-        <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordionSidebar"
-            style="">
+        <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="collapse-inner rounded">
                 @foreach($classes as $item)
                 <a class="collapse-item" href="{{ route('attendance.index',['id' => $item->id]) }}"><i class="far fa-circle"></i>

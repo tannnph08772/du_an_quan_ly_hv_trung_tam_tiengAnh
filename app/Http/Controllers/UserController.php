@@ -12,8 +12,12 @@ use App\Models\Course;
 use App\Models\Place;
 use Arr;
 use App\Http\Requests\AddStudentRequest;
+use App\Http\Requests\Users\ResetPasswordRequest;
+use App\Rules\MatchOldPassword;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
-
+use Symfony\Component\HttpKernel\DependencyInjection\ResettableServicePass;
 
 class UserController extends Controller
 {
@@ -79,14 +83,10 @@ class UserController extends Controller
         $student['user_id'] = $a['id'];
         $student['course_id'] = $del->course_id;
         $student['status'] = 1;
-        if ($request->hasfile('image')) {
 			$file = $request->file('image');
 			$filename = $file->getClientOriginalName();
 			$file->move(public_path('bill-image'), $filename);
 			$student['image'] = 'bill-image/'.$filename;
-		}else{
-			return "không thành công!";
-        }
         Student::create($student);
         $del->delete();
         Mail::send('email.email', [
@@ -206,5 +206,27 @@ class UserController extends Controller
         $student->status = $student->status == 1 ? 2 : 1;
     	$student->save();
     	return redirect()->route('users.dsHocVien');
+    }
+
+    public function viewProfile(){
+        return view('admin.teacher.profile');
+    }
+    public function resetPW(){
+        return view('resetpassword');
+    }
+    public function ResetPassword(Request $request)
+    {
+        $request->validate([
+            'curr_password' => ['required', new MatchOldPassword($request)],
+        ]);
+        $curr_password = $request->input('curr_password');
+        $new_password  = $request->input('new_password');
+        if (!Hash::check($curr_password, Auth::user()->password)) {
+            return redirect()->route('admin.dashboardAdmin')->with('err-message', 'Mật khẩu cũ không chính xác')->withInput();
+        } else {
+            $request->user()->fill(['password' => Hash::make($new_password)])->save();
+            return redirect()->route('admin.dashboardAdmin')->with('success-message', 'Đổi mật khẩu thành công')->withInput();
+        }
+        return redirect()->back()->withInput();
     }
 }

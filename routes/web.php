@@ -1,6 +1,5 @@
 <?php
 
-use App\Models\Feedback;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,20 +21,6 @@ Route::group([
 	Route::get('logout', 'AuthController@logOut')->name('logOut');
 });
 
-Route::get('chi-tiet-khoa-hoc/{id}','CourseController@single')->name('english.single');
-Route::get('gop-y-cua-hoc-vien','FeedbackController@showfeedback')->name('feedback.showfeedback');
-
-// khoa-hoc
-Route::group(['prefix' => 'khoa-hoc'],function(){
-    Route::get('/', 'CourseController@index')->name('course.index');
-    //tao-khoa-hoc
-    Route::get('/tao-khoa-hoc', 'CourseController@add')->name('course.add');
-    Route::post('/tao-khoa-hoc','CourseController@create')->name('course.create');
-    // //xoa-co-so-hoc
-    Route::post('/xoa-khoa-hoc','CourseController@delete')->name('course.delete');
-    // // //sua-co-so-hoc
-    Route::get('/sua-khoa-hoc/{id}','CourseController@edit')->name('showcourse.edit');
-    Route::post('/sua-khoa-hoc/{id}','CourseController@update')->name('course.edit');
 Route::group([
     'middleware' => 'checkAuth',
 ], function(){
@@ -140,8 +125,11 @@ Route::get('/phuong-phap-nlp', function () {
 Route::get('/phuong-phap-ale', function () {
     return view('study-methods.ale-method');
 })->name('ale-method');
+Route::post('/store', 'AuthController@store')->name('auth.store');
 
-
+Route::get('/thank-you', function () {
+    return view('clients.thankiu');
+})->name('thankyou');
 //feedback
 Route::get('/danh-sach-gop-y', 'FeedbackController@index')->name('feedback.index');
 // create
@@ -151,7 +139,7 @@ Route::post('/chon-lop', 'FeedbackController@findClassByCourse')->name('feedback
 Route::post('/xoa-gop-y','FeedbackController@delete')->name('feedback.delete');
 Route::post('/store', 'AuthController@store')->name('auth.store');
 
-Route::get('/thank-you', function () {
-    return view('clients.thankiu');
-})->name('thankyou');
 
+Route::get('/thong-tin-ca-nhan','UserController@viewProfile')->name('user.viewProfile');
+Route::get('/doi-mat-khau','UserController@resetPW')->name('user.resetPW');
+Route::post('luu-mat-khau','UserController@ResetPassword')->name('user-savepw');

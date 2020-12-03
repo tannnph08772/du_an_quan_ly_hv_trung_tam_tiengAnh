@@ -65,7 +65,7 @@
                             dụng</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{route('feedback.showfeedback')}}">Tin tức</a>
+                        <a class="nav-link" href="{{url('/tin-tuc')}}">Tin tức</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{url('/lien-he')}}">Liên hệ</a>

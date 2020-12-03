@@ -22,8 +22,7 @@
             <i class="fas fa-users"></i>
             <span>Quản lý học viên</span>
         </a>
-        <div id="collapseTwo" class="collapse show" data-parent="#accordionSidebar"
-            style="">
+        <div id="collapseTwo" class="collapse show" data-parent="#accordionSidebar">
             <div class="collapse-inner rounded">
                 <a class="collapse-item" href="{{ route('users.dsHocVien') }}"><i class="far fa-circle"></i> Tất cả học viên</a>
                 <a class="collapse-item" href="{{ route('auth.danhSachCho') }}"><i class="far fa-circle"></i>
