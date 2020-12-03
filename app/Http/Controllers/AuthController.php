@@ -10,15 +10,25 @@ use App\Models\ClassRoom;
 use App\Models\WaitList;
 use App\Models\Student;
 use App\Exports\ExcelExport;
+use App\Exports\WaitListExport;
 use App\Imports\ExcelImport;
-use Excel;
-use Arr;
+use App\Imports\WaitListImport;
 use App\Http\Requests\RegisterRequest;
 use App\Http\Requests\Auth\LoginRequest;
+use Excel;
+use Arr;
 use Hash;
 use Mail;
+
 class AuthController extends Controller
 {
+    private $excel;
+
+    public function __construct(Excel $excel)
+    {
+        $this->excel = $excel;
+    }
+
     public function showLoginForm()
     {
         return view('auth.login');
@@ -71,6 +81,7 @@ class AuthController extends Controller
             $value->count_hs = count($value->students);
             $value->schedule;
             $value->place;
+            // $value->course;
         };
 
         $filteredArray = Arr::where($classes->toArray(), function ($value, $key) {
@@ -126,6 +137,25 @@ class AuthController extends Controller
                 $mail->subject('Tham gia lớp học thành công!');
             });
         }  
+    }
+
+    public function exportDsHocVienDk() 
+    {
+        return Excel::download(new WaitListExport, 'ds-hoc-vien-dang-ky.xlsx');
+    }
+
+    public function storeImport(Request $request)
+    {
+        $file = $request->file('file')->store('import');
+
+        $import = new WaitListImport;
+        $import->import($file);
+
+        if ($import->failures()->isNotEmpty()) {
+            return back()->withFailures($import->failures());
+        }
+
+        return back()->withStatus('Import in queue, we will send notification after import finished.');
     }
    
 }

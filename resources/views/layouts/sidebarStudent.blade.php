@@ -11,20 +11,36 @@
 
     <!-- Nav Item - Dashboard -->
     <li class="nav-item active">
-        <a class="nav-link" href="#">
+        <a class="nav-link" href="{{ route('student.showCalendarStu') }}">
             <i class="far fa-calendar-alt"></i>
             <span>Lịch học</span>
         </a>
     </li>
     <li class="nav-item active">
-        <a class="nav-link" href="{{ route('classes.index') }}">
+        <a class="nav-link" href="{{ route('student.showAttendance') }}">
+            <i class="fas fa-check"></i>
+            <span>Điểm danh</span>
+        </a>
+    </li>
+    <li class="nav-item active">
+        <a class="nav-link" href="{{ route('homework.show')}}">
         <i class="fas fa-book-open"></i>
             <span>Bài tập về nhà</span></a>
     </li>
     <li class="nav-item active">
-        <a href="{{ route('schedule.index') }}" class="nav-link">
-        <i class="fas fa-globe-asia"></i>
-            <span>Dịch vụ trực tuyến</span></a>
+        <a href="#" class="nav-link" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true"
+            aria-controls="collapseTwo">
+            <i class="fas fa-globe-asia"></i>
+            <span>Dịch vụ trực tuyến</span>
+        </a>
+        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+            <div class="collapse-inner rounded">
+                <a class="collapse-item" href="{{ route('student.showForm') }}">
+                    <i class="far fa-circle"></i>
+                    <span>Đăng ký chuyển lớp</span>
+                </a>
+            </div>
+        </div>
     </li>
     <hr class="sidebar-divider d-none d-md-block">
     <!-- Sidebar Toggler (Sidebar) -->

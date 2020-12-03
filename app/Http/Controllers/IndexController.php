@@ -55,7 +55,7 @@ class IndexController extends Controller
         // }
         // $arrayClass = array_unique($lop_chuyen);
 
-        return view('clients/don_chuyen_lop', [
+        return view('students/don_chuyen_lop', [
             'filteredArray' => $filteredArray,
             'start_day' => $start_day,
             'date' => $date,

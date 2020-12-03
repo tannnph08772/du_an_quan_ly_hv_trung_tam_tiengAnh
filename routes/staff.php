@@ -48,11 +48,13 @@ Route::group([
         Route::post('/add-hoc-vien', 'AuthController@addHocVien')->name('auth.addhocvien');
         Route::post('/status/{id}', 'UserController@statusHV')->name('student.status');
 
-        Route::get('don-chuyen-lop','IndexController@showForm')->name('auth.showForm');
-        Route::post('don-chuyen-lop/store','IndexController@storeForm')->name('auth.storeForm');
-
         Route::get('danh-sach-chuyen-lop','ClassController@classTransferList')->name('staff.classTransferList');
         Route::get('danh-sach-chuyen-lop/{id}','ClassController@classTransferById')->name('staff.classTransferById');
         Route::post('danh-sach-chuyen-lop/store/{id}','ClassController@storeTransfer')->name('staff.storeTransfer');
+
+        Route::get('danh-sach-hoc-vien/{id}','UserController@editStudent')->name('staff.editStudent');
+        Route::post('cap-nhat-hoc-vien/{id}','UserController@updateStudent')->name('staff.updateStudent');
+        Route::get('danh-sach-hoc-vien-dang-ky/export/', 'AuthController@exportDsHocVienDk')->name('exportDsHocVienDk');
+        Route::post('/danh-sach-hoc-vien-dang-ky/import', 'AuthController@storeImport')->name('storeImport');
     });
 });

@@ -15,11 +15,17 @@
             <span>Dashboard</span></a>
     </li>
     <li class="nav-item active">
+        <a class="nav-link" href="{{route('teachers.showCalendarTea')}}">
+            <i class="far fa-calendar-alt"></i>
+            <span>Lịch dạy</span>
+        </a>
+    </li>
+    <li class="nav-item active">
         <a  class="nav-link" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
             <i class="fas fa-university"></i>
             <span>Danh sách lớp đang dạy</span>
         </a>
-        <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="collapse-inner rounded">
                 @foreach($classes as $item)
                 <a class="collapse-item" href="{{ route('attendance.index',['id' => $item->id]) }}"><i class="fas fa-circle"></i>

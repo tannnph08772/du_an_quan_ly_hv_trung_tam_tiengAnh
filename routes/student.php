@@ -22,6 +22,10 @@ Route::group([
         Route::get('/bai-tap', 'HomeWorkController@show')->name('homework.show'); 
         Route::get('/chi-tiet-bai-tap/{id}', 'HomeWorkController@chiTietBT')->name('chiTietBT');
         Route::post('/nop-bai/{id}', 'HomeWorkController@nopBai')->name('nopBai');
+        Route::get('sinh-vien/lich-hoc','AttendanceController@showCalendarStu')->name('student.showCalendarStu');
+        Route::get('sinh-vien/diem-danh','AttendanceController@showAttendance')->name('student.showAttendance');
+        Route::get('sinh-vien/don-chuyen-lop','IndexController@showForm')->name('student.showForm');
+        Route::post('sinh-vien/don-chuyen-lop/store','IndexController@storeForm')->name('student.storeForm');
     });
 });
 Route::get('/download/{file}', 'HomeWorkController@download')->name('download');
