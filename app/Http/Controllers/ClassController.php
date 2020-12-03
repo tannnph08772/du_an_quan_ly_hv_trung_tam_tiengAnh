@@ -23,7 +23,7 @@ class ClassController extends Controller
 		$classes = ClassRoom::with('students')->orderBy('id', 'desc')->get();
 		$now = Carbon::now()->toDateString();
 		foreach($classes as $class) {
-			if($class->status == 1 && $class->start_day >= $now) {
+			if($class->status == 1 && $class->start_day <= $now) {
 				$class->status = 2;
 				$class->save();
 			}
@@ -66,7 +66,7 @@ class ClassController extends Controller
 		$dayOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 		$days = request()->get('weekday');
 
-		for($i=0; $i<=$number_course; $i++) {
+		for($i=0; $i<=$number_course*4; $i++) {
 			$dates[] = (clone $start_day)->addDays($i)->toDateString();
 		}
 		foreach($dates as $date) {
@@ -86,11 +86,12 @@ class ClassController extends Controller
 			$dayLearnSort[] = date('Y-m-d', strtotime($value));
 			sort($dayLearnSort);
 		}
+		$calendar = array_slice($dayLearnSort, 0, $number_course+1);
 
-		$params['end_day'] = array_pop($dayLearnSort);
+		$params['end_day'] = array_pop($calendar);
 		$result = ClassRoom::create($params);
 
-		foreach($dayLearnSort as $value) {
+		foreach($calendar as $value) {
 			$attendance['date'] = $value;
 			$attendance['teacher_id'] = $params['teacher_id'];
 			$attendance['class_id'] = $result['id'];
