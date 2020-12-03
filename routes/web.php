@@ -79,12 +79,6 @@ Route::group([
 
 Route::get('/','CourseController@showcourse')->name('client.home');
 Route::get('chi-tiet-khoa-hoc/{id}','CourseController@single')->name('english.single');
-Route::get('don-chuyen-lop','IndexController@showForm')->name('auth.showForm');
-Route::post('don-chuyen-lop/store','IndexController@storeForm')->name('auth.storeForm');
-
-Route::get('danh-sach-chuyen-lop','ClassController@classTransferList')->name('staff.classTransferList');
-Route::get('danh-sach-chuyen-lop/{id}','ClassController@classTransferById')->name('staff.classTransferById');
-Route::post('danh-sach-chuyen-lop/store/{id}','ClassController@storeTransfer')->name('staff.storeTransfer');
 
 Route::get('/', function () {
     return view('clients.home');
@@ -125,7 +119,7 @@ Route::get('/phuong-phap-nlp', function () {
 Route::get('/phuong-phap-ale', function () {
     return view('study-methods.ale-method');
 })->name('ale-method');
-Route::post('/store', 'AuthController@store')->name('auth.store');
+
 
 Route::get('/thank-you', function () {
     return view('clients.thankiu');

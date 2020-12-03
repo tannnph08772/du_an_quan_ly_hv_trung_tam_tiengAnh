@@ -51,7 +51,7 @@
                                 <label class="my-1 mr-2" for="inlineFormCustomSelectPref">Cở sở học</label>
                                 <select name="place_id" class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
                                     @foreach($places as $place)
-                                    <option value="{{$place->id}}">{{$place->name_place}}</option>
+                                    <option value="{{$place->id}}">{{$place->name_place}} : {{$place->address}} </option>
                                     @endforeach
                                 </select>
                             </div>

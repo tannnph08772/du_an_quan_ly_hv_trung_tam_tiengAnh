@@ -8,7 +8,14 @@ class Homework extends Model
 {
     protected $table = 'homework';
     protected $fillable = [
-        'name_hw', 'file', 'end_day', 'class_id'
+        'title', 'file', 'end_day', 'note', 'class_id', 'teacher_id'
     ];
+
+    public function class(){
+    	return $this->belongsTo(ClassRoom::class, 'class_id');
+    }
     
+    public function teacher(){
+    	return $this->belongsTo(Teacher::class, 'teacher_id', 'id');
+    } 
 }

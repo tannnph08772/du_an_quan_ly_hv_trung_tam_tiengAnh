@@ -19,7 +19,6 @@
     </form>
     <!-- Topbar Navbar -->
     <ul class="navbar-nav ml-auto">
-
         <!-- Nav Item - Search Dropdown (Visible Only XS) -->
         <li class="nav-item dropdown no-arrow d-sm-none">
             <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown"
@@ -69,6 +68,7 @@
             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown"
                 aria-haspopup="true" aria-expanded="false">
                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">Xin chào, {{Auth::user()->name}}</span>
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><img class="rounded-circle" width=30 src="https://ui-avatars.com/api/?background=random&name={{Auth::user()->name}}" alt=""> {{Auth::user()->name}}</span>
             </a>
             <!-- Dropdown - User Information -->
             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">

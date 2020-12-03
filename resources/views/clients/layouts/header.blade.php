@@ -22,7 +22,7 @@
                 aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"><i class="fas fa-bars"></i></span>
             </button>
-            <div class="collapse navbar-collapse nav justify-content-center" id="navbarNavDropdown">
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
                 <ul class="text-uppercase nav justify-content-center">
                     <li class="nav-item">
                         <a class="nav-link" href="{{url('/')}}">Trang chủ</a>
@@ -69,6 +69,13 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{url('/lien-he')}}">Liên hệ</a>
+                    </li>
+                    <li class="nav-item">
+                    @guest
+                        <a class="nav-link" href="{{url('/login')}}">Login</a>
+                    @else
+                        <a class="nav-link" href="{{url('/logout')}}"><img  style="width:25px"src="https://ui-avatars.com/api/?background=0D8ABC&rounded=true&color=fff&name={{ Auth::user()->name}}" alt=""></a></li>
+                    @endguest
                     </li>
                 </ul>
             </div>

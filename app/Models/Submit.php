@@ -10,5 +10,13 @@ class Submit extends Model
     protected $fillable = [
         'homework_id', 'student_id'
     ];
+
+    public function student(){
+    	return $this->belongsTo(Student::class, 'student_id');
+    }
+
+    public function submitDetail(){
+    	return $this->hasMany(submitDetail::class, 'submit_id');
+    }
     
 }

@@ -30,7 +30,16 @@ class Student extends Model
     	return $this->belongsTo(ClassRoom::class, 'class_id');
     }
     
+    public function homeworks(){
+    	return $this->hasMany(Homework::class, 'student_id');
+    }
+
     public function sampleForms(){
     	return $this->hasMany(SampleForm::class, 'student_id');
+    }
+
+    
+    public function submit(){
+    	return $this->hasMany(Submit::class, 'student_id');
     }
 }

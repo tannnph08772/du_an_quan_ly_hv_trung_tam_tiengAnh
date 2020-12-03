@@ -15,19 +15,23 @@
             <span>Dashboard</span></a>
     </li>
     <li class="nav-item active">
-        <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true"
-            aria-controls="collapseTwo">
+        <a  class="nav-link" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
             <i class="fas fa-university"></i>
             <span>Danh sách lớp đang dạy</span>
         </a>
         <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="collapse-inner rounded">
                 @foreach($classes as $item)
-                <a class="collapse-item" href="{{ route('attendance.index',['id' => $item->id]) }}"><i class="far fa-circle"></i>
+                <a class="collapse-item" href="{{ route('attendance.index',['id' => $item->id]) }}"><i class="fas fa-circle"></i>
                     {{$item->name_class}}</a>
                 @endforeach
             </div>
         </div>
+    </li>
+    <li class="nav-item active">
+        <a class="nav-link" href="{{route('homework.index')}}">
+            <i class="fas fa-fw fa-tachometer-alt"></i>
+            <span>Quản lý bài tập</span></a>
     </li>
     <hr class="sidebar-divider d-none d-md-block">
     <!-- Sidebar Toggler (Sidebar) -->

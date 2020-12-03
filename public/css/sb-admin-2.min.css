@@ -10052,8 +10052,8 @@ a.text-dark:hover {
 
 @media print {
     *,
-    ::after,
-    ::before {
+     ::after,
+     ::before {
         text-shadow: none!important;
         box-shadow: none!important
     }
@@ -10690,7 +10690,7 @@ a:focus {
 }
 
 .sidebar .nav-item.active .nav-link {
-    font-weight: 700
+    font-weight: 500
 }
 
 .sidebar .nav-item .collapse {
@@ -10712,10 +10712,8 @@ a:focus {
 
 .sidebar .nav-item .collapse .collapse-inner,
 .sidebar .nav-item .collapsing .collapse-inner {
-    padding: .5rem 0;
     min-width: 10rem;
-    font-size: .85rem;
-    margin: 0 0 1rem 0
+    font-size: .80rem;
 }
 
 .sidebar .nav-item .collapse .collapse-inner .collapse-header,
@@ -10729,6 +10727,12 @@ a:focus {
     color: #b7b9cc
 }
 
+.fas.fa-circle {
+    font-size: 4px;
+    vertical-align: middle;
+    margin-right: 1px;
+}
+
 .sidebar .nav-item .collapse .collapse-inner .collapse-item,
 .sidebar .nav-item .collapsing .collapse-inner .collapse-item {
     padding: .5rem 1rem;
@@ -10737,7 +10741,6 @@ a:focus {
     color: #fff;
     text-decoration: none;
     border-radius: .35rem;
-    white-space: nowrap
 }
 
 .sidebar .nav-item .collapse .collapse-inner .collapse-item:hover,
