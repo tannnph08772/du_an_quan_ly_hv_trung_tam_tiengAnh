@@ -23,7 +23,7 @@
         </a>
     </li>
     <li class="nav-item active">
-        <a class="nav-link" href="{{ route('classes.index') }}">
+        <a class="nav-link" href="{{ route('homework.show')}}">
         <i class="fas fa-book-open"></i>
             <span>Bài tập về nhà</span></a>
     </li>

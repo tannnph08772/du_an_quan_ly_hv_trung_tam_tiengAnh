@@ -21,7 +21,7 @@
                 </div>
             </div>
             <div class="col-2">
-                {{($item->end_day)}}
+               Ngày hết hạn: {{($item->end_day)}}
             </div>
         </div>
     </li>
