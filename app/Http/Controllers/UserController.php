@@ -16,6 +16,7 @@ use App\Http\Requests\Users\ResetPasswordRequest;
 use App\Rules\MatchOldPassword;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use App\Http\Requests\UpdateAccount;
 use Illuminate\Support\Facades\Mail;
 use PhpParser\Builder\Class_;
 use Symfony\Component\HttpKernel\DependencyInjection\ResettableServicePass;
@@ -135,7 +136,7 @@ class UserController extends Controller
 		]);
     }
 
-    public function updateStaff($id){
+    public function updateStaff($id, UpdateAccount $request){
         $data = request()->all();
         $params = \Arr::except($data, ['_token']);
     	$staff = User::find($id);
@@ -184,7 +185,7 @@ class UserController extends Controller
 		]);
     }
 
-    public function updateTeacher($id){
+    public function updateTeacher($id, UpdateAccount $request){
         $data = request()->all();
         $params = \Arr::except($data, ['_token']);
     	$teacher = User::find($id);
@@ -230,5 +231,19 @@ class UserController extends Controller
             return redirect()->route('user.viewProfile')->with('success-message', 'Đổi mật khẩu thành công');
         }
         return redirect()->back()->withInput();
+    public function editStudent($id){
+        $student = User::find($id);
+
+        return view('admin/account/sua_tk_hv', [
+            'student' => $student 
+        ]);
+    }
+
+    public function updateStudent($id, UpdateAccount $request){
+        $data = request()->all();
+        $params = \Arr::except($data, ['_token']);
+        $student = User::find($id);
+		$student->update($params);
+		return redirect()->route('users.dsHocVien')->with('success', 'Cập nhật thành công');
     }
 }

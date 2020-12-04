@@ -28,5 +28,6 @@ Route::group([
         Route::get('tao-bai-tap', 'HomeWorkController@showFormHomework')->name('homework.showFormHomework');
         Route::post('tao-bai-tap', 'HomeWorkController@storeBT')->name('homeworks.storeBT');
         Route::get('danh-sach-nop-bai/{id}', 'HomeWorkController@dsNopBai')->name('homework.dsNopBai');
+        Route::get('lich-day','AttendanceController@showCalendarTea')->name('teachers.showCalendarTea');
     });
 });
