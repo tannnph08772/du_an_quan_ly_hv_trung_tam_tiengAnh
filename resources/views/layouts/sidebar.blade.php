@@ -23,8 +23,7 @@
             <i class="fas fa-users"></i>
             <span>Quản lý tài khoản</span>
         </a>
-        <div id="collapseTwo" class="collapse show" data-parent="#accordionSidebar"
-            style="">
+        <div id="collapseTwo" class="collapse show" data-parent="#accordionSidebar">
             <div class="collapse-inner rounded">
                 <a class="collapse-item" href="{{ route('teacher.index') }}"><i class="fas fa-circle"></i> Danh sách giảng viên</a>
                 <a class="collapse-item" href="{{ route('staff.index') }}"><i class="fas fa-circle"></i>

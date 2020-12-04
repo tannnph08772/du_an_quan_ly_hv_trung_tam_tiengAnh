@@ -17,6 +17,7 @@ use App\Rules\MatchOldPassword;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
+use PhpParser\Builder\Class_;
 use Symfony\Component\HttpKernel\DependencyInjection\ResettableServicePass;
 
 class UserController extends Controller
@@ -209,23 +210,24 @@ class UserController extends Controller
     }
 
     public function viewProfile(){
-        return view('admin.teacher.profile');
+        $user = Auth::user();
+        return view('admin.student.profile',compact('user'));
     }
     public function resetPW(){
         return view('resetpassword');
     }
-    public function ResetPassword(Request $request)
-    {
+    public function ResetPassword(ResetPasswordRequest $request)
+    {   
         $request->validate([
             'curr_password' => ['required', new MatchOldPassword($request)],
         ]);
         $curr_password = $request->input('curr_password');
         $new_password  = $request->input('new_password');
         if (!Hash::check($curr_password, Auth::user()->password)) {
-            return redirect()->route('admin.dashboardAdmin')->with('err-message', 'Mật khẩu cũ không chính xác')->withInput();
+            return redirect()->route('user.resetPW')->with('err-message', 'Mật khẩu cũ không chính xác')->withInput();
         } else {
             $request->user()->fill(['password' => Hash::make($new_password)])->save();
-            return redirect()->route('admin.dashboardAdmin')->with('success-message', 'Đổi mật khẩu thành công')->withInput();
+            return redirect()->route('user.viewProfile')->with('success-message', 'Đổi mật khẩu thành công');
         }
         return redirect()->back()->withInput();
     }

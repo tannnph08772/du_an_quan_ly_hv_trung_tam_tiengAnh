@@ -67,7 +67,6 @@ class FeedbackController extends Controller
       ->join('courses', 'courses.id', '=', 'feedback.course_id')
       ->join('classes', 'classes.id', '=', 'feedback.class_id')
       ->get();
-        // $list = $this->FeedbackServices->getFeedback();
         return view('admin.feedback.index',compact('list', 'feedback'));
     }
     public function delete(Request $request)
