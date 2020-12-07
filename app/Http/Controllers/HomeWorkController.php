@@ -14,7 +14,7 @@ use Auth;
 class HomeWorkController extends Controller
 {
     public function index() {
-        $homework = Homework::where('teacher_id', Auth::user()->id)->get();
+        $homework = Homework::where('teacher_id', Auth::user()->teacher->id)->get();
         
         return view('admin/teacher/ds_bai_tap', compact('homework'));
     }

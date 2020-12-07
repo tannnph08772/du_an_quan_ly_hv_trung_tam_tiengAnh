@@ -22,7 +22,7 @@
             <i class="fas fa-users"></i>
             <span>Quản lý học viên</span>
         </a>
-        <div id="collapseTwo" class="collapse show" data-parent="#accordionSidebar"
+        <div id="collapseTwo" class="collapse" data-parent="#accordionSidebar"
             style="">
             <div class="collapse-inner rounded">
                 <a class="collapse-item" href="{{ route('users.dsHocVien') }}"><i class="fas fa-circle"></i> Tất cả học viên</a>
@@ -40,6 +40,11 @@
         <a href="{{ route('schedule.index') }}" class="nav-link" href="">
             <i class="far fa-clock"></i>
             <span>Danh sách ca học</span></a>
+    </li>
+    <li class="nav-item active">
+        <a href="{{ route('staff.classTransferList') }}" class="nav-link" href="">
+            <i class="fas fa-sync-alt"></i>
+            <span>Danh sách chuyển lớp</span></a>
     </li>
     <hr class="sidebar-divider d-none d-md-block">
     <!-- Sidebar Toggler (Sidebar) -->

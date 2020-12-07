@@ -17,4 +17,7 @@ class Attendance extends Model
     public function attendanceDetail(){
     	return $this->hasMany(AttendanceDetail::class, 'attendance_id', 'id');
     }
+    public function schedule(){
+    	return $this->belongsTo(Schedule::class, 'schedule_id');
+    }
 }
