@@ -35,11 +35,15 @@
                             @error('class_id')
                                 <small style="color: red">{{ $message }}</small>
                             @enderror
+                            @if(empty($filteredArray))
+                            Chưa có lớp phù hợp
+                            @else
                             <select class="form-control" name="class_id">
                                 @foreach($filteredArray as $class)
                                 <option value="{{ $class['id'] }}">{{ $class['name_class'] }} - {{ $class['schedule']['name_schedule'] }} ({{ $class['schedule']['start_time'] }} - {{ $class['schedule']['end_time'] }})</option>
                                 @endforeach
                             </select>
+                            @endif
                         </td>
                     </tr>
                     <tr>

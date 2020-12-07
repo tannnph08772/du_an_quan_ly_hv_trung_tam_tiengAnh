@@ -31,8 +31,8 @@
                         <td>{{ $item->file }}</td>
                         <td>{{ $item->end_day }}</td>
                         <td>{{ $item->class->name_class }}</td>
-                        <td style="max-height:40px; overflow:hidden">{{ $item->note }}</td>
-                        <td> <a href="{{route('homework.dsNopBai', ['id' => $item->id])}}">Chi tiết</a> </td>
+                        <td>{{ $item->note }}</td>
+                        <td><a href="{{route('homework.dsNopBai', ['id' => $item->id])}}">Chi tiết</a></td>
                     </tr>
                     @endforeach
                  

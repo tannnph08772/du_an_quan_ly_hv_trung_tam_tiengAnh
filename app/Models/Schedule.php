@@ -18,4 +18,8 @@ class Schedule extends Model
     public function classes(){
     	return $this->hasMany(ClassRoom::class, 'schedule_id', 'id');
     }
+
+    public function attendances(){
+    	return $this->hasMany(Attendance::class, 'schedule_id', 'id');
+    }
 }

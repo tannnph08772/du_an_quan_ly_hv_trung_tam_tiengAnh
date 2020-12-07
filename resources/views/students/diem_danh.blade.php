@@ -37,10 +37,12 @@
                         <td>
                             @if(isset($item->attendanceDetail))
                                 @foreach($item->attendanceDetail as $value)
-                                    @if($value->status === 1)
-                                        <span class="text-danger font-weight-bold">Vắng</span>
-                                    @else
-                                        <span class="text-success font-weight-bold">Có</span>
+                                    @if(Auth::user()->student->id == $value->student_id)
+                                        @if($value->status == 1)
+                                            <span class="text-danger font-weight-bold">Vắng</span>
+                                        @else
+                                            <span class="text-success font-weight-bold">Có</span>
+                                        @endif
                                     @endif
                                 @endforeach
                             @endif

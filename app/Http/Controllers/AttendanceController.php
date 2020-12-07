@@ -76,7 +76,7 @@ class AttendanceController extends Controller
         $calendars = Attendance::where([
             ['class_id', $class_id],
             ['date', '>=', $now]
-        ])->orderBy('date', 'asc')->get();
+            ])->join('schedule', 'attendance.schedule_id', '=', 'schedule.id')->orderBy('date', 'asc')->orderBy('start_time', 'asc')->get();
 
         return view('students/lich_hoc', [
             'calendars' => $calendars,
@@ -90,7 +90,7 @@ class AttendanceController extends Controller
         $calendars = Attendance::where([
             ['teacher_id', $teacher_id],
             ['date', '>=', $now]
-        ])->orderBy('date', 'asc')->get();
+        ])->join('schedule', 'attendance.schedule_id', '=', 'schedule.id')->orderBy('date', 'asc')->orderBy('start_time', 'asc')->get();
 
         return view('admin/teacher/lich_day', [
             'calendars' => $calendars,
