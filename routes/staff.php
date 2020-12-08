@@ -55,6 +55,9 @@ Route::group([
         Route::get('danh-sach-hoc-vien/{id}','UserController@editStudent')->name('staff.editStudent');
         Route::post('cap-nhat-hoc-vien/{id}','UserController@updateStudent')->name('staff.updateStudent');
 
+        Route::get('danh-sach-hoc-vien-dang-ky/export/', 'AuthController@exportDsHocVienDk')->name('exportDsHocVienDk');
+        Route::post('/danh-sach-hoc-vien-dang-ky/import', 'AuthController@storeImport')->name('storeImport');
+
         Route::get('/change-pass','UserController@reset')->name('user.reset');
         Route::post('save-pass','UserController@Rspass')->name('user-save');
     });

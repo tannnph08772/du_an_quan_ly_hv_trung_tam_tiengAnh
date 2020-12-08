@@ -17,7 +17,7 @@
                     </div>
                 </div>
                 <div class="mt-3">
-                    <p style="font-size: 12px;"> Tên bài tập : {{$homework->title}}</p>
+                    <p style="font-size: 13px; font-weight:500;">{{$homework->title}}</p>
                     <p style="font-size: 12px;">{{$homework->note}}</p>
                     <p style="font-size: 12px;">
                         <a class="text-dark" href="{{ route('download',$homework->file) }}"><i class="far fa-file-word"></i> {{$homework->file}}</a>

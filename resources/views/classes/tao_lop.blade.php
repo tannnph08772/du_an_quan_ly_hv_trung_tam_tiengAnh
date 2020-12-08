@@ -76,7 +76,7 @@
 						<td>
 							<select class="form-control" name="course_id">
 								@foreach($courses as $course)
-								<option value="{{ $course->id }}">{{ $course->name_course }}</option>
+								<option value="{{ $course->id }}">{{ $course->name_course }} ({{ $course->number_course }} buổi)</option>
 								@endforeach
 							</select>
 						</td>
@@ -86,7 +86,7 @@
 						<td>
 							<select class="form-control" name="place_id">
 								@foreach($places as $place)
-								<option value="{{ $place->id }}">{{ $place->name_place }}</option>
+								<option value="{{ $place->id }}">{{ $place->name_place }}: {{ $place->address }}</option>
 								@endforeach
 							</select>
 						</td>

@@ -46,6 +46,11 @@
             <span>Liên hệ</span></a>
     </li>
     <li class="nav-item active">
+        <a href="{{ route('staff.classTransferList') }}" class="nav-link" href="">
+            <i class="fas fa-sync-alt"></i>
+            <span>Danh sách chuyển lớp</span></a>
+    </li>
+    <li class="nav-item active">
         <a href="{{ route('user.reset') }}" class="nav-link" href="">
             <i class="far fa-clock"></i>
             <span>Đổi mật khẩu</span></a>

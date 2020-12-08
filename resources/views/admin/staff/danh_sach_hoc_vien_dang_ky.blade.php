@@ -6,11 +6,11 @@
     <div class="card shadow mb-4">
         <div class="card-header py-3 d-flex justify-content-between align-items-center">
             <!-- Button trigger modal -->
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+            <button type="button" class="btn btn-primary" onclick="kiemTraTrungKhoaHoc()">
                 Chọn lớp
             </button>
             <!-- Modal -->
-            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            <div class="modal fade danh_sach_lop" id="exampleModal2"  tabindex="-1" role="dialog" data-dismiss="modal" aria-labelledby="exampleModalLabel"
                 aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
@@ -22,9 +22,11 @@
                         </div>
                         <div class="modal-body">
                             <select class="custom-select mr-sm-2" name="class_id" id="inlineFormCustomSelect">
+                            <option value="">Chọn lớp</option>
                                 @foreach($filteredArray as $class)
-                                <option value="{{$class['id']}}">{{$class['name_class']}}
-                                    ({{ $class['schedule']['name_schedule'] }} - {{ $class['place']['name_place'] }})</option>
+                                <option id_khoa_hoc ="{{$class['course_id']}}{{$class['place_id']}}" class="option_lop" style="display:none" value="{{$class['id']}}">{{$class['name_class']}}
+                                    ({{ $class['schedule']['name_schedule'] }} - {{ $class['place']['name_place'] }})
+                                </option>
                                 @endforeach
                             </select>
                         </div>
@@ -37,6 +39,11 @@
             </div>
         </div>
         <div class="card-body">
+            @if (session('status'))
+            <div class="alert alert-success" role="alert">
+                {{ session('status') }}
+            </div>
+            @endif
             <div class="table-responsive">
                 <table class="table table-bordered text-dark" id="dataTable" width="100%" cellspacing="0">
                     <thead>
@@ -60,7 +67,7 @@
                         @endphp
                         @foreach($waitList as $item)
                         <tr>
-                            <td class=" dt-checkboxes-cell"><input class="hoc_vien_add" value="{{$item->id}}"
+                            <td class=" dt-checkboxes-cell"><input class="hoc_vien_add"  id_khoa_hoc = "{{$item->course_id}}" id_place_id = "{{$item->place_id}}" value="{{$item->id}}"
                                     type="checkbox" name="student[]">
                             </td>
                             <td>{{$i++}}</td>
@@ -86,10 +93,29 @@
                         @endforeach
                     </tbody>
                 </table>
+                <div class="container">
+                    <table class="m-auto">
+                        <tr>
+                            <td>
+                                <a href="{{route('exportDsHocVienDk')}}" class="btn btn-primary">Download</a>
+                            </td>
+                            <td>
+                                <form action="{{route('storeImport')}}" method="post" enctype="multipart/form-data">
+                                    @csrf
+                                    <button type="submit" class="btn btn-primary">Upload Excel</button>
+                                    <input type="file" name="file" />
+                                </form>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
 </div>
+
+@endsection
+@section('script')
 <script language="javascript">
 function toggle(source) {
     checkboxes = document.getElementsByName('student[]');
@@ -99,6 +125,40 @@ function toggle(source) {
 }
 
 const url_add_hoc_vien = "{{route('auth.addhocvien')}}"
+
+const kiemTraTrungKhoaHoc = () =>{
+    let danh_sach_hoc_vien = document.querySelectorAll(".hoc_vien_add")
+    var stt = 0
+    var check = 0
+    var danh_sach_hv = []
+    var kiem_tra_trung_khoa_hoc = 0
+    var kiem_tra_trung_co_co = 0
+    danh_sach_hoc_vien.forEach(function(element) {
+       
+        if ($(element).prop('checked')) {
+            if(stt == 0){
+                 kiem_tra_trung_khoa_hoc = $(element).attr('id_khoa_hoc')
+                 kiem_tra_trung_co_co = $(element).attr('id_place_id')
+                 stt++
+            }
+            if(
+                kiem_tra_trung_khoa_hoc != $(element).attr('id_khoa_hoc') || kiem_tra_trung_co_co != $(element).attr('id_place_id')
+            ){
+                check++
+            }
+        }
+    });
+    if(check > 0){
+        $('#exampleModal2').modal('hide');
+    }else{
+        $('.option_lop').hide()
+        var selectShow = `[id_khoa_hoc=${kiem_tra_trung_khoa_hoc}${kiem_tra_trung_co_co}]`
+
+        $(selectShow).show()
+        console.log(selectShow)
+        $('#exampleModal2').modal('show');
+    }
+ }
 const addUser = () => {
     let danh_sach_hoc_vien = document.querySelectorAll(".hoc_vien_add")
     let class_select = $("[name=class_id]").val()
