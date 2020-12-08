@@ -1,4 +1,4 @@
-@extends('teacher')
+@extends('student')
 @section('title', 'Thông thin cá nhân')
 @section('content')
 @if(Session::has('success-message'))
@@ -7,11 +7,11 @@
 </div>
 @endif
 <div class="container">
-     <div class="row">
-          <div class="col-5    ">
+     <div class="row"  style="font-size: 13px;">
+          <div class="col-5 ">
                <div class="bg-white border rounded">
-                    <div class="row">
-                         <div class="col-md-4"></div>
+                    <div class="d-flex align-items-center">
+                         <div class="col-md-4"><img src="https://ui-avatars.com/api/?background=random&name={{$user->name}}" style="width: 100%" alt=""></div>
                          <div class="col-md-8">
                               <p class="pt-3">Tên : <span class="ml-3">{{$user->name}}</span></p>
                               <p>Số điện thoại : <span class="ml-3">{{$user->phone_number}}</span></p>

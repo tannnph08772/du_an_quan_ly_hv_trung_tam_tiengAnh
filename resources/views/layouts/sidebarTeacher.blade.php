@@ -39,6 +39,11 @@
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Quản lý bài tập</span></a>
     </li>
+    <li class="nav-item active">
+        <a class="nav-link" href="{{route('user.resetpass')}}">
+            <i class="fas fa-fw fa-tachometer-alt"></i>
+            <span>Đổi mật khẩu</span></a>
+    </li>
     <hr class="sidebar-divider d-none d-md-block">
     <!-- Sidebar Toggler (Sidebar) -->
     <div class="text-center d-none d-md-inline">

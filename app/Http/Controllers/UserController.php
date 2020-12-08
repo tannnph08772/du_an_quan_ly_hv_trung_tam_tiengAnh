@@ -231,6 +231,7 @@ class UserController extends Controller
             return redirect()->route('user.viewProfile')->with('success-message', 'Đổi mật khẩu thành công');
         }
         return redirect()->back()->withInput();
+    }    
     public function editStudent($id){
         $student = User::find($id);
 
@@ -245,5 +246,41 @@ class UserController extends Controller
         $student = User::find($id);
 		$student->update($params);
 		return redirect()->route('users.dsHocVien')->with('success', 'Cập nhật thành công');
+    }
+    public function reset(){
+        return view('admin.staff.resetpass');
+    }
+    public function Rspass(ResetPasswordRequest $request)
+    {   
+        $request->validate([
+            'curr_password' => ['required', new MatchOldPassword($request)],
+        ]);
+        $curr_password = $request->input('curr_password');
+        $new_password  = $request->input('new_password');
+        if (!Hash::check($curr_password, Auth::user()->password)) {
+            return redirect()->route('user.reset')->with('err-message', 'Mật khẩu cũ không chính xác')->withInput();
+        } else {
+            $request->user()->fill(['password' => Hash::make($new_password)])->save();
+            return redirect()->route('user.reset')->with('success-message', 'Đổi mật khẩu thành công');
+        }
+        return redirect()->back()->withInput();
+    }
+    public function resetpass(){
+        return view('admin.teacher.doi-mat-khau');
+    }
+    public function Resetspass(ResetPasswordRequest $request)
+    {   
+        $request->validate([
+            'curr_password' => ['required', new MatchOldPassword($request)],
+        ]);
+        $curr_password = $request->input('curr_password');
+        $new_password  = $request->input('new_password');
+        if (!Hash::check($curr_password, Auth::user()->password)) {
+            return redirect()->route('user.resetpass')->with('err-message', 'Mật khẩu cũ không chính xác')->withInput();
+        } else {
+            $request->user()->fill(['password' => Hash::make($new_password)])->save();
+            return redirect()->route('user.resetpass')->with('success-message', 'Đổi mật khẩu thành công');
+        }
+        return redirect()->back()->withInput();
     }
 }

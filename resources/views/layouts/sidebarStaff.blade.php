@@ -40,6 +40,16 @@
             <i class="far fa-clock"></i>
             <span>Danh sách ca học</span></a>
     </li>
+    <li class="nav-item active">
+        <a href="{{ route('contact.index') }}" class="nav-link" href="">
+        <i class="fas fa-phone"></i>
+            <span>Liên hệ</span></a>
+    </li>
+    <li class="nav-item active">
+        <a href="{{ route('user.reset') }}" class="nav-link" href="">
+            <i class="far fa-clock"></i>
+            <span>Đổi mật khẩu</span></a>
+    </li>
     <hr class="sidebar-divider d-none d-md-block">
     <!-- Sidebar Toggler (Sidebar) -->
     <div class="text-center d-none d-md-inline">

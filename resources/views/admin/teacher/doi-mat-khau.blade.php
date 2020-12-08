@@ -1,4 +1,4 @@
-@extends('student')
+@extends('teacher')
 @section('title', 'Đổi mật khẩu')
 @section('content')
 <!DOCTYPE html>
@@ -21,7 +21,7 @@
                 {{Session::get('success-message') }}
             </div>
             @endif
-            <form action="{{route('user-savepw')}}" method="POST">
+            <form action="{{route('user-savepass')}}" method="POST">
                 @csrf
                 <div class="form-group">
                     <label for="exampleInputEmail1">Mật khẩu cũ</label>

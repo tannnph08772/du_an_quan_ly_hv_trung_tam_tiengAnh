@@ -88,6 +88,9 @@ Route::get('/lien-he', function () {
     return view('clients.contact');
 })->name('contact');
 
+Route::post('/tao-lien-he','ContactController@create')
+->name('create.contact');
+
 Route::get('/tin-tuc', function () {
     return view('clients.news');
 })->name('news');
@@ -124,7 +127,9 @@ Route::get('/phuong-phap-ale', function () {
 Route::get('/thank-you', function () {
     return view('clients.thankiu');
 })->name('thankyou');
+
 //feedback
+Route::get('/Gop-y-cua-hoc-vien', 'FeedbackController@showfeedback')->name('feedback.showfeedback');
 Route::get('/danh-sach-gop-y', 'FeedbackController@index')->name('feedback.index');
 // create
 Route::post('/','FeedbackController@store')->name('feedback.store');
@@ -133,7 +138,12 @@ Route::post('/chon-lop', 'FeedbackController@findClassByCourse')->name('feedback
 Route::post('/xoa-gop-y','FeedbackController@delete')->name('feedback.delete');
 Route::post('/store', 'AuthController@store')->name('auth.store');
 
-
+//reset-pass
 Route::get('/thong-tin-ca-nhan','UserController@viewProfile')->name('user.viewProfile');
 Route::get('/doi-mat-khau','UserController@resetPW')->name('user.resetPW');
 Route::post('luu-mat-khau','UserController@ResetPassword')->name('user-savepw');
+
+//contact
+Route::get('/danh-sach-lien-he','ContactController@index')->name('contact.index');
+Route::post('/xoa-lien-he','ContactController@delete')->name('contact.delete');
+

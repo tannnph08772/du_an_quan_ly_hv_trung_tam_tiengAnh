@@ -7,37 +7,61 @@
             <div class="col-md-8 col-sm-12 mt-5">
             <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="#">Trang Chủ</a></li>
+                        <li class="breadcrumb-item"><a href="{{route('home')}}">Trang Chủ</a></li>
                         <li class="breadcrumb-item active" aria-current="page">Liên Hệ</li>
                     </ol>
                 </nav>
                 <div style="text-align: center;">
                     <h2>ĐĂNG KÝ NHẬN TƯ VẤN NGAY</h2>
                     <p style="color: dimgrey;">Để chinh phục tiếng Anh một cách đúng đắn và nhanh chóng nhất như 30000 học viên <br> Alibaba đã từng.</p>
-                    <form class="w-75" style="margin: 0 auto;">
+                    @if(Session::has('message'))
+                    <div class="alert alert-success" role="alert">
+                        {{Session::get('message') }}
+                    </div>
+                    @endif
+                    <form class="w-75" style="margin: 0 auto;" action="{{route('create.contact')}}" method="POST">
+                    @csrf
                         <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Họ và tên của bạn">
+                            <input type="text" class="form-control" name="name_student" placeholder="Họ và tên của bạn">
+                            @error('name_student')
+								<small style="color: red">{{ $message }}</small>
+							@enderror
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Số điện thoại của bạn">
+                            <input type="text" class="form-control" name="phone" placeholder="Số điện thoại của bạn">
+                            @error('phone')
+								<small style="color: red">{{ $message }}</small>
+							@enderror
                         </div>
                         <div class="form-group">
-                            <input type="email" class="form-control" placeholder="Email của bạn">
+                            <input type="email" class="form-control" name="email" placeholder="Email của bạn">
+                            @error('email')
+								<small style="color: red">{{ $message }}</small>
+							@enderror
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Nơi ở của bạn">
+                            <input type="text" class="form-control" name="address" placeholder="Nơi ở của bạn">
+                            @error('address')
+								<small style="color: red">{{ $message }}</small>
+							@enderror
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Công việc của bạn">
+                            <input type="text" class="form-control" name="work" placeholder="Công việc của bạn">
+                            @error('work')
+								<small style="color: red">{{ $message }}</small>
+							@enderror
                         </div>
                         <div class="form-group">
-                            <textarea class="form-control" rows="3" placeholder="Lời nhắn nhủ đến chúng tôi"></textarea>
+                            <textarea class="form-control" rows="3" name="content" placeholder="Lời nhắn nhủ đến chúng tôi"></textarea>
+                            @error('content')
+								<small style="color: red">{{ $message }}</small>
+							@enderror
                         </div>
-                        <button type="button" class="btn btn-primary">Gửi liên hệ</button>
+                        <button type="submit" class="btn btn-primary">Gửi liên hệ</button>
                     </form>
                 </div>
             </div>
-            <div class="col-md-4 col-sm-12 mt-1">
+            <div class="col-md-4 col-sm-12 mt-1 mb-4">
                 <aside id="widget_posts_new-5" class="widget widget_widget_posts_new">
                     <div class="title-widget">
                         <div class="widget__icon"><i class="fas fa-paper-plane"></i></div>
