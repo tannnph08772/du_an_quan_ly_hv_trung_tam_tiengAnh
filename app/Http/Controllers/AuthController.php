@@ -126,7 +126,6 @@ class AuthController extends Controller
             
             $hoc_vien['class_id'] = $lop_id;
             $hoc_vien['user_id'] = $id;
-            $hoc_vien['image'] = null;
             Student::create($hoc_vien->toArray());
             WaitList::destroy($value);
             Mail::send('email.email', [

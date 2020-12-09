@@ -18,4 +18,8 @@ class Homework extends Model
     public function teacher(){
     	return $this->belongsTo(Teacher::class, 'teacher_id', 'id');
     } 
+
+    public function submit(){
+    	return $this->hasMany(Submit::class, 'homework_id');
+    }
 }

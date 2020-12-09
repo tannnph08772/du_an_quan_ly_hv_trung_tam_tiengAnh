@@ -80,20 +80,17 @@ class HomeWorkController extends Controller
     public function dsNopBai($id) {
         $hw = Homework::find($id);
         $submit = Submit::where('homework_id', $hw['id'])->get();
-        // foreach ($submit as $value) {
-        //    $value->submitDetail;
-        // };
-
-        // $filteredArray = Arr::where($submit->toArray(), function ($value, $key) {
-        //     return true;
-        // });
-
 
         return view('admin/teacher/ds_hoc_vien_nop_bai',[
             'submit' => $submit,
             'hw' => $hw
-        ]
-    
-    );
+        ]);
+    }
+
+    public function dsBaiTap() {
+        $student = Auth::user()->student->id;  
+        $submits = Submit::where('student_id', $student)->get();
+        
+        return view('students/ds_bai_tap_da_nop', compact('submits'));
     }
 }

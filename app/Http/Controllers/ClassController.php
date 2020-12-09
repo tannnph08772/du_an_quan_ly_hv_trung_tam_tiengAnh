@@ -107,6 +107,7 @@ class ClassController extends Controller
 		$students = Student::where('class_id', $classes->id)->get();
 		return view('classes/chi_tiet_lop_hoc', [
 			'students' => $students,
+			'classes' => $classes
 		]);
 	}
 

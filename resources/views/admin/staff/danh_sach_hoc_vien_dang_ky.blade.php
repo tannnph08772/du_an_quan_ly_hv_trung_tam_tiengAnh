@@ -1,7 +1,7 @@
 @extends('staff')
 @section('title', "Danh sách chờ")
 @section('content')
-<div class="container-fluid">
+<div class="">
     <h1 class="h3 mb-2 text-gray-800">Danh sách học viên đăng ký</h1>
     <div class="card shadow mb-4">
         <div class="card-header py-3 d-flex justify-content-between align-items-center">
@@ -9,6 +9,7 @@
             <button type="button" class="btn btn-primary" onclick="kiemTraTrungKhoaHoc()">
                 Chọn lớp
             </button>
+            <span>Số lượng học viên đăng ký: {{count($waitList)}}</span>
             <!-- Modal -->
             <div class="modal fade danh_sach_lop" id="exampleModal2"  tabindex="-1" role="dialog" data-dismiss="modal" aria-labelledby="exampleModalLabel"
                 aria-hidden="true">
@@ -48,7 +49,7 @@
                 <table class="table table-bordered text-dark" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                         <tr>
-                            <th><input type="checkbox" onClick="toggle(this)"></th>
+                            <th><input type="checkbox" class="d-none" onClick="toggle(this)"></th>
                             <th>STT</th>
                             <th>Họ và tên</th>
                             <th>Email</th>
@@ -80,7 +81,7 @@
                             <td>{{$item->place->name_place}}</td>
                             <td>
                                 <a href="{{ route('users.getInfoHV',['id' => $item->id]) }}" class="btn">Chọn lớp <i
-                                        class="fas fa-arrow-circle-right"></i></a>
+                                        class="fas fa-arrow-circle-right text-success"></i></a>
                             </td>
                             <td>
                                 <form action="{{ route('auth.remove',['id' => $item->id]) }}" method="POST">
@@ -149,6 +150,7 @@ const kiemTraTrungKhoaHoc = () =>{
         }
     });
     if(check > 0){
+        alert('Vui lòng chọn học viên cùng khóa học và cùng cơ sở !')
         $('#exampleModal2').modal('hide');
     }else{
         $('.option_lop').hide()

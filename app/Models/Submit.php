@@ -15,6 +15,10 @@ class Submit extends Model
     	return $this->belongsTo(Student::class, 'student_id');
     }
 
+    public function homework(){
+    	return $this->belongsTo(Homework::class, 'homework_id');
+    }
+
     public function submitDetail(){
     	return $this->hasMany(submitDetail::class, 'submit_id');
     }

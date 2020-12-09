@@ -10,6 +10,8 @@ use App\Models\Student;
 use App\Models\Teacher;
 use App\Models\Course;
 use App\Models\Place;
+use App\Models\Tuition;
+use App\Models\TuitionDetail;
 use Arr;
 use App\Http\Requests\AddStudentRequest;
 use App\Http\Requests\UpdateAccount;
@@ -76,15 +78,23 @@ class UserController extends Controller
         $a = User::create($param);
         //insert students
         $del = WaitList::find($id);
-        $student = \Arr::except($data,['_token', 'name', 'email', 'phone_number', 'sex', 'address', 'birthday']);
+        $student = \Arr::except($data,['_token', 'name', 'email', 'phone_number', 'sex', 'address', 'birthday', 'image', 'sum_money']);
         $student['user_id'] = $a['id'];
         $student['course_id'] = $del->course_id;
-        $student['status'] = 1;
-			$file = $request->file('image');
-			$filename = $file->getClientOriginalName();
-			$file->move(public_path('bill-image'), $filename);
-			$student['image'] = 'bill-image/'.$filename;
-        Student::create($student);
+        $student['status'] = 2;
+        $stu = Student::create($student);
+        $tuition = \Arr::except($data,['_token', 'name', 'email', 'phone_number', 'sex', 'address', 'birthday', 'class_id','image','course_id', 'sum_money']);
+        $tuition['student_id'] = $stu['id'];
+        $tuition['class_id'] = $stu['class_id'];
+        $hp = Tuition::create($tuition);
+        $tuitionDetail=[];
+        $file = $request->file('image');
+        $filename = $file->getClientOriginalName();
+        $file->move(public_path('bill-image'), $filename);
+        $tuitionDetail['image'] = 'bill-image/'.$filename;
+        $tuitionDetail['tuition_id'] = $hp['id'];
+        $tuitionDetail['sum_money']=$request->sum_money;
+        TuitionDetail::create($tuitionDetail);
         $del->delete();
         Mail::send('email.email', [
             'email' => $param['email'],
@@ -93,7 +103,7 @@ class UserController extends Controller
             $mail->from('cheesehiep3110@gmail.com');
             $mail->subject('Tham gia lớp học thành công!');
         });
-		return redirect()->route('users.dsHocVien');
+		return redirect("lop-hoc/chi-tiet-lop-hoc/".$stu['class_id'])->with('status','Đã thêm học viên vào lớp!');
     }
 
     public function indexStaff() {
@@ -107,7 +117,7 @@ class UserController extends Controller
         return view('admin/account/tao_tk_nv');
     }
 
-    public function storeStaff(AddStudentRequest $request) {
+    public function storeStaff(AddUserRequest $request) {
         $data = request()->all();
         $param = \Arr::except($data, ['_token']);
         $param['status'] = 1;
@@ -153,7 +163,7 @@ class UserController extends Controller
         ]);
     }
 
-    public function storeTeacher(AddStudentRequest $request) {
+    public function storeTeacher(AddUserRequest $request) {
         $data = request()->all();
         $param = \Arr::except($data, ['_token']);
         $param['status'] = 1;

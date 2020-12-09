@@ -8,7 +8,7 @@ class Student extends Model
 {
     protected $table = 'students';
     protected $fillable = [
-        'image', 'status', 'user_id', 'class_id', 'course_id'
+     'status', 'user_id', 'class_id', 'course_id'
     ];
     
     public function user(){
@@ -41,5 +41,9 @@ class Student extends Model
     
     public function submit(){
     	return $this->hasMany(Submit::class, 'student_id');
+    }
+
+    public function tuitions(){
+    	return $this->hasMany(Tuition::class, 'student_id');
     }
 }
