@@ -46,6 +46,11 @@
             <i class="fas fa-sync-alt"></i>
             <span>Danh sách chuyển lớp</span></a>
     </li>
+    <li>
+        <a href="{{ route('tuition.hoaDon') }}" class="nav-link" href="">
+        <i class="fas fa-file-invoice-dollar"></i>
+            <span>Quản lý học phí</span></a>
+    </li>
     <hr class="sidebar-divider d-none d-md-block">
     <!-- Sidebar Toggler (Sidebar) -->
     <div class="text-center d-none d-md-inline">

@@ -2,10 +2,10 @@
 @section('title', 'Bài tập về nhà')
 @section('content')
 <h3><i class="fab fa-leanpub"></i> <span style="color: #202124;
-    fill: #202124;"> Danh sách bài tập của bạn</span> </h3>
-<ul class="list-group list-group-flush">
+    fill: #202124;"> Danh sách bài tập của bạn</span> </h3> <br>
+<ul class="list-group">
     @foreach($homeworks as $item)
-    <li class="list-group-item border-bottom" style="background:white;">
+    <li class="list-group-item" style="background:white;">
         <div class="d-flex">
             <div class="col-1">
                 <svg focusable="false" width="24" height="24" viewBox="0 0 24 24" class=" NMm5M hhikbc">
@@ -15,10 +15,12 @@
                     </path>
                 </svg>
             </div>
-            <div class="col-9">
-                <a class="text-dark" href="{{ route('chiTietBT',['id' => $item->id]) }}">{{$item->title}}</a>
+            <div class="col-8">
+                <div class="text-dark">
+                    <a href="{{ route('chiTietBT',['id' => $item->id]) }}">{{$item->title}}</a>
+                </div>
             </div>
-            <div class="col-2">
+            <div class="col-3">
                Ngày hết hạn: {{($item->end_day)}}
             </div>
         </div>

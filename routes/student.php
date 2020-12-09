@@ -26,6 +26,7 @@ Route::group([
         Route::get('sinh-vien/diem-danh','AttendanceController@showAttendance')->name('student.showAttendance');
         Route::get('sinh-vien/don-chuyen-lop','IndexController@showForm')->name('student.showForm');
         Route::post('sinh-vien/don-chuyen-lop/store','IndexController@storeForm')->name('student.storeForm');
+        Route::get('/danh-sach-bai-tap-da-nop', 'HomeWorkController@dsBaiTap')->name('homework.dsBaiTap'); 
     });
 });
 Route::get('/download/{file}', 'HomeWorkController@download')->name('download');

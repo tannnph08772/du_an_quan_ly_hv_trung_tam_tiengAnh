@@ -77,6 +77,15 @@
                         </td>
                     </tr>
                     <tr>
+                        <td>Số tiền</td>
+                        <td>
+                        @error('sum_money')
+                            <small style="color: red">{{ $message }}</small>
+                            @enderror
+                            <input type="number" class="form-control" name="sum_money" value="{{old('sum_money')}}">
+                        </td>
+                    </tr>
+                    <tr>
                         <td>Lớp học</td>
                         <td>
                             <select class="custom-select mr-sm-2" name="class_id" id="inlineFormCustomSelect">

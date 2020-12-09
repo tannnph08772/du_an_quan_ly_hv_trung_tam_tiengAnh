@@ -56,5 +56,8 @@ Route::group([
         Route::post('cap-nhat-hoc-vien/{id}','UserController@updateStudent')->name('staff.updateStudent');
         Route::get('danh-sach-hoc-vien-dang-ky/export/', 'AuthController@exportDsHocVienDk')->name('exportDsHocVienDk');
         Route::post('/danh-sach-hoc-vien-dang-ky/import', 'AuthController@storeImport')->name('storeImport');
+        Route::get('/hoc-phi/{id}', 'TuitionController@showFormHocPhi')->name('tuition.showFormHocPhi');
+        Route::post('/nop-hoc-phi/{id}', 'TuitionController@nopHocPhi')->name('tuition.nopHocPhi');
+        Route::get('/danh-sach-hoa-don', 'TuitionController@hoaDon')->name('tuition.hoaDon');
     });
 });
