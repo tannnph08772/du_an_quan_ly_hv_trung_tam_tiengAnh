@@ -10,6 +10,7 @@ use App\Models\Course;
 use App\Models\Feedback;
 use App\Models\Result_Qestion;
 use App\Services\FeedbackServices;
+use Illuminate\Support\Facades\Auth;
 use App\Services\CourseServices;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
@@ -32,9 +33,10 @@ class FeedbackController extends Controller
         $class = ClassRoom::select('*')->get();
         $course = Course::select('*')->get();
         return view('admin.feedback.gop-y', compact('listMenu','question','answer','class','course'));
-
     }
     public function store(CreateFeedbackRequest $request){
+        $request['student_id'] = Auth::user()->student->id;
+        $request['class_id'] = Auth::user()->student->class_id;
         $question=$request->get('question');
         $answer=$request->get('answer');
         $feedback=$this->FeedbackServices->create($request); 
@@ -48,26 +50,11 @@ class FeedbackController extends Controller
        }
         return redirect()->route('feedback.index');
     }
-    public function findClassByCourse(Request $request)
-    {
-        $id = request()->get('id');
-        $result = $this->FeedbackServices->getClassInCourse($id);
-        return response()->json([
-            'dataClass' => $result
-        ]);
-    }
     public function index()
-    {
-      $list =   Result_Qestion::select('answers.*', 'questions.*', 'result_question.*')
-      ->join('feedback', 'feedback.id', '=', 'result_question.id_feedback')
-      ->join('answers', 'answers.id', '=', 'result_question.id_answer')
-      ->join('questions', 'questions.id', '=', 'result_question.id_question')
-      ->get();
-      $feedback = Feedback::select('feedback.*','courses.*', 'classes.*', 'feedback.id as feedbackID')
-      ->join('courses', 'courses.id', '=', 'feedback.course_id')
-      ->join('classes', 'classes.id', '=', 'feedback.class_id')
-      ->get();
-        return view('admin.feedback.index',compact('list', 'feedback'));
+    { 
+        $feedback = $this->FeedbackServices->getAll();
+
+        return view('admin.feedback.index',compact('feedback'));
     }
     public function delete(Request $request)
     {   

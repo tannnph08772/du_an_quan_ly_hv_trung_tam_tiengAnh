@@ -11,10 +11,6 @@ class FeedbackServices extends BaseServices
     {
         return FeedbackRepository::class;
     }
-    public function getClassInCourse($id)
-    {
-        return  $this->repository->getClassInCourse($id);
-    }
     public function createFeedback($arraydata)
     {
         return $this->repository->createFeedback($arraydata);
@@ -26,6 +22,11 @@ class FeedbackServices extends BaseServices
     public function deleteFeedback($id)
     {
         return $this->repository->deleteFeedback($id);
+    }
+
+    public function showFeedback()
+    {
+        return $this->repository->getModel();
     }
 
 }

@@ -17,15 +17,6 @@ class FeedbackRepository extends BaseRepository implements FeedbackRepositoryInt
     public function getModel(){
         return Feedback::class;
     }
-    public function getClassInCourse($id)
-    {
-        $data = DB::table('classes')
-            ->join('courses', 'classes.course_id', '=', 'courses.id')
-            ->where('course_id', $id)
-            ->select('classes.id', 'classes.course_id', 'classes.name_class')
-            ->get();
-        return $data;
-    }
     public function getFeedback(){
         return $this->model->get();
     }

@@ -24,16 +24,6 @@ class CreateFeedbackRequest extends FormRequest
     public function rules()
     {
         return [
-        'name_student'=>
-            'required',
-        'email'=>
-            'required',
-        'phone'=>
-            'required',
-        'course_id' =>
-            'required',
-        'class_id'=>
-            'required',
         'answer'=>
             'required',
         'content'=>
@@ -43,14 +33,8 @@ class CreateFeedbackRequest extends FormRequest
     public function messages()
     {
         return [
-            'name_student.required'=>'tên không được để trống',
-            'email.required'=>'email không được để trống',
-            'phone.required'=>'số điện thoại không được để trống',
-            'course_id.required'=>'khóa học không được để trống',
-            'class_id.required'=>'lớp không được để trống',
             'answer.required'=>'câu trả lời không được để trống',
             'content.required'=>'ý kiến cá nhân không được để trống',
-            
         ];
     }
 }

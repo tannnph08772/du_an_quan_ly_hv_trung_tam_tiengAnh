@@ -10,7 +10,7 @@ use App\Models\Student;
 use App\Models\Teacher;
 use App\Models\Course;
 use App\Models\Place;
-use Arr;
+use Illuminate\Support\Arr;
 use App\Http\Requests\AddStudentRequest;
 use App\Http\Requests\Users\ResetPasswordRequest;
 use App\Rules\MatchOldPassword;
@@ -81,7 +81,7 @@ class UserController extends Controller
         $a = User::create($param);
         //insert students
         $del = WaitList::find($id);
-        $student = \Arr::except($data,['_token', 'name', 'email', 'phone_number', 'sex', 'address', 'birthday']);
+        $student = Arr::except($data,['_token', 'name', 'email', 'phone_number', 'sex', 'address', 'birthday']);
         $student['user_id'] = $a['id'];
         $student['course_id'] = $del->course_id;
         $student['status'] = 1;

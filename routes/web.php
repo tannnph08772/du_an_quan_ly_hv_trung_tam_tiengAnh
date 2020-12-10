@@ -133,7 +133,7 @@ Route::get('/Gop-y-cua-hoc-vien', 'FeedbackController@showfeedback')->name('feed
 Route::get('/danh-sach-gop-y', 'FeedbackController@index')->name('feedback.index');
 // create
 Route::post('/','FeedbackController@store')->name('feedback.store');
-Route::post('/chon-lop', 'FeedbackController@findClassByCourse')->name('feedback.apiFindClass');
+// Route::post('/chon-lop', 'FeedbackController@findClassByCourse')->name('feedback.apiFindClass');
 //delete
 Route::post('/xoa-gop-y','FeedbackController@delete')->name('feedback.delete');
 Route::post('/store', 'AuthController@store')->name('auth.store');

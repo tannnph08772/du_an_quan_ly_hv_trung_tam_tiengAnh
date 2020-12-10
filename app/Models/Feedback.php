@@ -9,10 +9,15 @@ class Feedback extends Model
     protected $table = 'feedback';
     protected $fillable = [
         'content', 
-        'name_student',
-        'email',
-        'phone',
-        'course_id',
+        'student_id',
         'class_id'
     ];
+
+    public function student(){
+    	return $this->belongsTo(Student::class, 'student_id');
+    }
+
+    public function class(){
+    	return $this->belongsTo(ClassRoom::class, 'class_id');
+    }
 }

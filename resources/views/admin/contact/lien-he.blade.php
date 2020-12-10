@@ -1,4 +1,4 @@
-@extends('index')
+@extends('staff')
 @section('title', 'Danh sách liên hệ')
 @section('content')
 <div id="content-wrapper" class="d-flex flex-column">

@@ -41,19 +41,29 @@
             <span>Danh sách ca học</span></a>
     </li>
     <li class="nav-item active">
-        <a href="{{ route('contact.index') }}" class="nav-link" href="">
-        <i class="fas fa-phone"></i>
-            <span>Liên hệ</span></a>
-    </li>
-    <li class="nav-item active">
         <a href="{{ route('staff.classTransferList') }}" class="nav-link" href="">
             <i class="fas fa-sync-alt"></i>
             <span>Danh sách chuyển lớp</span></a>
     </li>
     <li class="nav-item active">
-        <a href="{{ route('user.reset') }}" class="nav-link" href="">
-            <i class="far fa-clock"></i>
-            <span>Đổi mật khẩu</span></a>
+        <a href="{{ route('contact.index') }}" class="nav-link" href="">
+        <i class="fas fa-history"></i>
+            <span>Danh sách bảo lưu</span></a>
+    </li>
+    <li class="nav-item active">
+        <a href="{{ route('contact.index') }}" class="nav-link" href="">
+        <i class="fas fa-phone"></i>
+            <span>Danh sách học viên nhận đăng kí</span></a>
+    </li>
+    <li class="nav-item active">
+        <a href="{{ route('contact.index') }}" class="nav-link" href="">
+        <i class="fas fa-file"></i>
+            <span>Danh sách hóa đơn</span></a>
+    </li>
+    <li class="nav-item active">
+        <a href="{{ route('contact.index') }}" class="nav-link" href="">
+        <i class="fas fa-phone"></i>
+            <span>Liên hệ</span></a>
     </li>
     <hr class="sidebar-divider d-none d-md-block">
     <!-- Sidebar Toggler (Sidebar) -->

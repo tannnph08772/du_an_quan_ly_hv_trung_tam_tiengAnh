@@ -15,7 +15,6 @@
                                 <tr>
                                     <th>STT</th>
                                     <th>Tên Sinh Viên</th>
-                                    <th>Khóa Học</th>
                                     <th>Lớp Học</th>
                                     <th>Thao Tác</th>
                                 </tr>
@@ -24,9 +23,8 @@
                                 @foreach ($feedback as $index=>$item)
                                 <tr>
                                     <td>{{ $index+1 }}</td>
-                                    <td>{{$item->name_student}}</td>
-                                    <td>{{$item->name_course}}</td>
-                                    <td>{{$item->name_class}}</td>
+                                    <td>{{$item->student->user->name}}</td>
+                                    <td>{{$item->class->name_class}}</td>
                                     <td>
                                         <div class="d-flex justify-content-center">
                                             <div class="text-center">
@@ -36,11 +34,7 @@
                                                     </svg>
                                                 </button>
                                             </div>
-                                            @include('admin.feedback.detail',[
-                                            'id'=> $item->feedbackID,
-                                            'list'=> $list,
-                                            'content'=>$item->content,
-                                            ])
+                                          
                                             <div class="text-center">
                                                 <button class="btn btn-danger ml-3" onclick="confirmDelete({{$item->feedbackID}})"><i class="fas fa-trash"></i></button>
                                             </div>

@@ -29,6 +29,10 @@ class ClassRoom extends Model
     	return $this->hasMany(Attendance::class, 'class_id', 'id');
     }
 
+    public function feedback(){
+    	return $this->hasMany(Feedback::class, 'class_id', 'id');
+    }
+
     public function students(){
     	return $this->hasMany(Student::class, 'class_id', 'id');
     }

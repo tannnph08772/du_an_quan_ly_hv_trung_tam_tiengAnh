@@ -68,7 +68,7 @@
                         <a class="nav-link" href="{{url('/tin-tuc')}}">Tin tức</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{url('/lien-he')}}">Liên hệ</a>
+                        <a class="nav-link" href="{{route('feedback.showfeedback')}}">Liên hệ</a>
                     </li>
                     <li class="nav-item">
                     @guest
