@@ -40,6 +40,12 @@
                     <span>Đăng ký chuyển lớp</span>
                 </a>
             </div>
+            <div class="collapse-inner rounded">
+                <a class="collapse-item" href="{{ route('student.formReserve') }}">
+                    <i class="fas fa-circle"></i>
+                    <span>Đăng ký bảo lưu</span>
+                </a>
+            </div>
         </div>
     </li>
     <li class="nav-item active">
@@ -52,5 +58,4 @@
     <div class="text-center d-none d-md-inline">
         <button class="rounded-circle border-0" id="sidebarToggle"></button>
     </div>
-
 </ul>

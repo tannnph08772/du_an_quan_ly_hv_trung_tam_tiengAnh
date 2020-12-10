@@ -52,6 +52,10 @@ Route::group([
         Route::get('danh-sach-chuyen-lop/{id}','ClassController@classTransferById')->name('staff.classTransferById');
         Route::post('danh-sach-chuyen-lop/store/{id}','ClassController@storeTransfer')->name('staff.storeTransfer');
 
+        Route::get('danh-sach-bao-luu','ReserveController@reserveList')->name('staff.reserveList');
+        Route::get('danh-sach-bao-luu/{id}','ReserveController@reserveById')->name('staff.reserveById');
+        Route::post('danh-sach-bao-luu/store/{id}','ReserveController@updateReserve')->name('staff.updateReserve');
+
         Route::get('danh-sach-hoc-vien/{id}','UserController@editStudent')->name('staff.editStudent');
         Route::post('cap-nhat-hoc-vien/{id}','UserController@updateStudent')->name('staff.updateStudent');
         Route::get('danh-sach-hoc-vien-dang-ky/export/', 'AuthController@exportDsHocVienDk')->name('exportDsHocVienDk');

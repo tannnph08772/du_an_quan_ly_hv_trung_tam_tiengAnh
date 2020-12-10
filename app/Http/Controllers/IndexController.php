@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\Auth\DonChuyenLopRequest;
+use App\Http\Requests\Auth\DonBaoLuuRequest;
 use App\Models\ClassRoom;
 use App\Models\SampleForm;
+use App\Models\Reserve;
 use App\Models\Student;
 use App\Models\AttendanceDetail;
 use App\Models\Attendance;
@@ -68,6 +70,29 @@ class IndexController extends Controller
         $params = \Arr::except($data, ['_token']);
         $params['status'] = 1;
         SampleForm::create($params);
+        return redirect()->back()->with('success', 'Đơn đã được gửi đi, trung tâm sẽ sớm liên hệ với bạn');
+    }
+
+    public function formReserve(){
+        $start_day = Carbon::create(Auth::user()->student->class->start_day);
+        $date = (clone $start_day)->addDays(7)->toDateString();
+        $now = Carbon::now()->toDateString();
+        $reserveByStu = Reserve::where('student_id', Auth::user()->student->id)->get();
+
+        return view('students/don_bao_luu', [
+            'start_day' => $start_day,
+            'date' => $date,
+            'now' => $now,
+            'reserveByStu' => $reserveByStu
+		]);
+    }
+
+    public function storeReserve(DonBaoLuuRequest $request){
+        $data = request()->all();
+        $params = \Arr::except($data, ['_token']);
+        $params['course_id'] = Auth::user()->student->course_id;
+        $params['status'] = 1;
+        Reserve::create($params);
         return redirect()->back()->with('success', 'Đơn đã được gửi đi, trung tâm sẽ sớm liên hệ với bạn');
     }
 }

@@ -29,7 +29,7 @@ class HomeWorkController extends Controller
     public function storeBT(HomeworkRequest $request) {
         $data = request()->all();
         $param = \Arr::except($data, ['_token']);
-        $param['teacher_id'] = Auth::user()->id;
+        $param['teacher_id'] = Auth::user()->teacher->id;
         if ($request->hasfile('file')) {
 			$file = $request->file('file');
 			$filename =time().'.'.$file->getClientOriginalExtension();
@@ -63,17 +63,32 @@ class HomeWorkController extends Controller
     public function nopBai($id, SubmitRequest $request) {
         $data = request()->all();
         $param = \Arr::except($data, ['_token', 'file']);
-        $param['student_id'] = Auth::user()->student->id;
-        $param['homework_id'] = $id;
-        $sb = Submit::create($param);
-        $sb_detail =[];
-        $file = $request->file('file');
-        $filename =time().'.'.$file->getClientOriginalExtension();
-        $request->file->move(public_path('bill-image'), $filename);
-        $sb_detail['file'] = $filename;
-        $sb_detail['submit_id'] = $sb['id'];
-        $data = SubmitDetail::create($sb_detail);
-        $message = !$data ?['error' => 'Thêm thất bại']  : ['success'=> 'Thêm thành công'] ;
+        $querySubmit = Submit::where([
+            ['student_id', Auth::user()->student->id],
+            ['homework_id', $id]
+        ])->first();
+        if(empty($querySubmit)) {
+            $param['student_id'] = Auth::user()->student->id;
+            $param['homework_id'] = $id;
+            $sb = Submit::create($param);
+            $sb_detail = [];
+            $file = $request->file('file');
+            $filename = time().'.'.$file->getClientOriginalExtension();
+            $request->file->move(public_path('bill-image'), $filename);
+            $sb_detail['file'] = $filename;
+            $sb_detail['submit_id'] = $sb['id'];
+            $data = SubmitDetail::create($sb_detail);
+
+        }else{
+            $sb_detail = [];
+            $file = $request->file('file');
+            $filename = time().'.'.$file->getClientOriginalExtension();
+            $request->file->move(public_path('bill-image'), $filename);
+            $sb_detail['file'] = $filename;
+            $sb_detail['submit_id'] = $querySubmit->id;
+            $data = SubmitDetail::create($sb_detail);
+        }
+        $message = !$data ? ['error' => 'Thêm thất bại'] : ['success'=> 'Thêm thành công'];
         return redirect()->back()->with($message);
     }
 

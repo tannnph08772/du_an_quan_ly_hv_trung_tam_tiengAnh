@@ -38,12 +38,15 @@ class Student extends Model
     	return $this->hasMany(SampleForm::class, 'student_id');
     }
 
-    
     public function submit(){
     	return $this->hasMany(Submit::class, 'student_id');
     }
 
     public function tuitions(){
-    	return $this->hasMany(Tuition::class, 'student_id');
+        return $this->hasMany(Tuition::class, 'student_id');
+    }
+    
+    public function reserves(){
+    	return $this->hasMany(Reserve::class, 'student_id');
     }
 }
