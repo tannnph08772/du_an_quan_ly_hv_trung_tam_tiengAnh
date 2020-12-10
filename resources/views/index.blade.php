@@ -24,7 +24,6 @@
                 <!-- End of Header -->   
                 <div class="container-fluid"> 
                 <div class="ccc" style="min-height:600px;">
-                1111
                     @yield('content')
                 </div>
                     @include('layouts/footer')

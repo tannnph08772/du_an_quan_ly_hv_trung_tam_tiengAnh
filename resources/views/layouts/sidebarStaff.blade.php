@@ -37,19 +37,24 @@
             <span>Danh sách lớp học</span></a>
     </li>
     <li class="nav-item active">
-        <a href="{{ route('schedule.index') }}" class="nav-link" href="">
+        <a href="{{ route('schedule.index') }}" class="nav-link">
             <i class="far fa-clock"></i>
             <span>Danh sách ca học</span></a>
     </li>
     <li class="nav-item active">
-        <a href="{{ route('staff.classTransferList') }}" class="nav-link" href="">
+        <a href="{{ route('staff.classTransferList') }}" class="nav-link">
             <i class="fas fa-sync-alt"></i>
             <span>Danh sách chuyển lớp</span></a>
     </li>
-    <li>
+    <li class="nav-item active">
         <a href="{{ route('tuition.hoaDon') }}" class="nav-link" href="">
         <i class="fas fa-file-invoice-dollar"></i>
             <span>Quản lý học phí</span></a>
+    </li>
+    <li class="nav-item active">
+        <a href="{{ route('staff.reserveList') }}" class="nav-link">
+            <i class="fas fa-history"></i>
+            <span>Danh sách bảo lưu</span></a>
     </li>
     <hr class="sidebar-divider d-none d-md-block">
     <!-- Sidebar Toggler (Sidebar) -->

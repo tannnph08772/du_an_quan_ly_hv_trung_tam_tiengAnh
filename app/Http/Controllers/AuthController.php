@@ -76,6 +76,7 @@ class AuthController extends Controller
     {
         $waitList = WaitList::all();
         $classes = ClassRoom::where('status', 1)->get();
+        $courses = Course::all();
 
         foreach ($classes as $value) {
             $value->count_hs = count($value->students);
@@ -91,7 +92,8 @@ class AuthController extends Controller
         return view('admin/staff/danh_sach_hoc_vien_dang_ky', [
             'waitList' => $waitList,  
             'classes' => $classes,
-            'filteredArray' => $filteredArray
+            'filteredArray' => $filteredArray,
+            'courses' => $courses
         ]);
     }
     
@@ -123,7 +125,6 @@ class AuthController extends Controller
             $hoc_vien['status'] = 1;
             $hoc_vien['password'] = Hash::make('123456');
             $id = User::create($hoc_vien->toArray())->id;
-            
             $hoc_vien['class_id'] = $lop_id;
             $hoc_vien['user_id'] = $id;
             Student::create($hoc_vien->toArray());

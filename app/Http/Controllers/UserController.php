@@ -12,6 +12,7 @@ use App\Models\Course;
 use App\Models\Place;
 use App\Models\Tuition;
 use App\Models\TuitionDetail;
+use App\Models\SampleForm;
 use Arr;
 use App\Http\Requests\AddStudentRequest;
 use App\Http\Requests\UpdateAccount;
@@ -21,11 +22,13 @@ use Illuminate\Support\Facades\Mail;
 class UserController extends Controller
 {
     public function dashboardStaff(){
-        $classes = ClassRoom::where('status', 1)->get();
+        $classes = ClassRoom::where('status', 2)->get();
         $waitList = WaitList::all();
+        $tranferList = SampleForm::where('status', 1)->get();
         return view('admin/staff/dashboard',[
             'classes' => $classes,
-            'waitList' => $waitList 
+            'waitList' => $waitList,
+            'tranferList' => $tranferList 
         ]);
     }
 
