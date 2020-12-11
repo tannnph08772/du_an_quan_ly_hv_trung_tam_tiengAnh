@@ -115,12 +115,12 @@ class AuthController extends Controller
     }
 
     public function addHocVien(Request $request)
-    {
+    {   
         $lop_id = $request->lop_id;
         $hoc_vien_chuyen = $request->danh_sach_hv;
-        // dd($hoc_vien_chuyen);
         foreach ($hoc_vien_chuyen as $key => $value) {
             $hoc_vien = WaitList::find($value);
+            if($hoc_vien['student_id'] == null){
             $hoc_vien['role'] = 4;
             $hoc_vien['status'] = 1;
             $hoc_vien['password'] = Hash::make('123456');
@@ -128,6 +128,13 @@ class AuthController extends Controller
             $hoc_vien['class_id'] = $lop_id;
             $hoc_vien['user_id'] = $id;
             Student::create($hoc_vien->toArray());
+            }else{
+                $student = Student::find($hoc_vien->student_id);
+                $student['class_id'] = $lop_id;
+                $student['course_id'] = $hoc_vien->course_id;
+                $student['status'] = 1;
+                $student->save();
+            }
             WaitList::destroy($value);
             Mail::send('email.email', [
                 'email' => $hoc_vien['email'],
