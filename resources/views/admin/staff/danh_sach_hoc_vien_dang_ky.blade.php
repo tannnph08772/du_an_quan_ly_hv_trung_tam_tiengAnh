@@ -224,7 +224,7 @@ const addUser = () => {
     });
     var data = {
         'lop_id': class_select,
-        'danh_sach_hv': danh_sach_hv
+        'danh_sach_hv': danh_sach_hv,
     }
     axios.post(url_add_hoc_vien, data)
         .then(function(response) {
@@ -233,7 +233,7 @@ const addUser = () => {
                 icon: 'success',
                 text: 'Thêm học viên thành công!',
             })
-            console.log(response);
+            // console.log(response);
         })
         .catch(function(error) {
             // handle error

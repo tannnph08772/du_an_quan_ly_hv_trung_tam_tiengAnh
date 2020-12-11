@@ -16,7 +16,8 @@ class WaitList extends Model
         'sex',
         'address',
         'course_id',
-        'place_id'
+        'place_id',
+        'student_id'
     ];
     public function course(){
     	return $this->belongsTo(Course::class, 'course_id');

@@ -47,6 +47,14 @@
                 </a>
             </div>
         </div>
+        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+            <div class="collapse-inner rounded">
+                <a class="collapse-item" href="{{ route('student.dkKhoaMoi') }}">
+                    <i class="fas fa-circle"></i>
+                    <span>Đăng ký khóa học mới</span>
+                </a>
+            </div>
+        </div>
     </li>
     <li class="nav-item active">
         <a class="nav-link" href="{{ route('homework.dsBaiTap')}}">
