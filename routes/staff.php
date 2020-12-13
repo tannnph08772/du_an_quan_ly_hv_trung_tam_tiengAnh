@@ -58,8 +58,15 @@ Route::group([
 
         Route::get('danh-sach-hoc-vien/{id}','UserController@editStudent')->name('staff.editStudent');
         Route::post('cap-nhat-hoc-vien/{id}','UserController@updateStudent')->name('staff.updateStudent');
+
         Route::get('danh-sach-hoc-vien-dang-ky/export/', 'AuthController@exportDsHocVienDk')->name('exportDsHocVienDk');
         Route::post('/danh-sach-hoc-vien-dang-ky/import', 'AuthController@storeImport')->name('storeImport');
+
+        Route::get('/danh-sach-nhan-dang-ki','ContactController@index')->name('contact.index');
+        Route::post('/xoa-dang-ki','ContactController@delete')->name('contact.delete'); 
+
+        Route::get('/change-pass','UserController@reset')->name('user.reset');
+        Route::post('save-pass','UserController@Rspass')->name('user-save');
         Route::get('/hoc-phi/{id}', 'TuitionController@showFormHocPhi')->name('tuition.showFormHocPhi');
         Route::post('/nop-hoc-phi/{id}', 'TuitionController@nopHocPhi')->name('tuition.nopHocPhi');
         Route::get('/danh-sach-hoa-don', 'TuitionController@hoaDon')->name('tuition.hoaDon');

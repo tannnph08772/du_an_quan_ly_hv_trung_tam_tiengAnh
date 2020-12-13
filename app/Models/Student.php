@@ -22,6 +22,10 @@ class Student extends Model
     	return $this->belongsTo(Course::class, 'course_id');
     }
 
+    public function feedback(){
+    	return $this->hasOne(Feedback::class, 'student_id');
+    }
+
     public function classRoom(){
         return $this->belongsTo(ClassRoom::class, 'class_id', 'id');
     }

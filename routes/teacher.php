@@ -30,5 +30,8 @@ Route::group([
         Route::post('tao-bai-tap', 'HomeWorkController@storeBT')->name('homeworks.storeBT');
         Route::get('danh-sach-nop-bai/{id}', 'HomeWorkController@dsNopBai')->name('homework.dsNopBai');
         Route::get('lich-day','AttendanceController@showCalendarTea')->name('teachers.showCalendarTea');
+        Route::get('/change-password','UserController@resetpass')->name('user.resetpass');
+        Route::post('save-password','UserController@Resetspass')->name('user-savepass');
+        Route::get('ds-gop-y','FeedbackController@viewfb')->name('feedback.view');
     });
 });

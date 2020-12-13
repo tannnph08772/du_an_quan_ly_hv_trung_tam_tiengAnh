@@ -39,7 +39,7 @@
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Quản lý bài tập</span></a>
     </li>
-    <li class="nav-item active">
+    <li class="nav-item active">      
         <a  class="nav-link" href="#" data-toggle="collapse" data-target="#collapse3" aria-expanded="true" aria-controls="collapse3">
             <i class="fas fa-university"></i>
             <span>Lịch sử dạy</span>
@@ -52,6 +52,11 @@
                 @endforeach
             </div>
         </div>
+    </li>
+    <li class="nav-item active">
+        <a class="nav-link" href="{{route('feedback.view')}}">
+            <i class="fas fa-comment-alt"></i>
+            <span>Danh sách góp ý</span></a>
     </li>
     <hr class="sidebar-divider d-none d-md-block">
     <!-- Sidebar Toggler (Sidebar) -->

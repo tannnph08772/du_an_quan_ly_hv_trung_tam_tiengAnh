@@ -23,8 +23,7 @@
             <i class="fas fa-users"></i>
             <span>Quản lý tài khoản</span>
         </a>
-        <div id="collapseTwo" class="collapse show" data-parent="#accordionSidebar"
-            style="">
+        <div id="collapseTwo" class="collapse show" data-parent="#accordionSidebar">
             <div class="collapse-inner rounded">
                 <a class="collapse-item" href="{{ route('teacher.index') }}"><i class="fas fa-circle"></i> Danh sách giảng viên</a>
                 <a class="collapse-item" href="{{ route('staff.index') }}"><i class="fas fa-circle"></i>
@@ -41,6 +40,11 @@
         <a href="{{ route('place.index') }}" class="nav-link" href="">
         <i class="fas fa-map-marker-alt"></i>
             <span>Cơ sở học</span></a>
+    </li>
+    <li class="nav-item active">
+        <a href="{{ route('feedback.index') }}" class="nav-link" href="">
+        <i class="fas fa-comment-alt"></i>
+            <span>Góp ý của học viên</span></a>
     </li>
     <hr class="sidebar-divider d-none d-md-block">
     <!-- Sidebar Toggler (Sidebar) -->

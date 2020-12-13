@@ -28,6 +28,9 @@ Route::group([
         'middleware' => 'checkAdmin',
     ], function(){
         Route::get('/dashboard', 'UserController@dashboardAdmin')->name('admin.dashboardAdmin');
+        Route::get('/danh-sach-gop-y', 'FeedbackController@index')->name('feedback.index');
+        Route::post('/xoa-gop-y','FeedbackController@delete')->name('feedback.delete');
+
     // khoa-hoc
         Route::group(['prefix' => 'khoa-hoc'],function(){
             Route::get('/', 'CourseController@index')->name('course.index');
@@ -74,6 +77,7 @@ Route::group([
             Route::get('/sua-tai-khoan/{id}', 'UserController@editTeacher')->name('teacher.edit');
             Route::post('/update/{id}', 'UserController@updateTeacher')->name('teacher.update');
         });
+        
     });
 });
 
@@ -87,6 +91,9 @@ Route::get('/', function () {
 Route::get('/lien-he', function () {
     return view('clients.contact');
 })->name('contact');
+
+Route::post('/tao-lien-he','ContactController@create')
+->name('create.contact');
 
 Route::get('/tin-tuc', function () {
     return view('clients.news');
@@ -124,4 +131,8 @@ Route::get('/phuong-phap-ale', function () {
 Route::get('/thank-you', function () {
     return view('clients.thankiu');
 })->name('thankyou');
+
+
+Route::post('/store', 'AuthController@store')->name('auth.store');
+
 

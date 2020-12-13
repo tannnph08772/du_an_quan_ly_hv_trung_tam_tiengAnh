@@ -22,8 +22,7 @@
             <i class="fas fa-users"></i>
             <span>Quản lý học viên</span>
         </a>
-        <div id="collapseTwo" class="collapse" data-parent="#accordionSidebar"
-            style="">
+        <div id="collapseTwo" class="collapse show" data-parent="#accordionSidebar">
             <div class="collapse-inner rounded">
                 <a class="collapse-item" href="{{ route('users.dsHocVien') }}"><i class="fas fa-circle"></i> Tất cả học viên</a>
                 <a class="collapse-item" href="{{ route('auth.danhSachCho') }}"><i class="fas fa-circle"></i>
@@ -55,6 +54,11 @@
         <a href="{{ route('staff.reserveList') }}" class="nav-link">
             <i class="fas fa-history"></i>
             <span>Danh sách bảo lưu</span></a>
+    </li>
+    <li class="nav-item active">
+        <a href="{{ route('contact.index') }}" class="nav-link">
+            <i class="fas fa-history"></i>
+            <span>Liên hệ</span></a>
     </li>
     <hr class="sidebar-divider d-none d-md-block">
     <!-- Sidebar Toggler (Sidebar) -->

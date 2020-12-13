@@ -10,8 +10,8 @@
 			'saturday' => 6,
 		],
 		'sex' => [
-			'nam' => 1,
-			'nu' => 2,
+			'Nam' => 1,
+			'Nữ' => 2,
 		],
 		'statusUser' => [
 			'active' => 1,
