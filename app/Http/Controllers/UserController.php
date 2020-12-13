@@ -319,8 +319,6 @@ class UserController extends Controller
         }
         return redirect()->back()->withInput();
     }
-}
-
     public function dkKhoaMoi(){
         $courses = Course::all();
         $places = Place::all();
