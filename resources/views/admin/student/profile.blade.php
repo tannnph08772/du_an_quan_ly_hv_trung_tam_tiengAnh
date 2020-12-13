@@ -16,11 +16,7 @@
                               <p class="pt-3">Tên : <span class="ml-3">{{$user->name}}</span></p>
                               <p>Số điện thoại : <span class="ml-3">{{$user->phone_number}}</span></p>
                               <p>Email : <span class="ml-3">{{$user->email}}</span></p>
-                              <p>Giới tính : <span class="ml-3">@foreach(config('common.sex') as $key => $value)
-                                        @if($user->sex==$value)
-                                        {{$key}}
-                                        @endif
-                                        @endforeach</span></p>
+                              <p>Giới tính : <span class="ml-3">{{$user->sex == 1 ? 'Nam' : 'Nữ'}}</span></p>
                          </div>
                     </div>
                     <div class="d-flex justify-content-center  mb-3">
@@ -37,44 +33,37 @@
                <div class="form-group row">
                     <label for="inputName" class="col-sm-2 col-form-label">Họ và tên</label>
                     <div class="col-sm-10">
-                         <input type="text" class="form-control" value="{{$user->name}}" id="inputPassword">
+                         <span class="form-control">{{$user->name}}</span>
                     </div>
                </div>
                <div class="form-group row">
                     <label for="inputName" class="col-sm-2 col-form-label">Sinh ngày</label>
                     <div class="col-sm-10">
-                         <input type="text" class="form-control" value="{{$user->birthday}}" id="inputPassword">
+                    <span class="form-control">{{$user->birthday}}</span>
                     </div>
                </div>
-               @php
-               foreach(config('common.sex') as $key => $value){
-                    if($user->sex===$value){
-                                       $sex=$key;
-                    }
-               };         
-               @endphp
                <div class="form-group row">
                     <label for="inputName" class="col-sm-2 col-form-label">Giới tính</label>
                     <div class="col-sm-10">
-                         <input type="text" class="form-control" value="{{$sex}}" id="inputPassword">
+                    <span class="form-control">{{$user->sex == 1 ? 'Nam' : 'Nữ'}}</span>
                     </div>
                </div>
                <div class="form-group row">
                     <label for="inputName" class="col-sm-2 col-form-label">Khóa học</label>
                     <div class="col-sm-10">
-                         <input type="text" class="form-control" value="abc" id="inputPassword">
+                        <span class= "form-control">{{$user->student->course->name_course}}</span>
                     </div>
                </div>
                <div class="form-group row">
                     <label for="inputName" class="col-sm-2 col-form-label">Lớp học</label>
                     <div class="col-sm-10">
-                         <input type="text" class="form-control" value="acv" id="inputPassword">
+                    <span class= "form-control">{{$user->student->class->name_class}}</span>
                     </div>
                </div>
                <div class="form-group row">
                     <label for="inputName" class="col-sm-2 col-form-label">Địa chỉ</label>
                     <div class="col-sm-10">
-                         <input type="text" class="form-control" value="{{$user->address}}" id="inputPassword">
+                    <span class="form-control">{{$user->address}}</span>
                     </div>
                </div>
           </div>

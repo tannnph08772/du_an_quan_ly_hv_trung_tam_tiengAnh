@@ -1,5 +1,5 @@
 
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="exampleModal{{$item->student->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -10,13 +10,13 @@
       </div>
       <div class="modal-body">
       <div>
-      <h3>Nội dung:</h3>
-      <p>{{$item->content}}</p>
+      <h3>Nội dung: </h3>
+      <p>{{ $content }}</p>
       </div>
       <div>
       <h3>Góp Ý:</h3>
               @foreach($list as $value )
-              @if ($value->id_feedback == $item->feedbackID)
+              @if ($value->id_feedback == $item->id)
               <p>
                   {{$value->question }} 
                   <br>

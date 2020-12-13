@@ -5,14 +5,14 @@
         <div class="col-md-3"></div>
         <div class="col-md-6 pt-3 ">
             <div class="row">
-                <form action="{{ route('feedback.store') }}" method="post">
+                <form action="{{ route('feedback.store') }}" method="POST">
                     @csrf
                     <div class="col-md-12 bg-white mt-3 mb-3 border border-primary rounded">
                         <h3 class="pt-3">Đánh giá chất lượng mức độ hài lòng về Giảng viên</h3>
                         <p class="text-danger">*Bắt buộc</p>
                     </div>
                     <div class="col-md-12 bg-white mb-3 border border-primary rounded">
-                        <h5 class="pt-3">Xin chào <span class="text-danger">{{1111}}</span><h5></h5></h5>
+                        <h5 class="pt-3">Xin chào <span class="text-danger">{{Auth::user()->name}}</span></h5>
                     </div>
                     @foreach ($question as $index=>$item)
                     <div class="col-md-12 bg-white mb-3 border border-primary rounded pt-2 pb-4">

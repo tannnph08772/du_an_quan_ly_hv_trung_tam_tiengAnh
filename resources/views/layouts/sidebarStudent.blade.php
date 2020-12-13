@@ -42,6 +42,11 @@
             </div>
         </div>
     </li>
+    <li class="nav-item active">
+        <a class="nav-link" href="{{ route('feedback.showfeedback')}}">
+        <i class="fas fa-comment-alt"></i>
+            <span>Góp ý</span></a>
+    </li>
     <hr class="sidebar-divider d-none d-md-block">
     <!-- Sidebar Toggler (Sidebar) -->
     <div class="text-center d-none d-md-inline">

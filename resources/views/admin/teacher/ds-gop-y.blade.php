@@ -1,4 +1,4 @@
-@extends('index')
+@extends('teacher')
 @section('title', 'Danh sách góp ý')
 @section('content')
 <div id="content-wrapper" class="d-flex flex-column">
@@ -14,38 +14,39 @@
                             <thead>
                                 <tr>
                                     <th>STT</th>
-                                    <th>Tên Sinh Viên</th>
-                                    <th>Lớp Học</th>
-                                    <th>Thao Tác</th>
+                                    <th>Ý Kiến</th>
+                                    <th>Ý kiến Cá Nhân</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($feedback as $index=>$item)
+                                @foreach($classes as $class)
                                 <tr>
-                                    <td>{{ $index+1 }}</td>
-                                    <td>{{$item->student->user->name}}</td>
-                                    <td>{{$item->class->name_class}}</td>
+                                    <td>{{$class->name_class}}</td>
+                                </tr>
+
+                                @php
+                                $key=0;
+                                @endphp
+                                @foreach($fb as $feedback )
+                                @if($class->id==$feedback->class_id)
+                                @php
+                                $key=$key+1;
+                                @endphp
+                                <tr>
+                                    <td>{{ $key}}</td>
                                     <td>
-                                        <div class="d-flex justify-content-center">
-                                            <div class="text-center">
-                                                <button class="btn btn-primary" data-toggle="modal" data-target="#exampleModal{{$item->student->id }}">
-                                                    <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-view-list" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                                        <path fill-rule="evenodd" d="M3 4.5h10a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2zm0 1a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1v-3a1 1 0 0 0-1-1H3zM1 2a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13A.5.5 0 0 1 1 2zm0 12a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13A.5.5 0 0 1 1 14z" />
-                                                    </svg>
-                                                </button>
-                                            </div>
-                                            @include('admin.feedback.detail',[
-                                            'id'=> $item->id,
-                                            'list'=> $list,
-                                            'content'=>$item->content,
-                                            ])
-                                            <div class="text-center">
-                                                <button class="btn btn-danger ml-3" onclick="confirmDelete({{$item->id}})"><i class="fas fa-trash"></i></button>
-                                            </div>
-                                        </div>
+                                        <ul>
+                                            @foreach($feedback->results as $result)
+                                            {{$result->question->question}}:{{$result->answer->answer}}</br>
+                                            @endforeach
+                                        </ul>
 
                                     </td>
+                                    <td>{{$feedback->content}}</td>
                                 </tr>
+                                
+                                @endif
+                                @endforeach
                                 @endforeach
                             </tbody>
                         </table>
@@ -60,7 +61,9 @@
 @section('script')
 <script>
     var routeDeletePlace = "{{route('feedback.delete')}}"
+
     function confirmDelete(id) {
+
         Swal.fire({
             title: 'Xác nhận xóa góp ý?',
             icon: 'warning',

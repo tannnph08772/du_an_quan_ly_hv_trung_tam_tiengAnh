@@ -20,4 +20,7 @@ class Feedback extends Model
     public function class(){
     	return $this->belongsTo(ClassRoom::class, 'class_id');
     }
+    public function results(){
+    	return $this->hasMany(Result_Qestion::class, 'id_feedback', 'id');
+    }
 }

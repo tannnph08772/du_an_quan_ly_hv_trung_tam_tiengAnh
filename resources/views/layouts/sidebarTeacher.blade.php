@@ -54,9 +54,9 @@
         </div>
     </li>
     <li class="nav-item active">
-        <a class="nav-link" href="{{route('user.resetpass')}}">
-            <i class="fas fa-fw fa-tachometer-alt"></i>
-            <span>Đổi mật khẩu</span></a>
+        <a class="nav-link" href="{{route('feedback.view')}}">
+            <i class="fas fa-comment-alt"></i>
+            <span>Danh sách góp ý</span></a>
     </li>
     <hr class="sidebar-divider d-none d-md-block">
     <!-- Sidebar Toggler (Sidebar) -->

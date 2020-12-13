@@ -11,6 +11,8 @@ class Question extends Model
         'question',
         'status'
     ];
-
+    public function result(){
+        return $this->hasMany(Result_Qestion::class, 'id_question', 'id');
+    }
 }
 

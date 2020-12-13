@@ -58,6 +58,9 @@ Route::group([
         Route::get('danh-sach-hoc-vien-dang-ky/export/', 'AuthController@exportDsHocVienDk')->name('exportDsHocVienDk');
         Route::post('/danh-sach-hoc-vien-dang-ky/import', 'AuthController@storeImport')->name('storeImport');
 
+        Route::get('/danh-sach-nhan-dang-ki','ContactController@index')->name('contact.index');
+        Route::post('/xoa-dang-ki','ContactController@delete')->name('contact.delete'); 
+
         Route::get('/change-pass','UserController@reset')->name('user.reset');
         Route::post('save-pass','UserController@Rspass')->name('user-save');
     });

@@ -28,6 +28,9 @@ Route::group([
         'middleware' => 'checkAdmin',
     ], function(){
         Route::get('/dashboard', 'UserController@dashboardAdmin')->name('admin.dashboardAdmin');
+        Route::get('/danh-sach-gop-y', 'FeedbackController@index')->name('feedback.index');
+        Route::post('/xoa-gop-y','FeedbackController@delete')->name('feedback.delete');
+
     // khoa-hoc
         Route::group(['prefix' => 'khoa-hoc'],function(){
             Route::get('/', 'CourseController@index')->name('course.index');
@@ -74,6 +77,7 @@ Route::group([
             Route::get('/sua-tai-khoan/{id}', 'UserController@editTeacher')->name('teacher.edit');
             Route::post('/update/{id}', 'UserController@updateTeacher')->name('teacher.update');
         });
+        
     });
 });
 
@@ -128,22 +132,7 @@ Route::get('/thank-you', function () {
     return view('clients.thankiu');
 })->name('thankyou');
 
-//feedback
-Route::get('/Gop-y-cua-hoc-vien', 'FeedbackController@showfeedback')->name('feedback.showfeedback');
-Route::get('/danh-sach-gop-y', 'FeedbackController@index')->name('feedback.index');
-// create
-Route::post('/','FeedbackController@store')->name('feedback.store');
-// Route::post('/chon-lop', 'FeedbackController@findClassByCourse')->name('feedback.apiFindClass');
-//delete
-Route::post('/xoa-gop-y','FeedbackController@delete')->name('feedback.delete');
+
 Route::post('/store', 'AuthController@store')->name('auth.store');
 
-//reset-pass
-Route::get('/thong-tin-ca-nhan','UserController@viewProfile')->name('user.viewProfile');
-Route::get('/doi-mat-khau','UserController@resetPW')->name('user.resetPW');
-Route::post('luu-mat-khau','UserController@ResetPassword')->name('user-savepw');
-
-//contact
-Route::get('/danh-sach-lien-he','ContactController@index')->name('contact.index');
-Route::post('/xoa-lien-he','ContactController@delete')->name('contact.delete');
 

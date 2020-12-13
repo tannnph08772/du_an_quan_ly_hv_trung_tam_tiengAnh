@@ -48,13 +48,18 @@ class FeedbackController extends Controller
         ];
         Result_Qestion::create($res_feedback);
        }
-        return redirect()->route('feedback.index');
+        return redirect()->route('feedback.thanks');
     }
     public function index()
     { 
+        $list =   Result_Qestion::select('answers.*', 'questions.*', 'result_question.*')
+        ->join('feedback', 'feedback.id', '=', 'result_question.id_feedback')
+        ->join('answers', 'answers.id', '=', 'result_question.id_answer')
+        ->join('questions', 'questions.id', '=', 'result_question.id_question')
+        ->get();
         $feedback = $this->FeedbackServices->getAll();
 
-        return view('admin.feedback.index',compact('feedback'));
+        return view('admin.feedback.index',compact('feedback','list'));
     }
     public function delete(Request $request)
     {   
@@ -64,5 +69,23 @@ class FeedbackController extends Controller
             'dataClass' =>  $delete,
             'id'=>$id
         ]); ;
+    }
+    public function thanks()
+    {
+        return view('admin.feedback.cam-on');
+    }
+    public function viewfb()
+    {
+        
+        $teacherID=Auth::user()->teacher->id;
+        $classes= ClassRoom::where('teacher_id',$teacherID)->get();
+        $arrayID=array();
+        foreach($classes as $class){
+            array_push($arrayID, $class->id);
+        };
+        $fb = Feedback::whereIn('class_id',$arrayID)->with(['results'=>function($query){
+            $query->with('question','answer');
+        }])->orderBy('class_id', 'desc')->get();
+        return view('admin.teacher.ds-gop-y',compact('fb','classes'));
     }
 }
