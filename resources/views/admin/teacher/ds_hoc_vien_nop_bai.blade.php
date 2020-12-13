@@ -14,6 +14,7 @@
                         <th>Họ và tên</th>
                         <th>File</th>
                         <th>Ngày nộp bài</th>
+                        <th>Trạng thái</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -24,10 +25,19 @@
                     <tr>
                         <td>{{ $i++ }}</td>
                         <td>{{ $item->student->user->name }}</td>
-                        <td>@foreach($item->submitDetail as $it)
-                           <a href="{{ route('download',$it->file) }}">{{$it->file}}</a> <br>
-                         @endforeach</td>
-                         <td> {{date_format($it->created_at,"d/m/Y H:i:s")}}</td>
+                        <td>
+                            @foreach($item->submitDetail as $it)
+                            <a href="{{ route('download',$it->file) }}">{{$it->file}}</a><br>
+                            @endforeach
+                        </td>
+                        <td>{{date_format($it->created_at,"d/m/Y H:i:s")}}</td>
+                        <td>
+                            @if(date_format($item->created_at,"Y-m-d") <= $hw->end_day)
+                                <span class="text-success font-weight-bold">Đúng hạn</span>
+                            @else
+                                <span class="text-danger font-weight-bold">Muộn</span>
+                            @endif
+                        </td>
                     </tr>
                     @endforeach
                 </tbody>

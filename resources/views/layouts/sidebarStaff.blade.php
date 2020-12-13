@@ -36,33 +36,28 @@
             <span>Danh sách lớp học</span></a>
     </li>
     <li class="nav-item active">
-        <a href="{{ route('schedule.index') }}" class="nav-link" href="">
+        <a href="{{ route('schedule.index') }}" class="nav-link">
             <i class="far fa-clock"></i>
             <span>Danh sách ca học</span></a>
     </li>
     <li class="nav-item active">
-        <a href="{{ route('staff.classTransferList') }}" class="nav-link" href="">
+        <a href="{{ route('staff.classTransferList') }}" class="nav-link">
             <i class="fas fa-sync-alt"></i>
             <span>Danh sách chuyển lớp</span></a>
     </li>
     <li class="nav-item active">
-        <a href="{{ route('contact.index') }}" class="nav-link" href="">
-        <i class="fas fa-history"></i>
+        <a href="{{ route('tuition.hoaDon') }}" class="nav-link" href="">
+        <i class="fas fa-file-invoice-dollar"></i>
+            <span>Quản lý học phí</span></a>
+    </li>
+    <li class="nav-item active">
+        <a href="{{ route('staff.reserveList') }}" class="nav-link">
+            <i class="fas fa-history"></i>
             <span>Danh sách bảo lưu</span></a>
     </li>
     <li class="nav-item active">
-        <a href="{{ route('contact.index') }}" class="nav-link" href="">
-        <i class="fas fa-phone"></i>
-            <span>Danh sách học viên nhận đăng kí</span></a>
-    </li>
-    <li class="nav-item active">
-        <a href="{{ route('contact.index') }}" class="nav-link" href="">
-        <i class="fas fa-file"></i>
-            <span>Danh sách hóa đơn</span></a>
-    </li>
-    <li class="nav-item active">
-        <a href="{{ route('contact.index') }}" class="nav-link" href="">
-        <i class="fas fa-phone"></i>
+        <a href="{{ route('contact.index') }}" class="nav-link">
+            <i class="fas fa-history"></i>
             <span>Liên hệ</span></a>
     </li>
     <hr class="sidebar-divider d-none d-md-block">

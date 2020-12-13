@@ -11,11 +11,17 @@ use App\Models\Teacher;
 use App\Models\Course;
 use App\Models\Place;
 use Illuminate\Support\Arr;
-use App\Http\Requests\AddStudentRequest;
 use App\Http\Requests\Users\ResetPasswordRequest;
 use App\Rules\MatchOldPassword;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use App\Models\Tuition;
+use App\Models\TuitionDetail;
+use App\Models\SampleForm;
+
+use App\Http\Requests\DkkhMoiRequest;
+use App\Http\Requests\AddStudentRequest;
+use App\Http\Requests\AddUserRequest;
 use App\Http\Requests\UpdateAccount;
 use Illuminate\Support\Facades\Mail;
 use PhpParser\Builder\Class_;
@@ -24,11 +30,13 @@ use Symfony\Component\HttpKernel\DependencyInjection\ResettableServicePass;
 class UserController extends Controller
 {
     public function dashboardStaff(){
-        $classes = ClassRoom::where('status', 1)->get();
+        $classes = ClassRoom::where('status', 2)->get();
         $waitList = WaitList::all();
+        $tranferList = SampleForm::where('status', 1)->get();
         return view('admin/staff/dashboard',[
             'classes' => $classes,
-            'waitList' => $waitList 
+            'waitList' => $waitList,
+            'tranferList' => $tranferList 
         ]);
     }
 
@@ -56,6 +64,7 @@ class UserController extends Controller
         $waitList = Waitlist::find($id);
         $classes = ClassRoom::where('classes.course_id','=',$waitList->course_id)
         ->where('classes.place_id',$waitList->place_id)
+        ->where('classes.status',1)
         ->get();
         foreach ($classes as $key => $value) {
             $value->count_hs = count($value->students);
@@ -73,32 +82,59 @@ class UserController extends Controller
     }
 
     public function store($id, AddStudentRequest $request){
-        $data = $request->all();
-		$param = \Arr::except($data,['_token','class_id','image','course_id']);
-        $param['password'] = bcrypt(123456);
-        $param['status'] = 1;
-        $param['role'] = config('common.role.student');
-        $a = User::create($param);
-        //insert students
         $del = WaitList::find($id);
-        $student = Arr::except($data,['_token', 'name', 'email', 'phone_number', 'sex', 'address', 'birthday']);
-        $student['user_id'] = $a['id'];
-        $student['course_id'] = $del->course_id;
-        $student['status'] = 1;
-			$file = $request->file('image');
-			$filename = $file->getClientOriginalName();
-			$file->move(public_path('bill-image'), $filename);
-			$student['image'] = 'bill-image/'.$filename;
-        Student::create($student);
+        $data = $request->all();
+        if($del->student_id == null){
+            $param = \Arr::except($data,['_token','class_id','image','course_id']);
+            $param['password'] = bcrypt(123456);
+            $param['status'] = 1;
+            $param['role'] = config('common.role.student');
+            $a = User::create($param);
+            //insert students
+            $student = \Arr::except($data,['_token', 'name', 'email', 'phone_number', 'sex', 'address', 'birthday', 'image', 'sum_money']);
+            $student['user_id'] = $a['id'];
+            $student['course_id'] = $del->course_id;
+            $student['status'] = 2;
+            $stu = Student::create($student);
+            $tuition = \Arr::except($data,['_token', 'name', 'email', 'phone_number', 'sex', 'address', 'birthday', 'class_id','image','course_id', 'sum_money']);
+            $tuition['student_id'] = $stu['id'];
+            $tuition['class_id'] = $stu['class_id'];
+            $hp = Tuition::create($tuition);
+            Mail::send('email.email', [
+                'email' => $param['email'],
+            ], function($mail) use($param){
+                $mail->to($param['email']);
+                $mail->from('cheesehiep3110@gmail.com');
+                $mail->subject('Tham gia lớp học thành công!');
+            });
+        }else{
+            $stu = Student::find($del->student_id);
+            $stu['class_id'] = $request->class_id;
+            $stu['course_id'] = $del->course_id;
+            $stu->save();
+            $tuition = \Arr::except($data,['_token', 'name', 'email', 'phone_number', 'sex', 'address', 'birthday', 'class_id','image','course_id', 'sum_money']);
+            $tuition['student_id'] = $stu['id'];
+            $tuition['class_id'] = $stu['class_id'];
+            $hp = Tuition::create($tuition);
+            $tuitionDetail=[];
+            $file = $request->file('image');
+            $filename = $file->getClientOriginalName();
+            $file->move(public_path('bill-image'), $filename);
+            $tuitionDetail['image'] = 'bill-image/'.$filename;
+            $tuitionDetail['tuition_id'] = $hp['id'];
+            $tuitionDetail['sum_money']=$request->sum_money;
+            TuitionDetail::create($tuitionDetail);
+            Mail::send('email.email', [
+                'email' => $stu->user->email,
+            ], function($mail) use($stu){
+                $mail->to($stu->user->email);
+                $mail->from('cheesehiep3110@gmail.com');
+                $mail->subject('Tham gia lớp học thành công!');
+            });
+        }
         $del->delete();
-        Mail::send('email.email', [
-            'email' => $param['email'],
-        ], function($mail) use($param){
-            $mail->to($param['email']);
-            $mail->from('cheesehiep3110@gmail.com');
-            $mail->subject('Tham gia lớp học thành công!');
-        });
-		return redirect()->route('users.dsHocVien');
+        
+		return redirect("lop-hoc/chi-tiet-lop-hoc/".$stu['class_id'])->with('status','Đã thêm học viên vào lớp!');
     }
 
     public function indexStaff() {
@@ -112,7 +148,7 @@ class UserController extends Controller
         return view('admin/account/tao_tk_nv');
     }
 
-    public function storeStaff(AddStudentRequest $request) {
+    public function storeStaff(AddUserRequest $request) {
         $data = request()->all();
         $param = \Arr::except($data, ['_token']);
         $param['status'] = 1;
@@ -158,7 +194,7 @@ class UserController extends Controller
         ]);
     }
 
-    public function storeTeacher(AddStudentRequest $request) {
+    public function storeTeacher(AddUserRequest $request) {
         $data = request()->all();
         $param = \Arr::except($data, ['_token']);
         $param['status'] = 1;
@@ -282,5 +318,33 @@ class UserController extends Controller
             return redirect()->route('user.resetpass')->with('success-message', 'Đổi mật khẩu thành công');
         }
         return redirect()->back()->withInput();
+    }
+}
+
+    public function dkKhoaMoi(){
+        $courses = Course::all();
+        $places = Place::all();
+        
+        $waitList = WaitList::where('student_id', Auth::user()->student->id)->get();
+		return view('students/dk_khoa_hoc_moi', [
+            'courses' => $courses,
+            'places' => $places,
+            'waitList' => $waitList
+		]);
+    }
+
+    public function storeKhoaHocMoi(DkkhMoiRequest $request) {
+        $data = request()->all();
+        $param = \Arr::except($data, ['_token']);
+        $param['name'] = Auth::user()->name;
+        $param['email'] = Auth::user()->email;
+        $param['phone_number'] = Auth::user()->phone_number;
+        $param['birthday'] = Auth::user()->birthday;
+        $param['sex'] = Auth::user()->sex;
+        $param['address'] = Auth::user()->address;
+        $param['student_id'] = Auth::user()->student->id;
+
+        WaitList::create($param);
+        return redirect()->back()->with('success', 'Đăng ký thành công!');
     }
 }

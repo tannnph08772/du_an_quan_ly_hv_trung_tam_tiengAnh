@@ -24,33 +24,50 @@
     </li>
     <li class="nav-item active">
         <a class="nav-link" href="{{ route('homework.show')}}">
-        <i class="fas fa-book-open"></i>
+            <i class="fas fa-book-open"></i>
             <span>Bài tập về nhà</span></a>
     </li>
     <li class="nav-item active">
-        <a href="#" class="nav-link" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true"
-            aria-controls="collapseTwo">
+        <a href="#" class="nav-link" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
             <i class="fas fa-globe-asia"></i>
             <span>Dịch vụ trực tuyến</span>
         </a>
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="collapse-inner rounded">
                 <a class="collapse-item" href="{{ route('student.showForm') }}">
-                    <i class="far fa-circle"></i>
+                    <i class="fas fa-circle"></i>
                     <span>Đăng ký chuyển lớp</span>
+                </a>
+            </div>
+            <div class="collapse-inner rounded">
+                <a class="collapse-item" href="{{ route('student.formReserve') }}">
+                    <i class="fas fa-circle"></i>
+                    <span>Đăng ký bảo lưu</span>
+                </a>
+            </div>
+        </div>
+        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+            <div class="collapse-inner rounded">
+                <a class="collapse-item" href="{{ route('student.dkKhoaMoi') }}">
+                    <i class="fas fa-circle"></i>
+                    <span>Đăng ký khóa học mới</span>
                 </a>
             </div>
         </div>
     </li>
     <li class="nav-item active">
         <a class="nav-link" href="{{ route('feedback.showfeedback')}}">
-        <i class="fas fa-comment-alt"></i>
+            <i class="fas fa-comment-alt"></i>
             <span>Góp ý</span></a>
+    </li>
+    <li>
+        <a class="nav-link" href="{{ route('homework.dsBaiTap')}}">
+            <i class="fas fa-book"></i>
+            <span>Danh sách bài tập đã nộp</span></a>
     </li>
     <hr class="sidebar-divider d-none d-md-block">
     <!-- Sidebar Toggler (Sidebar) -->
     <div class="text-center d-none d-md-inline">
         <button class="rounded-circle border-0" id="sidebarToggle"></button>
     </div>
-
 </ul>

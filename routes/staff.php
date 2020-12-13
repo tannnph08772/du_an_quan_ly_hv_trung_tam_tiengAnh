@@ -52,6 +52,10 @@ Route::group([
         Route::get('danh-sach-chuyen-lop/{id}','ClassController@classTransferById')->name('staff.classTransferById');
         Route::post('danh-sach-chuyen-lop/store/{id}','ClassController@storeTransfer')->name('staff.storeTransfer');
 
+        Route::get('danh-sach-bao-luu','ReserveController@reserveList')->name('staff.reserveList');
+        Route::get('danh-sach-bao-luu/{id}','ReserveController@reserveById')->name('staff.reserveById');
+        Route::post('danh-sach-bao-luu/store/{id}','ReserveController@updateReserve')->name('staff.updateReserve');
+
         Route::get('danh-sach-hoc-vien/{id}','UserController@editStudent')->name('staff.editStudent');
         Route::post('cap-nhat-hoc-vien/{id}','UserController@updateStudent')->name('staff.updateStudent');
 
@@ -63,5 +67,8 @@ Route::group([
 
         Route::get('/change-pass','UserController@reset')->name('user.reset');
         Route::post('save-pass','UserController@Rspass')->name('user-save');
+        Route::get('/hoc-phi/{id}', 'TuitionController@showFormHocPhi')->name('tuition.showFormHocPhi');
+        Route::post('/nop-hoc-phi/{id}', 'TuitionController@nopHocPhi')->name('tuition.nopHocPhi');
+        Route::get('/danh-sach-hoa-don', 'TuitionController@hoaDon')->name('tuition.hoaDon');
     });
 });

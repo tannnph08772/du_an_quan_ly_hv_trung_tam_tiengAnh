@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class HomeworkRequest extends FormRequest
+class TuitionRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,16 +24,16 @@ class HomeworkRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => 'required|min:3',
-            'end_day' => 'required|after_or_equal:today',
+            'sum_money' => 'required',
+            'image' => 'required'
         ];
     }
 
-    public function messages(){
+    public function messages()
+    {
         return [
-            'required' => 'Không được để trống',
-            'title.min' => 'Tên lớp phải lơn hơn 3 ký tự',
-            'end_day.after_or_equal' => 'Ngày hết hạn phải lớn hơn hoặc bằng ngày hiện tại'
+            'required' => 'Không được để trống!',
         ];
     }
+
 }

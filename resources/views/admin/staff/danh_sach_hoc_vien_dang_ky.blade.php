@@ -1,7 +1,7 @@
 @extends('staff')
 @section('title', "Danh sách chờ")
 @section('content')
-<div class="container-fluid">
+<div class="">
     <h1 class="h3 mb-2 text-gray-800">Danh sách học viên đăng ký</h1>
     <div class="card shadow mb-4">
         <div class="card-header py-3 d-flex justify-content-between align-items-center">
@@ -9,6 +9,28 @@
             <button type="button" class="btn btn-primary" onclick="kiemTraTrungKhoaHoc()">
                 Chọn lớp
             </button>
+            <span>Số lượng học viên đăng ký: {{count($waitList)}}</span>
+            <form action="" method="GET" class="form-inline">
+                <select name="course" class="form-control mr-2">
+                    <option value="all">--- Tất cả khóa học ---</option>
+                    @foreach($courses as $course)
+                    <option value="{{ $course->id }}" 
+                        @php 
+                            if(isset($_GET['course'])) {
+                                if($course->id == $_GET['course']) {
+                                    echo 'selected';
+                                }
+                            } 
+                        @endphp>{{ $course->name_course }}</option>
+                    @endforeach
+                </select>
+                <button class="btn btn-primary">Lọc</button>
+                @php
+                    if(isset($_GET["course"])){
+                        $course_id = $_GET["course"];
+                    }
+                @endphp
+            </form>
             <!-- Modal -->
             <div class="modal fade danh_sach_lop" id="exampleModal2"  tabindex="-1" role="dialog" data-dismiss="modal" aria-labelledby="exampleModalLabel"
                 aria-hidden="true">
@@ -48,7 +70,7 @@
                 <table class="table table-bordered text-dark" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                         <tr>
-                            <th><input type="checkbox" onClick="toggle(this)"></th>
+                            <th><input type="checkbox" class="d-none" onClick="toggle(this)"></th>
                             <th>STT</th>
                             <th>Họ và tên</th>
                             <th>Email</th>
@@ -65,7 +87,36 @@
                         @php
                         $i = 1;
                         @endphp
+                        @if (!isset($_GET["course"]) || ($_GET["course"] == "all"))
                         @foreach($waitList as $item)
+                        <tr>
+                            <td class=" dt-checkboxes-cell"><input class="hoc_vien_add"  id_khoa_hoc = "{{$item->course_id}}" id_place_id = "{{$item->place_id}}" value="{{$item->id}}"
+                                    type="checkbox" name="student[]">
+                            </td>
+                            <td>{{$i++}}</td>
+                            <td>{{$item->name}}</td>
+                            <td>{{$item->email}}</td>
+                            <td>{{$item->phone_number}}</td>
+                            <td>{{$item->birthday}}</td>
+                            <td>{{$item->sex == 1? 'Nam' : 'Nữ'}}</td>
+                            <td>{{$item->course->name_course}}</td>
+                            <td>{{$item->place->name_place}}</td>
+                            <td>
+                                <a href="{{ route('users.getInfoHV',['id' => $item->id]) }}" class="btn">Chọn lớp <i
+                                        class="fas fa-arrow-circle-right text-success"></i></a>
+                            </td>
+                            <td>
+                                <form action="{{ route('auth.remove',['id' => $item->id]) }}" method="POST">
+                                    @csrf
+                                    <button onclick=" return confirm('Bạn có chắc thực hiện thao tác này?')"
+                                        class="btn"><i class="fas fa-trash-alt text-danger"></i></button>
+                                </form>
+                            </td>
+                        </tr>
+                        @endforeach
+                        @else
+                        @foreach($waitList as $item)
+                        @if($item->course_id == $_GET['course'])
                         <tr>
                             <td class=" dt-checkboxes-cell"><input class="hoc_vien_add"  id_khoa_hoc = "{{$item->course_id}}" id_place_id = "{{$item->place_id}}" value="{{$item->id}}"
                                     type="checkbox" name="student[]">
@@ -90,7 +141,9 @@
                                 </form>
                             </td>
                         </tr>
+                        @endif
                         @endforeach
+                        @endif
                     </tbody>
                 </table>
                 <div class="container">
@@ -149,6 +202,7 @@ const kiemTraTrungKhoaHoc = () =>{
         }
     });
     if(check > 0){
+        alert('Vui lòng chọn học viên cùng khóa học và cùng cơ sở !')
         $('#exampleModal2').modal('hide');
     }else{
         $('.option_lop').hide()
@@ -170,7 +224,7 @@ const addUser = () => {
     });
     var data = {
         'lop_id': class_select,
-        'danh_sach_hv': danh_sach_hv
+        'danh_sach_hv': danh_sach_hv,
     }
     axios.post(url_add_hoc_vien, data)
         .then(function(response) {
@@ -179,7 +233,7 @@ const addUser = () => {
                 icon: 'success',
                 text: 'Thêm học viên thành công!',
             })
-            console.log(response);
+            // console.log(response);
         })
         .catch(function(error) {
             // handle error
