@@ -47,6 +47,7 @@
 <script>
 swal.fire(
     'Bạn đã nộp file thành công!',
+    '',
     'success'
 )
 </script>
@@ -55,6 +56,7 @@ swal.fire(
 <script>
 swal.fire(
     'Bạn chưa nộp file thành công!',
+    '',
     'errors'
 )
 </script>

@@ -7,6 +7,9 @@
         <a class="btn btn-success" href="{{ route('homework.showFormHomework') }}">Thêm bài tập</a>
     </div>
     <div class="card-body">
+        @if (Session::has('status'))
+        <div class="alert alert-success">{{ Session::get('status') }}</div>
+        @endif
         <div class="table-responsive">
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                 <thead>
@@ -18,12 +21,13 @@
                         <th>Lớp</th>
                         <th>Ghi chú</th>
                         <th>Chi tiết</th>
+                        <th>Sửa</th>
                     </tr>
                 </thead>
                 <tbody>
                     @php
-                        $i = 1;
-                    @endphp 
+                    $i = 1;
+                    @endphp
                     @foreach($homework as $item)
                     <tr>
                         <td>{{ $i++ }}</td>
@@ -33,9 +37,10 @@
                         <td>{{ $item->class->name_class }}</td>
                         <td>{{ $item->note }}</td>
                         <td><a href="{{route('homework.dsNopBai', ['id' => $item->id])}}">Chi tiết</a></td>
+                        <td><a href="{{route('homeworks.editBT',  ['id' => $item->id ])}}">Sửa</a></td>
                     </tr>
                     @endforeach
-                 
+
                 </tbody>
             </table>
         </div>

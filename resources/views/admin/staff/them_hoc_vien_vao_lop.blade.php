@@ -82,7 +82,7 @@
                         @error('sum_money')
                             <small style="color: red">{{ $message }}</small>
                             @enderror
-                            <input type="number" class="form-control" name="sum_money" value="{{old('sum_money')}}">
+                            <input type="number" class="form-control" name="sum_money" value="{{old('sum_money')}}" placeholder="Nhập số tiền...">
                         </td>
                     </tr>
                     <tr>

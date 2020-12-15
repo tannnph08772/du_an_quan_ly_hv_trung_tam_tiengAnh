@@ -18,6 +18,7 @@
                         <th>Giới tính</th>
                         <th>Khoá học</th>
                         <th>Số tiền</th>
+                        <th>Người thu</th>
                         <th>Ảnh hóa đơn</th>
                         <th>Ngày nộp</th>
                     </tr>
@@ -35,12 +36,16 @@
                         <td>{{$item->student->user->sex == 1 ? 'Nam' : 'Nữ'}}</td>
                         <td>{{$item->student->course->name_course}}</td>
                         <td>{{$item->tuitionDetail->sum_money}} VNĐ</td>
+                        <td>{{$item->user->name}}</td>
                         <td><img width=100% src="{{$item->tuitionDetail->image}}" alt=""></td>
                         <td>{{date_format($item->tuitionDetail->created_at,"d/m/Y")}}</td>
                     </tr>
                     @endforeach
                 </tbody>
             </table>
+            <div class="text-center">
+                <a href="{{route('exportHoaDon')}}" class="btn btn-primary">Download</a>
+            </div>
         </div>
     </div>
 </div>

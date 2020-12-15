@@ -26,6 +26,7 @@ class HomeworkRequest extends FormRequest
         return [
             'title' => 'required|min:3',
             'end_day' => 'required|after_or_equal:today',
+            'file' => 'required'
         ];
     }
 
@@ -33,7 +34,8 @@ class HomeworkRequest extends FormRequest
         return [
             'required' => 'Không được để trống',
             'title.min' => 'Tên lớp phải lơn hơn 3 ký tự',
-            'end_day.after_or_equal' => 'Ngày hết hạn phải lớn hơn hoặc bằng ngày hiện tại'
+            'end_day.after_or_equal' => 'Ngày hết hạn phải lớn hơn hoặc bằng ngày hiện tại',
+            'file.required' => 'Vui lòng chọn file!'
         ];
     }
 }

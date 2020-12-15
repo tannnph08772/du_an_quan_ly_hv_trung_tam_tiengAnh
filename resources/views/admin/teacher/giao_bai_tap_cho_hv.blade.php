@@ -7,8 +7,7 @@
     </div>
     <div class="card-body">
         <div class="table-responsive">
-            <form method="POST" action="{{ route('homeworks.storeBT')}}"
-                enctype="multipart/form-data">
+            <form method="POST" action="{{ route('homeworks.storeBT')}}" enctype="multipart/form-data">
                 @csrf
                 <table class="table table-bordered">
                     <tr>
@@ -43,7 +42,9 @@
                         <td>
                             <select class="custom-select mr-sm-2" name="class_id" id="inlineFormCustomSelect">
                                 @foreach($classes as $class)
-                                    <option value="{{$class->id}}">{{$class->name_class}}</option>
+                                <option value="{{$class->id}}" @if($class->id == $homework->class_id ? "selected":"")
+                                    @endif)>
+                                    {{$class->name_class}}</option>
                                 @endforeach
                             </select>
                         </td>
@@ -51,9 +52,6 @@
                     <tr>
                         <td>Ghi chú</td>
                         <td>
-                            @error('note')
-                            <small style="color: red">{{ $message }}</small>
-                            @enderror
                             <textarea rows="8" class="form-control" name="note">{{old('note')}}</textarea>
                         </td>
                     </tr>

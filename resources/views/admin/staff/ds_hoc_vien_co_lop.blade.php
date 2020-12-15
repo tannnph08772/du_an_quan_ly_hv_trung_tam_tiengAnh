@@ -65,6 +65,9 @@
                     @endforeach
                 </tbody>
             </table>
+            <div class="text-center mb-1">
+                <a href="{{route('exportDSHV')}}" class="btn btn-primary">Download</a>
+            </div>
         </div>
     </div>
 </div>

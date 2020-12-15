@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 use App\Models\Student;
 use App\Models\Tuition;
+use Auth;
+use Excel;
 use App\Http\Requests\TuitionRequest;
+use App\Exports\HoaDonExport;
 use App\Models\TuitionDetail;
 
 use Illuminate\Http\Request;
@@ -26,6 +29,7 @@ class TuitionController extends Controller
         $tuition = \Arr::except($data,['_token', 'image','sum_money','name','email', 'address', 'class', 'sex','birthday']);
         $tuition['student_id'] = $id;
         $tuition['class_id'] = $student->class_id;
+        $tuition['user_id'] = Auth::user()->id;
         $hp = Tuition::create($tuition);
         $tuitionDetail = \Arr::except($data,['_token','name','email', 'address', 'class', 'sex','birthday']);
 		$file = $request->file('image');
@@ -51,4 +55,8 @@ class TuitionController extends Controller
         ]);
     }
 
+    public function exportHoaDon() 
+    {
+        return Excel::download(new HoaDonExport, 'ds-thu-hoc-phi.xlsx');
+    }
 }

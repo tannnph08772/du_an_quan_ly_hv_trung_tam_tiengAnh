@@ -70,5 +70,7 @@ Route::group([
         Route::get('/hoc-phi/{id}', 'TuitionController@showFormHocPhi')->name('tuition.showFormHocPhi');
         Route::post('/nop-hoc-phi/{id}', 'TuitionController@nopHocPhi')->name('tuition.nopHocPhi');
         Route::get('/danh-sach-hoa-don', 'TuitionController@hoaDon')->name('tuition.hoaDon');
+        Route::get('danh-sach-thu-hoc-phi/export/', 'TuitionController@exportHoaDon')->name('exportHoaDon');
+        Route::get('export-hoc-vien/', 'UserController@exportDSHV')->name('exportDSHV');
     });
 });
