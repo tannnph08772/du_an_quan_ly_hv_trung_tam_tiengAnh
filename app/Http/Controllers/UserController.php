@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\Hash;
 use App\Models\Tuition;
 use App\Models\TuitionDetail;
 use App\Models\SampleForm;
-
+use App\Exports\DSHocVienExport;
 use App\Http\Requests\DkkhMoiRequest;
 use App\Http\Requests\AddStudentRequest;
 use App\Http\Requests\AddUserRequest;
@@ -26,6 +26,8 @@ use App\Http\Requests\UpdateAccount;
 use Illuminate\Support\Facades\Mail;
 use PhpParser\Builder\Class_;
 use Symfony\Component\HttpKernel\DependencyInjection\ResettableServicePass;
+use Excel;
+
 
 class UserController extends Controller
 {
@@ -54,7 +56,8 @@ class UserController extends Controller
     }
 
     public function dashboardTeacher(){
-        $classes = ClassRoom::all();
+        $classes = ClassRoom::where('teacher_id', Auth::user()->teacher->id)
+                              ->where('status', 2)->get();
         return view('admin/teacher/dashboard',[
             'classes' => $classes
         ]);
@@ -98,8 +101,17 @@ class UserController extends Controller
             $stu = Student::create($student);
             $tuition = \Arr::except($data,['_token', 'name', 'email', 'phone_number', 'sex', 'address', 'birthday', 'class_id','image','course_id', 'sum_money']);
             $tuition['student_id'] = $stu['id'];
+            $tuition['user_id'] = Auth::user()->id;
             $tuition['class_id'] = $stu['class_id'];
             $hp = Tuition::create($tuition);
+            $tuitionDetail= \Arr::except($data,['_token', 'name', 'email', 'phone_number', 'sex', 'address', 'birthday', 'class_id','course_id']);;
+            $file = $request->file('image');
+            $filename = $file->getClientOriginalName();
+            $file->move(public_path('bill-image'), $filename);
+            $tuitionDetail['image'] = 'bill-image/'.$filename;
+            $tuitionDetail['tuition_id'] = $hp['id'];
+            $tuitionDetail['sum_money']= $request->get('sum_money');
+            TuitionDetail::create($tuitionDetail);
             Mail::send('email.email', [
                 'email' => $param['email'],
             ], function($mail) use($param){
@@ -111,18 +123,20 @@ class UserController extends Controller
             $stu = Student::find($del->student_id);
             $stu['class_id'] = $request->class_id;
             $stu['course_id'] = $del->course_id;
+            $stu['status'] = 2;
             $stu->save();
             $tuition = \Arr::except($data,['_token', 'name', 'email', 'phone_number', 'sex', 'address', 'birthday', 'class_id','image','course_id', 'sum_money']);
             $tuition['student_id'] = $stu['id'];
+            $tuition['user_id'] = Auth::user()->id;
             $tuition['class_id'] = $stu['class_id'];
             $hp = Tuition::create($tuition);
-            $tuitionDetail=[];
+            $tuitionDetail= \Arr::except($data,['_token', 'name', 'email', 'phone_number', 'sex', 'address', 'birthday', 'class_id','course_id']);;
             $file = $request->file('image');
             $filename = $file->getClientOriginalName();
             $file->move(public_path('bill-image'), $filename);
             $tuitionDetail['image'] = 'bill-image/'.$filename;
             $tuitionDetail['tuition_id'] = $hp['id'];
-            $tuitionDetail['sum_money']=$request->sum_money;
+            $tuitionDetail['sum_money']= $request->get('sum_money');
             TuitionDetail::create($tuitionDetail);
             Mail::send('email.email', [
                 'email' => $stu->user->email,
@@ -344,5 +358,16 @@ class UserController extends Controller
 
         WaitList::create($param);
         return redirect()->back()->with('success', 'Đăng ký thành công!');
+    }
+
+    public function xoaDk($id){
+        $waitList = Waitlist::find($id);
+        $waitList->delete();
+
+        return redirect()->back()->with('success', 'Bạn đã hủy đăng ký thành công!');
+    }
+
+    public function exportDSHV(){
+        return Excel::download(new DSHocVienExport, 'danh-sach-hoc-vien.xlsx');
     }
 }

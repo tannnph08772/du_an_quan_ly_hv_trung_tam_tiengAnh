@@ -11,6 +11,7 @@
                         <th>#</th>
                         <th>Tên bài tập</th>
                         <th>File đã nộp</th>
+                        <th>Lớp</th>
                         <th>Ngày nộp</th>
                     </tr>
                 </thead>
@@ -21,10 +22,11 @@
                     @foreach($submits as $item)
                     <tr>
                         <td>{{$i++}}</td>
-                        <td>{{$item->homework->title}}</td>
+                        <td>{{$item->homework->title}} <br> <a href="{{ route('download',$item->homework->file) }}">{{$item->homework->file}}</a></td>
                         <td>@foreach($item->submitDetail as $it)
                            <a href="{{ route('download',$it->file) }}">{{$it->file}}</a> <br>
                          @endforeach</td>
+                         <td>{{$item->homework->class->name_class}}</td>
                         <td>@foreach($item->submitDetail as $it)
                           {{date_format($it->created_at,"d/m/Y H:i:s")}} <br>
                          @endforeach</td>

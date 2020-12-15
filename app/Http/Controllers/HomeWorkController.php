@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\HomeworkRequest;
+use App\Http\Requests\UpdateBTRequest;
 use App\Models\ClassRoom;
 use App\Models\Submit;
 use App\Models\SubmitDetail;
@@ -35,11 +36,34 @@ class HomeWorkController extends Controller
 			$filename =time().'.'.$file->getClientOriginalExtension();
 			$request->file->move(public_path('bill-image'), $filename);
 			$param['file'] = $filename;
-		}else{
-			return "không thành công!";
-        }
+		}
         Homework::create($param);
-        return redirect()->route('homework.index');
+        return redirect()->route('homework.index')->with('status', 'Tạo bài tập thành công!');
+    }
+
+    public function editBT($id) {
+        $homework = Homework::find($id);
+        return view('admin/teacher/sua_bai_tap',[
+			'homework' => $homework
+		]);
+    }
+
+    public function updateBT($id, UpdateBTRequest $request) {
+        $homework = Homework::find($id);  
+        $params = [];
+        $params['title'] = request()-> get('title');
+        $params['end_day'] = request()-> get('end_day');
+        $params['note'] = request()-> get('note');
+        $params['class_id'] = request()-> get('class_id');
+        $file = $request->file('file');
+        
+        if ($request->hasFile('file')) {
+            $filename =time().'.'.$file->getClientOriginalExtension();
+			request()->file('file')->move(public_path('bill-image'), $filename);
+			$params['file'] = $filename;
+		}
+        $homework -> update($params);
+        return redirect()->route('homework.index')->with('status', 'Cập nhật bài tập thành công!');;
     }
     
     public function show() {

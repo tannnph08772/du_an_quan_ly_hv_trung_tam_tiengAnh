@@ -162,7 +162,7 @@ class AuthController extends Controller
             return back()->withFailures($import->failures());
         }
 
-        return back()->withStatus('Import in queue, we will send notification after import finished.');
+        return back()->withStatus('Import dữ liệu thành công!');
     }
    
 }

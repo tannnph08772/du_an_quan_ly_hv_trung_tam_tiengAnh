@@ -19,8 +19,7 @@
                         @endif
                         <div class="form-group m-form__group">
 
-                            <input class="form-control m-input" value="{{ old('email') }}" type="text" placeholder="Email" name="email"
-                                autocomplete="off">
+                            <input class="form-control m-input" value="{{ old('email') }}" type="text" placeholder="Email" name="email">
                             @error('email')
                             <small style="color: red;">{{ $message }}</small>
                             @enderror

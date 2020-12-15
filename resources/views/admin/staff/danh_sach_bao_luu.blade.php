@@ -20,7 +20,7 @@
                         <th>Khóa đang học</th>
                         <th>Nội dung</th>
                         <th>Trạng thái</th>
-                        <th>Thao tác</th>
+                        <th>Chi tiết</th>
                     </tr>
                 </thead>
                 <tbody>

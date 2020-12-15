@@ -4,6 +4,9 @@
 <h3><i class="fab fa-leanpub"></i> <span style="color: #202124;
     fill: #202124;"> Danh sách bài tập của bạn</span> </h3> <br>
 <ul class="list-group">
+    @if(count($homeworks) == 0)
+        <div class=" text-center h3 py-2"><span>Bạn chưa có bài tập nào !</span></div>
+    @else
     @foreach($homeworks as $item)
     <li class="list-group-item" style="background:white;">
         <div class="d-flex">
@@ -24,5 +27,6 @@
         </div>
     </li>
     @endforeach
+    @endif
 </ul>
 @endsection

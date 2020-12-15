@@ -34,6 +34,7 @@ Route::group([
         Route::get('/thong-tin-ca-nhan','UserController@viewProfile')->name('user.viewProfile');
         Route::get('/doi-mat-khau','UserController@resetPW')->name('user.resetPW');
         Route::post('luu-mat-khau','UserController@ResetPassword')->name('user-savepw');
+        Route::post('/huy-dang-ky/{id}', 'UserController@xoaDk')->name('xoaDk');
     });
 });
 Route::get('/download/{file}', 'HomeWorkController@download')->name('download');

@@ -28,6 +28,8 @@ Route::group([
         Route::get('danh-sach-bai-tap', 'HomeWorkController@index')->name('homework.index');
         Route::get('tao-bai-tap', 'HomeWorkController@showFormHomework')->name('homework.showFormHomework');
         Route::post('tao-bai-tap', 'HomeWorkController@storeBT')->name('homeworks.storeBT');
+        Route::get('sua-bai-tap/{id}', 'HomeWorkController@editBT')->name('homeworks.editBT');
+        Route::post('sua-bai-tap/{id}', 'HomeWorkController@updateBT')->name('homeworks.updateBT');
         Route::get('danh-sach-nop-bai/{id}', 'HomeWorkController@dsNopBai')->name('homework.dsNopBai');
         Route::get('lich-day','AttendanceController@showCalendarTea')->name('teachers.showCalendarTea');
         Route::get('/change-password','UserController@resetpass')->name('user.resetpass');

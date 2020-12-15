@@ -10,10 +10,10 @@
             <form method="POST" action="{{ route('student.storeKhoaHocMoi') }}">
                 @csrf
                 @if (Session::has('success'))
-                    <div class="alert alert-success">{{ Session::get('success') }}</div>
+                <div class="alert alert-success">{{ Session::get('success') }}</div>
                 @endif
                 @error('email')
-                    <div class="alert alert-danger">{{ $message }}</div>
+                <div class="alert alert-danger">{{ $message }}</div>
                 @enderror
                 <table class="table table-bordered">
                     <tr>
@@ -81,6 +81,7 @@
                         <th>Tên khóa học</th>
                         <th>Cơ sở</th>
                         <th>Ngày đăng ký</th>
+                        <th>Hủy đăng ký</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -93,6 +94,13 @@
                         <td>{{$item->course->name_course}}</td>
                         <td>{{$item->place->name_place}}</td>
                         <td>{{($item->created_at)->format('d/m/Y')}}</td>
+                        <td>
+                            <form action="{{ route('xoaDk',['id' => $item->id]) }}" method="POST">
+                                @csrf
+                                <button onclick=" return confirm('Bạn có chắc thực hiện thao tác này?')" class="btn"><i
+                                        class="fas fa-trash-alt text-danger"></i></button>
+                            </form>
+                        </td>
                     </tr>
                     @endforeach
                 </tbody>
