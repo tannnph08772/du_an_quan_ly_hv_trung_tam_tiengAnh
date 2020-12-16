@@ -245,6 +245,7 @@ class UserController extends Controller
         $save->save();
 		return redirect()->route('teacher.index');
     }
+    
     public function dsHocVien(){
     	$students = Student::all();
 
@@ -264,9 +265,11 @@ class UserController extends Controller
         $user = Auth::user();
         return view('admin.student.profile',compact('user'));
     }
+
     public function resetPW(){
         return view('resetpassword');
     }
+
     public function ResetPassword(ResetPasswordRequest $request)
     {   
         $request->validate([
@@ -281,7 +284,8 @@ class UserController extends Controller
             return redirect()->route('user.viewProfile')->with('success-message', 'Đổi mật khẩu thành công');
         }
         return redirect()->back()->withInput();
-    }    
+    }  
+
     public function editStudent($id){
         $student = User::find($id);
 
@@ -297,9 +301,11 @@ class UserController extends Controller
 		$student->update($params);
 		return redirect()->route('users.dsHocVien')->with('success', 'Cập nhật thành công');
     }
+
     public function reset(){
         return view('admin.staff.resetpass');
     }
+
     public function Rspass(ResetPasswordRequest $request)
     {   
         $request->validate([
@@ -315,9 +321,11 @@ class UserController extends Controller
         }
         return redirect()->back()->withInput();
     }
+
     public function resetpass(){
         return view('admin.teacher.doi-mat-khau');
     }
+
     public function Resetspass(ResetPasswordRequest $request)
     {   
         $request->validate([
@@ -333,6 +341,7 @@ class UserController extends Controller
         }
         return redirect()->back()->withInput();
     }
+
     public function dkKhoaMoi(){
         $courses = Course::all();
         $places = Place::all();

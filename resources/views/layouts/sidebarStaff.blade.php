@@ -57,8 +57,8 @@
     </li>
     <li class="nav-item active">
         <a href="{{ route('contact.index') }}" class="nav-link">
-            <i class="fas fa-history"></i>
-            <span>Liên hệ</span></a>
+        <i class="fas fa-phone"></i>
+            <span>Danh sách nhận đăng ký</span></a>
     </li>
     <hr class="sidebar-divider d-none d-md-block">
     <!-- Sidebar Toggler (Sidebar) -->
