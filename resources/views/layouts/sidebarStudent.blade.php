@@ -58,9 +58,9 @@
     <li class="nav-item active">
         <a class="nav-link" href="{{ route('feedback.showfeedback')}}">
             <i class="fas fa-comment-alt"></i>
-            <span>Góp ý</span></a>
+            <span>Feedback</span></a>
     </li>
-    <li>
+    <li class="nav-item active">
         <a class="nav-link" href="{{ route('homework.dsBaiTap')}}">
             <i class="fas fa-book"></i>
             <span>Danh sách bài tập đã nộp</span></a>

@@ -42,8 +42,7 @@
                         <td>
                             <select class="custom-select mr-sm-2" name="class_id" id="inlineFormCustomSelect">
                                 @foreach($classes as $class)
-                                <option value="{{$class->id}}" @if($class->id == $homework->class_id ? "selected":"")
-                                    @endif)>
+                                <option value="{{$class->id}}">
                                     {{$class->name_class}}</option>
                                 @endforeach
                             </select>

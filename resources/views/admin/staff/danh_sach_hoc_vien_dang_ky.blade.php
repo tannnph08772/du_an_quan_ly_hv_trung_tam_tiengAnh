@@ -71,14 +71,14 @@
                     <thead>
                         <tr>
                             <th><input type="checkbox" class="d-none" onClick="toggle(this)"></th>
-                            <th>STT</th>
+                            <th>#</th>
                             <th>Họ và tên</th>
                             <th>Email</th>
                             <th>Phone number</th>
-                            <th>Ngày sinh</th>
                             <th>Giới tính</th>
                             <th>Khoá học</th>
                             <th>Cơ sở</th>
+                            <th>Học viên</th>
                             <th>Chuyển</th>
                             <th>Xóa</th>
                         </tr>
@@ -97,10 +97,10 @@
                             <td>{{$item->name}}</td>
                             <td>{{$item->email}}</td>
                             <td>{{$item->phone_number}}</td>
-                            <td>{{$item->birthday}}</td>
                             <td>{{$item->sex == 1? 'Nam' : 'Nữ'}}</td>
                             <td>{{$item->course->name_course}}</td>
                             <td>{{$item->place->name_place}}</td>
+                            <td>{{$item->student_id != null ? "Học viên cũ" : "Học viên mới"}}</td>
                             <td>
                                 <a href="{{ route('users.getInfoHV',['id' => $item->id]) }}" class="btn">Chọn lớp <i
                                         class="fas fa-arrow-circle-right text-success"></i></a>
@@ -125,10 +125,10 @@
                             <td>{{$item->name}}</td>
                             <td>{{$item->email}}</td>
                             <td>{{$item->phone_number}}</td>
-                            <td>{{$item->birthday}}</td>
                             <td>{{$item->sex == 1? 'Nam' : 'Nữ'}}</td>
                             <td>{{$item->course->name_course}}</td>
                             <td>{{$item->place->name_place}}</td>
+                            <td>{{$item->user_id != null ? "Học viên cũ" : "Học viên mới"}}</td>
                             <td>
                                 <a href="{{ route('users.getInfoHV',['id' => $item->id]) }}" class="btn">Chọn lớp <i
                                         class="fas fa-arrow-circle-right"></i></a>

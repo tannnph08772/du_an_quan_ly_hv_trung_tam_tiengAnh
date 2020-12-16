@@ -36,12 +36,12 @@
     </li>
     <li class="nav-item active">
         <a class="nav-link" href="{{route('homework.index')}}">
-            <i class="fas fa-fw fa-tachometer-alt"></i>
+        <i class="fas fa-swatchbook"></i>
             <span>Quản lý bài tập</span></a>
     </li>
     <li class="nav-item active">      
         <a  class="nav-link" href="#" data-toggle="collapse" data-target="#collapse3" aria-expanded="true" aria-controls="collapse3">
-            <i class="fas fa-university"></i>
+        <i class="fas fa-history"></i>
             <span>Lịch sử dạy</span>
         </a>
         <div id="collapse3" class="collapse" aria-labelledby="heading3" data-parent="#accordionSidebar">

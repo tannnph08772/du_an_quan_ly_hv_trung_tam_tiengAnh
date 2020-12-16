@@ -47,7 +47,8 @@
                         <td>
                             <select class="custom-select mr-sm-2" name="class_id" id="inlineFormCustomSelect">
                                 @foreach($classes as $class)
-                                <option value="{{$class->id}}">{{$class->name_class}}</option>
+                                <option value="{{$class->id}}" @if($class->id == $homework->class_id ? "selected":"")
+                                    @endif)>{{$class->name_class}}</option>
                                 @endforeach
                             </select>
                         </td>
@@ -55,9 +56,6 @@
                     <tr>
                         <td>Ghi chú</td>
                         <td>
-                            @error('note')
-                            <small style="color: red">{{ $message }}</small>
-                            @enderror
                             <textarea rows="8" class="form-control" name="note">{{$homework->note}}</textarea>
                         </td>
                     </tr>
