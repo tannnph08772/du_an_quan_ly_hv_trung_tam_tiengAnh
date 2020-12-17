@@ -27,7 +27,8 @@
                         <td>{{ $i++ }}</td>
                         <td>@foreach($class as $value) {{ $value->name_class }} @endforeach</td>
                         <td>@foreach($class as $value) {{ $value->course->name_course }} @endforeach</td>
-                        <td> 
+                        <td>
+                            @if(count($points) > 0) 
                             @foreach($points as $point)
                             @foreach($class as $value)
                             @if($point->class_id == $value->id)
@@ -53,6 +54,7 @@
                             @endforeach
                             
                             {{ $exercise + $diligence + $test }}
+                            @endif
                         </td>
                         <td>@foreach($class as $value) @if($value->status == 3) <span class="text-success">Đã học</span> @else <span class="text-warning">Đang học</span> @endif @endforeach</td>
                         <td>@foreach($class as $value) {{ $value->course->number_course }} @endforeach</td>

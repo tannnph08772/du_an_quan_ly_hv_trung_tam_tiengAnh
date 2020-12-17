@@ -7,6 +7,7 @@ use App\Models\Attendance;
 use App\Models\AttendanceDetail;
 use App\Models\Student;
 use App\Models\ClassRoom;
+use App\Models\Feedback;
 use Carbon\Carbon;
 use Auth;
 
@@ -95,6 +96,10 @@ class AttendanceController extends Controller
         $end_day = Carbon::create(Auth::user()->student->class->end_day);
         $date = (clone $end_day)->subDays(14)->toDateString();
         $now = Carbon::now()->toDateString();
+        $feedback = Feedback::where([
+            ['class_id', $class_id],
+            ['student_id', Auth::user()->student->id]
+        ])->get()->count();
         $calendars = Attendance::where([
             ['class_id', $class_id],
             ['date', '>=', $now]
@@ -105,6 +110,7 @@ class AttendanceController extends Controller
             'end_day' => $end_day,
             'date' => $date,
             'now' => $now,
+            'feedback' => $feedback
         ]);
     }
 

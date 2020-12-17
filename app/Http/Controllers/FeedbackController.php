@@ -32,7 +32,11 @@ class FeedbackController extends Controller
         $answer = Answer::select('*')->get();
         $class = ClassRoom::select('*')->get();
         $course = Course::select('*')->get();
-        return view('admin.feedback.gop-y', compact('listMenu','question','answer','class','course'));
+        $feedback = Feedback::where([
+            ['class_id', Auth::user()->student->class_id],
+            ['student_id', Auth::user()->student->id]
+        ])->get()->count();
+        return view('admin.feedback.gop-y', compact('listMenu','question','answer','class','course', 'feedback'));
     }
     public function store(CreateFeedbackRequest $request){
         $request['student_id'] = Auth::user()->student->id;
@@ -48,7 +52,7 @@ class FeedbackController extends Controller
         ];
         Result_Qestion::create($res_feedback);
        }
-        return redirect()->route('feedback.thanks');
+        return redirect()->back()->with('success', 'Cảm ơn bạn đã gửi đánh giá');
     }
     public function index()
     { 

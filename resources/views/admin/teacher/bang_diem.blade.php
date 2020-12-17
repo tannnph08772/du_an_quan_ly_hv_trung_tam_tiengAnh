@@ -91,11 +91,13 @@
                         </td>
                         <td class="d-flex justify-content-between">
                             <input style="width: 50% !important" type="text" class="form-control diligence" 
+                                @if(count($student->points) > 0)
                                 @foreach($student->points as $point)
                                 @if($point->class_id == $class->id)
                                 value="{{ $point->diligence == '' ? '' : $point->diligence }}"
                                 @endif
                                 @endforeach
+                                @endif
                             >
                             @php $count = 0; @endphp
                             @foreach($attendances as $attendance)
@@ -111,11 +113,13 @@
                         </td>
                         <td>
                             <input type="text" class="form-control test" 
+                                @if(count($student->points) > 0)
                                 @foreach($student->points as $point)
                                 @if($point->class_id == $class->id)
                                 value="{{ $point->test == '' ? '' : $point->test }}"
                                 @endif
                                 @endforeach
+                                @endif
                             >
                         </td>
                         <td>
@@ -132,7 +136,7 @@
                                     }
                                 }
                             @endphp
-                            {{ $exercise + $diligence + $test }}
+                            @if(count($student->points) > 0) {{ $exercise + $diligence + $test }} @endif
                         </td>
                     </tr>
                     @endforeach
