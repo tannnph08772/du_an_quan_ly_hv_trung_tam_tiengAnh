@@ -74,11 +74,6 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @if(count($reserveByStu) === 0 )
-                    <tr>
-                        <td>Không có dữ liệu</td>
-                    </tr>
-                    @else
                     @php
                         $i = 1;
                     @endphp 
@@ -97,7 +92,6 @@
                         </td>
                     </tr>
                     @endforeach
-                    @endif
                 </tbody>
             </table>
         </div>

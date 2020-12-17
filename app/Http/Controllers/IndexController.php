@@ -11,6 +11,9 @@ use App\Models\Reserve;
 use App\Models\Student;
 use App\Models\AttendanceDetail;
 use App\Models\Attendance;
+use App\Models\Tuition;
+use App\Models\Homework;
+use App\Models\Point;
 use Carbon\Carbon;
 use Auth;
 use Arr;
@@ -94,5 +97,33 @@ class IndexController extends Controller
         $params['status'] = 1;
         Reserve::create($params);
         return redirect()->back()->with('success', 'Đơn đã được gửi đi, trung tâm sẽ sớm liên hệ với bạn');
+    }
+
+    public function showPointByClass(){
+        $student_id = Auth::user()->student->id;
+        $tuitions = Tuition::where('student_id', $student_id)->orderBy('id', 'desc')->get();
+        $points = Point::where('student_id', $student_id)->get();
+        foreach($tuitions as $tuition) {
+            $classes[] = ClassRoom::where('id', $tuition->class_id)->get();
+        }
+
+        return view('students/bang_diem_theo_lop', [
+            'classes' => $classes,
+            'points' => $points
+		]);
+    }
+
+    public function historyLesson(){
+        $student_id = Auth::user()->student->id;
+        $tuitions = Tuition::where('student_id', $student_id)->orderBy('id', 'desc')->get();
+        $points = Point::where('student_id', $student_id)->get();
+        foreach($tuitions as $tuition) {
+            $classes[] = ClassRoom::where('id', $tuition->class_id)->get();
+        }
+
+        return view('students/lich_su_hoc', [
+            'classes' => $classes,
+            'points' => $points
+		]);
     }
 }

@@ -72,5 +72,9 @@ Route::group([
         Route::get('/danh-sach-hoa-don', 'TuitionController@hoaDon')->name('tuition.hoaDon');
         Route::get('danh-sach-thu-hoc-phi/export/', 'TuitionController@exportHoaDon')->name('exportHoaDon');
         Route::get('export-hoc-vien/', 'UserController@exportDSHV')->name('exportDSHV');
+
+        Route::get('/lop-hoc/{id}/lich', 'ClassController@getCalendarByClass')->name('classes.getCalendarByClass');
+        Route::get('/lop-hoc/{id}/sua-lich', 'ClassController@editCalendar')->name('classes.editCalendar');
+        Route::post('/lop-hoc/{id}/store', 'ClassController@updateCalendar')->name('classes.updateCalendar');
     });
 });

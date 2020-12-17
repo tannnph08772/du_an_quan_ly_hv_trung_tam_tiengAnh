@@ -28,4 +28,8 @@ class Teacher extends Model
     public function homework(){
     	return $this->hasMany(Homework::class, 'teacher_id', 'id');
     }
+
+    public function attendances(){
+    	return $this->hasMany(Attendance::class, 'teacher_id', 'id');
+    }
 }

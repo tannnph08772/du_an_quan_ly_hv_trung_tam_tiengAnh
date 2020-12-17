@@ -39,7 +39,7 @@ class AddUserRequest extends FormRequest
             'required' => 'Không được để trống!',
             'name.min' => 'Họ và tên phải có ít nhất 4 ký tự',
             'birthday.date' => 'Phải đúng định dạng ngày tháng!',
-            'birthday.before' => 'Tuổi phải nhỏ hơn tuổi hiện tại!',
+            'birthday.before' => 'Ngày sinh phải nhỏ hơn ngày hiện tại!',
             'phone_number.numeric' => 'Số điện thoại phải dạng số!',
             'phone_number.digits' => 'Số điện thoại có 10 kí tự!',
             'email.email' => 'Phải nhập đúng định dạng email!',

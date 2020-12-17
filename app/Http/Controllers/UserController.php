@@ -20,6 +20,7 @@ use App\Models\TuitionDetail;
 use App\Models\SampleForm;
 use App\Exports\DSHocVienExport;
 use App\Http\Requests\DkkhMoiRequest;
+use App\Models\Reserve;
 use App\Http\Requests\AddStudentRequest;
 use App\Http\Requests\AddUserRequest;
 use App\Http\Requests\UpdateAccount;
@@ -35,10 +36,12 @@ class UserController extends Controller
         $classes = ClassRoom::where('status', 2)->get();
         $waitList = WaitList::all();
         $tranferList = SampleForm::where('status', 1)->get();
+        $reserves = Reserve::where('status', 1)->get();
         return view('admin/staff/dashboard',[
             'classes' => $classes,
             'waitList' => $waitList,
-            'tranferList' => $tranferList 
+            'tranferList' => $tranferList,
+            'reserves' => $reserves 
         ]);
     }
 
@@ -138,11 +141,13 @@ class UserController extends Controller
             $tuitionDetail['tuition_id'] = $hp['id'];
             $tuitionDetail['sum_money']= $request->get('sum_money');
             TuitionDetail::create($tuitionDetail);
+            $link = route('auth.login');
             Mail::send('email.email', [
                 'email' => $stu->user->email,
+                'link' => $link
             ], function($mail) use($stu){
                 $mail->to($stu->user->email);
-                $mail->from('cheesehiep3110@gmail.com');
+                $mail->from('cheesehiep3110@gmail.com', 'Alibaba English Center');
                 $mail->subject('Tham gia lớp học thành công!');
             });
         }

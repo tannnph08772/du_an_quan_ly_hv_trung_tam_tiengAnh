@@ -53,4 +53,8 @@ class Student extends Model
     public function reserves(){
     	return $this->hasMany(Reserve::class, 'student_id');
     }
+
+    public function points(){
+    	return $this->hasMany(Point::class, 'student_id');
+    }
 }

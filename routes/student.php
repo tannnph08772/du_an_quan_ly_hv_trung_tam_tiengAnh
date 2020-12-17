@@ -38,6 +38,8 @@ Route::group([
         Route::get('/doi-mat-khau','UserController@resetPW')->name('user.resetPW');
         Route::post('luu-mat-khau','UserController@ResetPassword')->name('user-savepw');
         Route::post('/huy-dang-ky/{id}', 'UserController@xoaDk')->name('xoaDk');
+        Route::get('hoc-vien/bang-diem','IndexController@showPointByClass')->name('student.showPointByClass');
+        Route::get('hoc-vien/lich-su-hoc','IndexController@historyLesson')->name('student.historyLesson');
     });
 });
 Route::get('/download/{file}', 'HomeWorkController@download')->name('download');
