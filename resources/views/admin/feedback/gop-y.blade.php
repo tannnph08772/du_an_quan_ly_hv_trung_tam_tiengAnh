@@ -21,7 +21,7 @@
                         @foreach ($answer as $data)
                         @if ($item->id == $data->question_id)
                         <div class="form-check pt-2">
-                            <input class="form-check-input " type="radio" name="answer[{{$data->question_id}}]"
+                            <input class="form-check-input" required type="radio" name="answer[{{$data->question_id}}]"
                                 id="exampleRadios1" value="{{$data->id}}">
                             <label class="form-check-label">
                                 {{$data->answer}}

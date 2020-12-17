@@ -7,54 +7,63 @@
         <h6>Ngày {{ $attendance->updated_at->format('d/m/yy') }}</h6>
     </div>
     <div class="card-body">
+        @if (Session::has('success'))
+        <div class="alert alert-success">{{ Session::get('success') }}</div>
+        @endif
         <div class="table-responsive">
             <table class="table table-bordered" width="100%" cellspacing="0">
                 <thead>
                     <tr>
-						<th>STT</th>
-						<th>Tên học viên</th>
-						<th>Email</th>
-						<th>Số điện thoại</th>
+                        <th>STT</th>
+                        <th>Tên học viên</th>
+                        <th>Email</th>
+                        <th>Số điện thoại</th>
                         <th class="text-center">Vắng</th>
-						<th class="text-center">Có</th>
+                        <th class="text-center">Có</th>
                     </tr>
                 </thead>
                 <tbody>
-					@if(count($attendanceDetails) === 0 )
-					<tr>
-						<td>Không có dữ liệu</td>
-					</tr>
-					@else
-					@php $i = 1; @endphp
-					@foreach($attendanceDetails as $attendanceDetail)
-					<tr>
-						<td>{{ $i++ }}</td>
-						<td>{{ $attendanceDetail->student->user->name }}</td>
-						<td>{{ $attendanceDetail->student->user->email }}</td>
-						<td>{{ $attendanceDetail->student->user->phone_number }}</td>
-						<td class="text-center">
-							<input type="hidden" name="attendance_id_{{ $attendanceDetail->id }}" value="{{ $attendance->id }}">
-							<input type="hidden" name="id_{{ $attendanceDetail->id }}" value="{{ $attendanceDetail->id }}">
-							<div class="form-check">
-								<input class="form-check-input" type="radio" name="{{ $attendanceDetail->id }}" id="{{ $attendanceDetail->id }}" value="1" @if($attendanceDetail->status == 1) checked @endif>
-								<label class="form-check-label" for="{{ $attendanceDetail->id }}"></label>
-							</div>
-						</td>
-						<td class="text-center">
-							<div class="form-check">
-								<input class="form-check-input" type="radio" name="{{ $attendanceDetail->id }}" id="{{ $attendanceDetail->id }}" value="2" @if($attendanceDetail->status == 2) checked @endif>
-								<label class="form-check-label" for="{{ $attendanceDetail->id }}">&nbsp;</label>
-							</div>
-						</td>
-					</tr>
-					@endforeach
-					@endif
-				</tbody>
+                    @if(count($attendanceDetails) === 0 )
+                    <tr>
+                        <td>Không có dữ liệu</td>
+                    </tr>
+                    @else
+                    @php $i = 1; @endphp
+                    @foreach($attendanceDetails as $attendanceDetail)
+                    <tr>
+                        <td>{{ $i++ }}</td>
+                        <td>{{ $attendanceDetail->student->user->name }}</td>
+                        <td>{{ $attendanceDetail->student->user->email }}</td>
+                        <td>{{ $attendanceDetail->student->user->phone_number }}</td>
+                        <td class="text-center">
+                            <input type="hidden" name="attendance_id_{{ $attendanceDetail->id }}"
+                                value="{{ $attendance->id }}">
+                            <input type="hidden" name="id_{{ $attendanceDetail->id }}"
+                                value="{{ $attendanceDetail->id }}">
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="{{ $attendanceDetail->id }}"
+                                    id="{{ $attendanceDetail->id }}" value="1" @if($attendanceDetail->status == 1)
+                                checked @endif>
+                                <label class="form-check-label" for="{{ $attendanceDetail->id }}"></label>
+                            </div>
+                        </td>
+                        <td class="text-center">
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="{{ $attendanceDetail->id }}"
+                                    id="{{ $attendanceDetail->id }}" value="2" @if($attendanceDetail->status == 2)
+                                checked @endif>
+                                <label class="form-check-label" for="{{ $attendanceDetail->id }}">&nbsp;</label>
+                            </div>
+                        </td>
+                    </tr>
+                    @endforeach
+                    @endif
+                </tbody>
             </table>
-			<div class="text-center">
-				<button onclick="submitData()" class="btn btn-primary">Lưu điểm danh</button>
-				<a href="{{ url()->previous() }}" class="btn btn-danger">Hủy</a>
-			</div>
+            <div class="text-center">
+                <button onclick="submitData()" class="btn btn-primary">Lưu điểm danh</button>
+                <a href="{{ url()->previous() }}" class="btn btn-danger">Hủy</a>
+            </div>
         </div>
     </div>
 </div>
@@ -83,6 +92,6 @@
 			}
 		)
     }
+}
 </script>
 @endsection
-
