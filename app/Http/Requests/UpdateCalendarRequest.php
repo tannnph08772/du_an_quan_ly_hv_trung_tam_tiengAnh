@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class TuitionRequest extends FormRequest
+class UpdateCalendarRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,8 +24,9 @@ class TuitionRequest extends FormRequest
     public function rules()
     {
         return [
-            'sum_money' => 'required|regex:/^[0-9]*$/',
-            'image' => 'required'
+            'date' => 'required|date_format:Y-m-d',
+            'schedule_id' => 'required',
+            'teacher_id' => 'required',
         ];
     }
 
@@ -33,8 +34,7 @@ class TuitionRequest extends FormRequest
     {
         return [
             'required' => 'Không được để trống!',
-            'sum_money.regex' => 'Số tiền phải là định dạng số và lớn hơn 0'
+            'date.date_format' => 'Sai định dạng ngày tháng!',
         ];
     }
-
 }

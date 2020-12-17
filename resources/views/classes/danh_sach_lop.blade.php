@@ -44,7 +44,10 @@
                         <td>{{ $class->teacher->user->name }}</td>
                         <td>{{ $class->course->name_course }}</td>
                         <td>{{ $class->place->name_place }}</td>
-                        <td class="text-center"><a href="{{ route('classes.getStudentByClass',['id' => $class->id]) }}" class="btn"><i class="fas fa-info-circle text-success"></i></a></td>
+                        <td class="text-center">
+                            <a href="{{ route('classes.getStudentByClass',['id' => $class->id]) }}" class="btn btn-info mr-3">Học viên</a>
+                            <a href="{{ route('classes.getCalendarByClass',['id' => $class->id]) }}" class="btn btn-info">Lịch</a>
+                        </td>
                     </tr>
                     @endforeach
                     @endif

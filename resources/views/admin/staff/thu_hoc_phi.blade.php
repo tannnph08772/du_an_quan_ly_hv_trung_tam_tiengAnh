@@ -18,65 +18,53 @@
                 <table class="table table-bordered">
                     <tr>
                         <td>Họ và tên</td>
-                        <td>
-                            <input type="text" class="form-control" name="name" value="{{$student->user->name}}">
-                        </td>
+                        <td>{{$student->user->name}}</td>
                     </tr>
                     <tr>
                         <td>Email</td>
-                        <td>
-                            <input type="email" class="form-control" name="email" value="{{$student->user->email}}">
-                        </td>
+                        <td>{{$student->user->email}}</td>
                     </tr>
                     <tr>
                         <td>Ảnh hóa đơn</td>
                         <td>
+                            @error('image')
+                                <small style="color: red">{{ $message }}</small>
+                            @enderror
                             <input type="file" class="form-control" value="{{old('image')}}" name="image">
                         </td>
                     </tr>
                     <tr>
                         <td>Ngày sinh</td>
-                        <td>
-                            <input type="date" class="form-control" name="birthday"
-                                value="{{$student->user->birthday}}">
-                        </td>
+                        <td>{{$student->user->birthday}}</td>
                     </tr>
                     <tr>
                         <td>Số điện thoại</td>
-                        <td>
-                            <input type="text" class="form-control" name="phone_number"
-                                value="{{$student->user->phone_number}}">
-                        </td>
+                        <td>{{$student->user->phone_number}}</td>
                     </tr>
                     <tr>
                         <td>Số tiền</td>
                         <td>
-                            <input type="number" class="form-control" name="sum_money" value=""
+                            @error('sum_money')
+                                <small style="color: red">{{ $message }}</small>
+                            @enderror
+                            <input type="text" class="form-control" name="sum_money" value=""
                                 placeholder="Nhập số tiền...">
                         </td>
                     </tr>
                     <tr>
                         <td>Giới tính</td>
-                        <td>
-                            <input type="radio" name="sex" @if($student->user->sex ==1) checked @endif value="1"> Nam
-                            <input type="radio" name="sex" @if($student->user->sex ==2) checked @endif value="2"> Nữ
-                        </td>
+                        <td>{{$student->user->sex == 1 ? 'Nam' : 'Nữ'}}</td>
                     </tr>
                     <tr>
                         <td>Địa chỉ</td>
-                        <td>
-                            <input type="text" class="form-control" name="address" value="{{$student->user->address}}">
-                        </td>
+                        <td>{{$student->user->address}}</td>
                     </tr>
                     <tr>
                         <td>Lớp học</td>
-                        <td>
-                            <input type="text" class="form-control" name="class"
-                                value="{{$student->class->name_class}}">
-                        </td>
+                        <td>{{$student->class->name_class}}</td>
                     </tr>
-                    <td></td>
-                    <td><button class="btn btn-success form-control">Submit</button></td>
+                        <td></td>
+                        <td><button class="btn btn-success form-control">Submit</button></td>
                     </tr>
                 </table>
             </form>

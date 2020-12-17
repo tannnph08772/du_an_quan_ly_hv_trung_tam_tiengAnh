@@ -8,7 +8,7 @@ class Submit extends Model
 {
     protected $table = 'submit';
     protected $fillable = [
-        'homework_id', 'student_id'
+        'homework_id', 'student_id', 'point'
     ];
 
     public function student(){

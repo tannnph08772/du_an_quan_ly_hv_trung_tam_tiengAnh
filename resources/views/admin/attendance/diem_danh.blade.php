@@ -75,8 +75,13 @@
 				'_token': "{{ csrf_token() }}",
 				'data': JSON.stringify(data)
 			}, function(e) {
-                location.reload()
-			})
+                Swal.fire(
+                    'Điểm danh thành công',
+                    '',
+                    'success'
+                )
+			}
+		)
     }
 </script>
 @endsection

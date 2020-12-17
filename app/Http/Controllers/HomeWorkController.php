@@ -9,15 +9,21 @@ use App\Models\ClassRoom;
 use App\Models\Submit;
 use App\Models\SubmitDetail;
 use App\Models\Homework;
+use App\Models\Student;
+use App\Models\Point;
+use App\Models\Attendance;
 use App\Http\Requests\SubmitRequest;
 use Auth;
 
 class HomeWorkController extends Controller
 {
     public function index() {
-        $homework = Homework::where('teacher_id', Auth::user()->teacher->id)->get();
-        
-        return view('admin/teacher/ds_bai_tap', compact('homework'));
+        $homework = Homework::where('teacher_id', Auth::user()->teacher->id)->orderBy('id', 'desc')->get();
+        $arrayClass = ClassRoom::where('teacher_id', Auth::user()->teacher->id)->orderBy('id', 'desc')->get();
+        return view('admin/teacher/ds_bai_tap', [
+            'homework' => $homework,
+            'arrayClass' => $arrayClass
+        ]);
     }
 
     public function showFormHomework() {
@@ -123,6 +129,31 @@ class HomeWorkController extends Controller
         return view('admin/teacher/ds_hoc_vien_nop_bai',[
             'submit' => $submit,
             'hw' => $hw
+        ]);
+    }
+
+    public function storePoint() {
+        $dataAjax = request()->all();
+        $data = json_decode($dataAjax['data']);
+
+        foreach($data as $item) {
+            $submit = Submit::find($item->id);
+            $submit->point = $item->point;
+            $submit->save();
+        }
+    }
+
+    public function showPointByTeacher($id) {
+        $class = ClassRoom::find($id);
+        $homeworks = Homework::where('class_id', $id)->get();
+        $students = Student::where('class_id', $id)->get();
+        $attendances = Attendance::where('class_id', $id)->get();
+
+        return view('admin/teacher/bang_diem', [
+            'class' => $class,
+            'homeworks' => $homeworks,
+            'students' => $students,
+            'attendances' => $attendances
         ]);
     }
 

@@ -25,7 +25,7 @@ class AddStudentRequest extends FormRequest
     {
         return [
             'name' => 'required|min:4',
-            'birthday' => 'required|date|before:now',
+            'birthday' => 'required|date|before:2004-12-31',
             'phone_number' => 'required|numeric|digits:10',
             'email' => 'required|email',
             'address' => 'required|min:4',
@@ -41,7 +41,7 @@ class AddStudentRequest extends FormRequest
             'required' => 'Không được để trống!',
             'name.min' => 'Họ và tên phải có ít nhất 4 ký tự',
             'birthday.date' => 'Phải đúng định dạng ngày tháng!',
-            'birthday.before' => 'Tuổi phải nhỏ hơn tuổi hiện tại!',
+            'birthday.before' => 'Bạn chưa đủ 16 tuổi!',
             'phone_number.numeric' => 'Số điện thoại phải dạng số!',
             'phone_number.digits' => 'Số điện thoại có 10 kí tự!',
             'email.email' => 'Phải nhập đúng định dạng email!',

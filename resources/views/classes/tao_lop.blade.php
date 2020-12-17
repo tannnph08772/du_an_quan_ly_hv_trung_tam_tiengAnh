@@ -8,6 +8,9 @@
 		<a class="btn btn-success" href="{{ route('classes.index') }}">Danh sách lớp</a>
 	</div>
 	<div class="card-body">
+		@if (Session::has('error'))
+            <div class="alert alert-danger">{{ Session::get('error') }}</div>
+        @endif
 		<div class="table-responsive">
 			<form method="POST" action="{{ route('classes.store') }}">
 				@csrf
@@ -62,22 +65,29 @@
 						</td>
 					</tr>
 					<tr>
-						<td>Giảng viên</td>
-						<td>
-							<select class="form-control" name="teacher_id">
-								@foreach($teachers as $teacher)
-								<option value="{{ $teacher->id }}">{{ $teacher->user->name }}</option>
-								@endforeach
-							</select>
-						</td>
-					</tr>
-					<tr>
 						<td>Khóa học</td>
 						<td>
 							<select class="form-control" name="course_id">
 								@foreach($courses as $course)
 								<option value="{{ $course->id }}">{{ $course->name_course }} ({{ $course->number_course }} buổi)</option>
 								@endforeach
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<td>Giảng viên</td>
+						<td>
+							@error('teacher_id')
+								<small style="color: red">{{ $message }}</small>
+							@enderror
+							<select class="form-control" name="teacher_id">
+								@if(count($filteredTeacher) == 0) 
+								<option value="">Không có giảng viên</option>
+								@else
+								@foreach($filteredTeacher as $teacher)
+								<option value="{{ $teacher->id }}">{{ $teacher->user->name }} ({{ $teacher->course->name_course }})</option>
+								@endforeach
+								@endif
 							</select>
 						</td>
 					</tr>

@@ -21,15 +21,11 @@
                                     echo 'selected';
                                 }
                             } 
-                        @endphp>{{ $course->name_course }}</option>
+                        @endphp>{{ $course->name_course }}
+                    </option>
                     @endforeach
                 </select>
                 <button class="btn btn-primary">Lọc</button>
-                @php
-                    if(isset($_GET["course"])){
-                        $course_id = $_GET["course"];
-                    }
-                @endphp
             </form>
             <!-- Modal -->
             <div class="modal fade danh_sach_lop" id="exampleModal2"  tabindex="-1" role="dialog" data-dismiss="modal" aria-labelledby="exampleModalLabel"
@@ -131,7 +127,7 @@
                             <td>{{$item->user_id != null ? "Học viên cũ" : "Học viên mới"}}</td>
                             <td>
                                 <a href="{{ route('users.getInfoHV',['id' => $item->id]) }}" class="btn">Chọn lớp <i
-                                        class="fas fa-arrow-circle-right"></i></a>
+                                        class="fas fa-arrow-circle-right text-success"></i></a>
                             </td>
                             <td>
                                 <form action="{{ route('auth.remove',['id' => $item->id]) }}" method="POST">

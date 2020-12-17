@@ -6,21 +6,41 @@ use Illuminate\Http\Request;
 use App\Models\Attendance;
 use App\Models\AttendanceDetail;
 use App\Models\Student;
+use App\Models\ClassRoom;
 use Carbon\Carbon;
 use Auth;
 
 class AttendanceController extends Controller
 {
     public function index($id){
+        $class = ClassRoom::find($id);
         $today = Carbon::now()->timezone('Asia/Ho_Chi_Minh')->toDateString();
     	$dates = Attendance::where([
             ['class_id', $id],
             ['date', $today]
         ])->get();
         $students = Student::where('class_id', $id)->get();
+        $attendances = Attendance::where([
+            ['class_id', $id],
+            ['date', '<', $today]
+        ])->orderBy('date', 'desc')->get();
+        foreach($attendances as $attendance) {
+            $count = AttendanceDetail::where('attendance_id', $attendance->id)->get();
+            if (count($count) === 0) {
+                foreach($students as $student) {
+                    $params['student_id'] = $student->id;
+                    $params['status'] = 1;
+                    $params['attendance_id'] = $attendance->id;
+                    AttendanceDetail::create($params);
+                }
+            }
+        }
+
 		return view('admin/attendance/ngay_diem_danh', [
             'dates' => $dates,
-            'students' => $students
+            'students' => $students,
+            'attendances' => $attendances,
+            'class' => $class
 		]);
     }
 
@@ -72,14 +92,19 @@ class AttendanceController extends Controller
     
     public function showCalendarStu(){
         $class_id = Auth::user()->student->class_id;
+        $end_day = Carbon::create(Auth::user()->student->class->end_day);
+        $date = (clone $end_day)->subDays(14)->toDateString();
         $now = Carbon::now()->toDateString();
         $calendars = Attendance::where([
             ['class_id', $class_id],
             ['date', '>=', $now]
-            ])->join('schedule', 'attendance.schedule_id', '=', 'schedule.id')->orderBy('date', 'asc')->orderBy('start_time', 'asc')->get();
+        ])->join('schedule', 'attendance.schedule_id', '=', 'schedule.id')->orderBy('date', 'asc')->orderBy('start_time', 'asc')->get();
 
         return view('students/lich_hoc', [
             'calendars' => $calendars,
+            'end_day' => $end_day,
+            'date' => $date,
+            'now' => $now,
         ]);
     }
 
@@ -107,7 +132,8 @@ class AttendanceController extends Controller
         $count_absent = AttendanceDetail::where([
             ['student_id', $student_id],
             ['status', 1]
-        ])->get()->count();
+        ])->join('attendance', 'attendance_detail.attendance_id', '=', 'attendance.id')
+        ->where('class_id', $class_id)->get()->count();
 
         return view('students/diem_danh', [
             'attendances' => $attendances,

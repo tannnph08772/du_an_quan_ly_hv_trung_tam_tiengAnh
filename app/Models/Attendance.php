@@ -20,4 +20,7 @@ class Attendance extends Model
     public function schedule(){
     	return $this->belongsTo(Schedule::class, 'schedule_id');
     }
+    public function teacher(){
+    	return $this->belongsTo(Teacher::class, 'teacher_id');
+    }
 }

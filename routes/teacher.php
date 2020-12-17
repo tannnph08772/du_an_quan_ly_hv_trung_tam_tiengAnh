@@ -35,5 +35,8 @@ Route::group([
         Route::get('/change-password','UserController@resetpass')->name('user.resetpass');
         Route::post('save-password','UserController@Resetspass')->name('user-savepass');
         Route::get('ds-gop-y','FeedbackController@viewfb')->name('feedback.view');
+        Route::post('point/store', 'HomeWorkController@storePoint')->name('homework.storePoint'); 
+        Route::get('bang-diem/{id}', 'HomeWorkController@showPointByTeacher')->name('teachers.showPoint'); 
+        Route::post('point-total/store', 'PointController@store')->name('point.store'); 
     });
 });

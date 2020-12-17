@@ -23,9 +23,46 @@
         </a>
     </li>
     <li class="nav-item active">
-        <a class="nav-link" href="{{ route('homework.show')}}">
+        <a href="#" class="nav-link" data-toggle="collapse" data-target="#collapse4" aria-expanded="true"
+            aria-controls="collapse4">
             <i class="fas fa-book-open"></i>
-            <span>Bài tập về nhà</span></a>
+            <span>Bài tập</span>
+        </a>
+        <div id="collapse4" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+            <div class="collapse-inner rounded">
+                <a class="collapse-item" href="{{ route('homework.show') }}">
+                    <i class="fas fa-circle"></i>
+                    <span>Bài tập về nhà</span>
+                </a>
+            </div>
+            <div class="collapse-inner rounded">
+                <a class="collapse-item" href="{{ route('homework.dsBaiTap') }}">
+                    <i class="fas fa-circle"></i>
+                    <span>Bài tập đã nộp</span>
+                </a>
+            </div>
+        </div>
+    </li>
+    <li class="nav-item active">
+        <a href="#" class="nav-link" data-toggle="collapse" data-target="#collapse3" aria-expanded="true"
+            aria-controls="collapse3">
+            <i class="fas fa-star"></i>
+            <span>Điểm</span>
+        </a>
+        <div id="collapse3" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+            <div class="collapse-inner rounded">
+                <a class="collapse-item" href="{{ route('student.showPointByClass') }}">
+                    <i class="fas fa-circle"></i>
+                    <span>Bảng điểm</span>
+                </a>
+            </div>
+            <div class="collapse-inner rounded">
+                <a class="collapse-item" href="{{ route('student.historyLesson') }}">
+                    <i class="fas fa-circle"></i>
+                    <span>Lịch sử học</span>
+                </a>
+            </div>
+        </div>
     </li>
     <li class="nav-item active">
         <a href="#" class="nav-link" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
@@ -54,16 +91,6 @@
                 </a>
             </div>
         </div>
-    </li>
-    <li class="nav-item active">
-        <a class="nav-link" href="{{ route('feedback.showfeedback')}}">
-            <i class="fas fa-comment-alt"></i>
-            <span>Feedback</span></a>
-    </li>
-    <li class="nav-item active">
-        <a class="nav-link" href="{{ route('homework.dsBaiTap')}}">
-            <i class="fas fa-book"></i>
-            <span>Danh sách bài tập đã nộp</span></a>
     </li>
     <hr class="sidebar-divider d-none d-md-block">
     <!-- Sidebar Toggler (Sidebar) -->
