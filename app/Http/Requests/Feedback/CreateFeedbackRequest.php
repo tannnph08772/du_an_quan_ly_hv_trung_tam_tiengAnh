@@ -33,8 +33,8 @@ class CreateFeedbackRequest extends FormRequest
     public function messages()
     {
         return [
-            'answer.required'=>'câu trả lời không được để trống',
-            'content.required'=>'ý kiến cá nhân không được để trống',
+            'answer.required'=>'Câu trả lời không được để trống',
+            'content.required'=>'Ý kiến cá nhân không được để trống',
         ];
     }
 }
