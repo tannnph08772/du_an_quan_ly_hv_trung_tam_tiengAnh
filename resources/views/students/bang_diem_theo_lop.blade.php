@@ -40,7 +40,8 @@
                         <td>{{ $i++ }}</td>
                         <td>Trung bình bài tập</td>
                         <td>50%</td>
-                        <td>@foreach($points as $point)
+                        <td>@if(count($points) > 0)
+                            @foreach($points as $point)
                             @foreach($class as $value)
                             @if($point->class_id == $value->id)
                                 {{ $point->exercise }}
@@ -48,13 +49,15 @@
                             @endif
                             @endforeach
                             @endforeach
+                            @endif
                         </td>
                     </tr>
                     <tr>
                         <td>{{ $i++ }}</td>
                         <td>Chuyên cần</td>
                         <td>10%</td>
-                        <td>@foreach($points as $point)
+                        <td>@if(count($points) > 0)
+                            @foreach($points as $point)
                             @foreach($class as $value)
                             @if($point->class_id == $value->id)
                                 {{ $point->diligence }}
@@ -62,13 +65,15 @@
                             @endif
                             @endforeach
                             @endforeach
+                            @endif
                         </td>
                     </tr>
                     <tr>
                         <td>{{ $i++ }}</td>
                         <td>Thi</td>
                         <td>40%</td>
-                        <td>@foreach($points as $point)
+                        <td>@if(count($points) > 0)
+                            @foreach($points as $point)
                             @foreach($class as $value)
                             @if($point->class_id == $value->id)
                                 {{ $point->test }}
@@ -76,12 +81,13 @@
                             @endif
                             @endforeach
                             @endforeach
+                            @endif
                         </td>
                     </tr>
                 </tbody>
             </table>
             <div style="font-size: 14px; color: #000;">
-                <p class="mb-0">Trung bình: <span class="text-danger">{{ $exercise + $diligence + $test }}</span></p>
+                <p class="mb-0">Trung bình: <span class="text-danger">@if(count($points) > 0) {{ $exercise + $diligence + $test }} @endif</span></p>
                 <p>Trạng thái: @foreach($class as $value)
                     @if($value->status == 3) 
                         <span class="text-success">Đã học</span> 

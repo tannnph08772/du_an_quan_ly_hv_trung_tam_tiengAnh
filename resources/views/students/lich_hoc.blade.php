@@ -4,7 +4,7 @@
 <div class="card shadow mb-4">
     <div class="card-header py-3 d-flex justify-content-between align-items-center">
         <h3 class="m-0 font-weight-bold text-primary">Lịch học</h3>
-        @if($now >= $date && $now <= $end_day)<a href="#" class="btn btn-success">Feedback</a>@endif
+        @if($now >= $date && $now <= $end_day && $feedback == 0)<a href="{{ route('feedback.showfeedback') }}" class="btn btn-success">Đánh giá</a>@endif
     </div>
     <div class="card-body">
         <div class="table-responsive">
@@ -57,13 +57,13 @@
                 </div>
                 <div class="modal-body">
                     <p>Hãy đánh giá chất lượng giảng viên với link dưới đây</p>
-                    <a href="#" class="btn btn-success">Feedback</a>
+                    <a href="{{ route('feedback.showfeedback') }}" class="btn btn-success">Đánh giá</a>
                 </div>
             </div>
         </div>
     </div>
 </div>
-@if($now >= $date && $now <= $end_day)
+@if($now >= $date && $now <= $end_day && $feedback == 0)
 <script>
     var modal = document.querySelector("#exampleModal");
     var close = document.querySelector(".close");
