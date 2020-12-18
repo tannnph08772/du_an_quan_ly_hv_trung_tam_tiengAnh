@@ -20,7 +20,7 @@ class Submit extends Model
     }
 
     public function submitDetail(){
-    	return $this->hasMany(submitDetail::class, 'submit_id', 'id');
+    	return $this->hasMany(SubmitDetail::class, 'submit_id', 'id');
     }
     
 }
