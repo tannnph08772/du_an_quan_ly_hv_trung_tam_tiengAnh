@@ -31,7 +31,7 @@ class AuthController extends Controller
 
     public function showLoginForm()
     {
-        return view('auth.login');
+        return view('Auth.login');
     }
     
     public function login(LoginRequest $request)
@@ -52,7 +52,7 @@ class AuthController extends Controller
                 return redirect()->route('student.showCalendarStu');
             }
         }else{
-            return view('auth.login', [
+            return view('Auth.login', [
                 'message' => "Đăng nhập không thành công.Vui lòng kiểm tra lại!",
             ]);
         }
