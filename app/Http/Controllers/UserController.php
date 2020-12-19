@@ -90,7 +90,7 @@ class UserController extends Controller
     public function store($id, AddStudentRequest $request){
         $del = WaitList::find($id);
         $data = $request->all();
-        if($del->student_id == null){
+        if($del->student_id == 0){
             $param = \Arr::except($data,['_token','class_id','image','course_id']);
             $param['password'] = bcrypt(123456);
             $param['status'] = 1;
