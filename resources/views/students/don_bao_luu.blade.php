@@ -13,6 +13,9 @@
                 @if (Session::has('success'))
                     <div class="alert alert-success">{{ Session::get('success') }}</div>
                 @endif
+                @if (Session::has('error'))
+                    <div class="alert alert-danger">{{ Session::get('error') }}</div>
+                @endif
                 @error('student_id')
                     <div class="alert alert-danger">{{ $message }}</div>
                 @enderror
@@ -45,6 +48,16 @@
                         </td>
                     </tr>
                     <tr>
+                        <td>Học phí</td>
+                        <td>
+                            @if(Auth::user()->student->status == 1)
+                                <span class="text-danger">Chưa hoàn thành</span>
+                            @else
+                                <span class="text-success">Đã hoàn thành</span>
+                            @endif
+                        </td>
+                    </tr>
+                    <tr>
                         @if($now <= $date)
                         <td></td>
                         <td><button class="btn btn-success form-control">Submit</button></td>
@@ -68,7 +81,6 @@
                     <tr>
                         <th>STT</th>
                         <th>Ngày đăng ký</th>
-                        <th></th>
                         <th>Khóa</th>
                         <th>Trạng thái</th>
                     </tr>
@@ -81,7 +93,6 @@
                     <tr>
                         <td>{{ $i++ }}</td>
                         <td>{{ date_format($item->created_at,"Y-m-d") }}</td>
-                        <td></td>
                         <td>{{ $item->course->name_course }}</td>
                         <td>
                             @if($item->status == 1)  

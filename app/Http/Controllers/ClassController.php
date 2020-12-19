@@ -66,7 +66,7 @@ class ClassController extends Controller
     	]);
     }
 
-    public function store(ClassRequest $request){
+    public function store(){
 		$data = request()->all();
 		$params = \Arr::except($data, ['_token', 'weekday']);
 		$params['status'] = 1;
@@ -76,17 +76,17 @@ class ClassController extends Controller
 		$number_course = $course->number_course;
 		$teacher = Teacher::find($params['teacher_id']);
 		$error = [];
-		if($teacher->course_id != $params['course_id']) {
-			$error = 'Vui lòng chọn giảng viên đúng chuyên môn';
-		}
-		foreach($teacher->classes as $class) {
-			if($params['schedule_id'] == $class->schedule_id && ($class->status == 1 || $class->status == 2)) {
-				$error = 'Giảng viên '.$teacher->user->name.' đang dạy lớp có cùng ca học';
-			}
-		}
-		if(!empty($error)) {
-			return redirect()->back()->with('error', $error);
-		}
+		// if($teacher->course_id != $params['course_id']) {
+		// 	$error = 'Vui lòng chọn giảng viên đúng chuyên môn';
+		// }
+		// foreach($teacher->classes as $class) {
+		// 	if($params['schedule_id'] == $class->schedule_id && ($class->status == 1 || $class->status == 2)) {
+		// 		$error = 'Giảng viên '.$teacher->user->name.' đang dạy lớp có cùng ca học';
+		// 	}
+		// }
+		// if(!empty($error)) {
+		// 	return redirect()->back()->with('error', $error);
+		// }
 
 		$dayOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 		$days = request()->get('weekday');
@@ -230,6 +230,6 @@ class ClassController extends Controller
 		}
 		$attendance->update($params);
 
-		return redirect('lop-hoc/'.$attendance->class_id.'/lich')->with('success', 'Sửa lịch thành công');
+		return redirect('lop-hoc/'.$attendance->class_id.'/lich')->with('success', 'Thay đổi lịch thành công');
 	}
 }

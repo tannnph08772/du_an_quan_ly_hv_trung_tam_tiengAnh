@@ -16,7 +16,7 @@
 							@error('date')
 								<small style="color: red">{{ $message }}</small>
 							@enderror
-							<input type="text" class="form-control" name="date" value="{{ $attendance->date }}">
+							<input type="date" class="form-control" name="date" value="{{ $attendance->date }}">
                         </td>
 					</tr>
                     <tr>

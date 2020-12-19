@@ -95,6 +95,10 @@ class IndexController extends Controller
         $params = \Arr::except($data, ['_token']);
         $params['course_id'] = Auth::user()->student->course_id;
         $params['status'] = 1;
+        if(Auth::user()->student->status == 1) {
+            $error = 'Bạn cần hoàn thành học phí';
+            return redirect()->back()->with('error', $error);
+        }
         Reserve::create($params);
         return redirect()->back()->with('success', 'Đơn đã được gửi đi, trung tâm sẽ sớm liên hệ với bạn');
     }

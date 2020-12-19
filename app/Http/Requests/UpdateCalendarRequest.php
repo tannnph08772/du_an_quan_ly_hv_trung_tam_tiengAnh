@@ -24,7 +24,7 @@ class UpdateCalendarRequest extends FormRequest
     public function rules()
     {
         return [
-            'date' => 'required|date_format:Y-m-d',
+            'date' => 'required|date|after_or_equal:date',
             'schedule_id' => 'required',
             'teacher_id' => 'required',
         ];
@@ -34,7 +34,8 @@ class UpdateCalendarRequest extends FormRequest
     {
         return [
             'required' => 'Không được để trống!',
-            'date.date_format' => 'Sai định dạng ngày tháng!',
+            'date.date' => 'Sai định dạng ngày tháng!',
+            'date.after_or_equal' => 'Ngày phải sau hoặc bằng ngày đã cho!'
         ];
     }
 }
