@@ -1,5 +1,5 @@
 @extends('teacher')
-@section('title', 'Bảng điểm')
+@section('title', 'Bảng điểm của học viên')
 @section('content')
 <div class="card shadow mb-4">
     <div class="card-header py-3 d-flex justify-content-between align-items-center">
@@ -12,9 +12,9 @@
                     <tr>
                         <th>STT</th>
                         <th>Học viên</th>
-                        <th>Bài tập</th>
-                        <th>Chuyên cần</th>
-                        <th>Thi</th>
+                        <th>Điểm bài tập</th>
+                        <th>Điểm chuyên cần</th>
+                        <th>Điểm bài test</th>
                         <th>Trung bình</th>
                     </tr>
                 </thead>
@@ -49,7 +49,7 @@
                                 <div class="modal-dialog modal-lg">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLabel">Bài tập</h5>
+                                            <h5 class="modal-title" id="exampleModalLabel">Điểm của bài tập</h5>
                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
                                             </button>

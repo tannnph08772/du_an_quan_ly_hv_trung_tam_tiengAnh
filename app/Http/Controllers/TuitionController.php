@@ -43,7 +43,7 @@ class TuitionController extends Controller
 		$params['status'] = 2;
         $student -> update($params);
 
-        return redirect()->back()->with('status','Đã thu học phí!');
+        return redirect()->route('tuition.hoaDon')->with('status','Đã thu học phí!');
     }
 
     public function hoaDon()

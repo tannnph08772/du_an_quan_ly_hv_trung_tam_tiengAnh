@@ -120,7 +120,7 @@ class AuthController extends Controller
         $hoc_vien_chuyen = $request->danh_sach_hv;
         foreach ($hoc_vien_chuyen as $key => $value) {
             $hoc_vien = WaitList::find($value);
-            if($hoc_vien['student_id'] == null){
+            if($hoc_vien['student_id'] == null ){
             $hoc_vien['role'] = 4;
             $hoc_vien['status'] = 1;
             $hoc_vien['password'] = Hash::make('123456');
@@ -136,11 +136,13 @@ class AuthController extends Controller
                 $student->save();
             }
             WaitList::destroy($value);
+            $link = route('auth.login');
             Mail::send('email.email', [
                 'email' => $hoc_vien['email'],
+                'link' => $link
             ], function($mail) use($hoc_vien){
                 $mail->to($hoc_vien['email']);
-                $mail->from('cheesehiep3110@gmail.com');
+                $mail->from('cheesehiep3110@gmail.com', 'Alibaba English Center');
                 $mail->subject('Tham gia lớp học thành công!');
             });
         }  

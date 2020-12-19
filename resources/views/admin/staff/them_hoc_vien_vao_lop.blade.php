@@ -88,11 +88,15 @@
                     <tr>
                         <td>Lớp học</td>
                         <td>
+                        @if(count($filteredArray))
                             <select class="custom-select mr-sm-2" name="class_id" id="inlineFormCustomSelect">
                                 @foreach($filteredArray as $class)
                                 <option value="{{$class['id']}}">{{$class['name_class']}} ({{ $class['schedule']['name_schedule'] }})</option>
                                 @endforeach
                             </select>
+                        @else
+                        <span>Chưa có lớp phù hợp</span>
+                        @endif
                         </td>
                     </tr>
                     <td></td>

@@ -45,7 +45,7 @@ WithEvents
                 'name' => $row['name'],
                 'email' => $row['email'],
                 'phone_number' => $row['phone_number'],
-                'birthday' => $row['birthday'],
+                'birthday' => \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($row['birthday']),
                 'sex' => $row['sex'],
                 'address' => $row['address'],
                 'course_id' => $row['course_id'],
