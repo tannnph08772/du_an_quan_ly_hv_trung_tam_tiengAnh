@@ -120,7 +120,7 @@ class AuthController extends Controller
         $hoc_vien_chuyen = $request->danh_sach_hv;
         foreach ($hoc_vien_chuyen as $key => $value) {
             $hoc_vien = WaitList::find($value);
-            if($hoc_vien['student_id'] == null ){
+            if($hoc_vien['student_id'] == 0 ){
             $hoc_vien['role'] = 4;
             $hoc_vien['status'] = 1;
             $hoc_vien['password'] = Hash::make('123456');
