@@ -37,14 +37,14 @@
                         <td>{{$item->student->course->name_course}}</td>
                         <td>{{$item->tuitionDetail->sum_money}} VNĐ</td>
                         <td>{{$item->user->name}}</td>
-                        <td><img width=100% src="{{$item->tuitionDetail->image}}" alt=""></td>
+                        <td><img width=120 src="{{$item->tuitionDetail->image}}" alt=""></td>
                         <td>{{date_format($item->tuitionDetail->created_at,"d/m/Y")}}</td>
                     </tr>
                     @endforeach
                 </tbody>
             </table>
             <div class="text-center">
-                <a href="{{route('exportHoaDon')}}" class="btn btn-primary">Download</a>
+                <a href="{{route('exportHoaDon')}}" class="btn btn-success">Download Excel</a>
             </div>
         </div>
     </div>
