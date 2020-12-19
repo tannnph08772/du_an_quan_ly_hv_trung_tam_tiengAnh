@@ -76,5 +76,8 @@ Route::group([
         Route::get('/lop-hoc/{id}/lich', 'ClassController@getCalendarByClass')->name('classes.getCalendarByClass');
         Route::get('/lop-hoc/{id}/sua-lich', 'ClassController@editCalendar')->name('classes.editCalendar');
         Route::post('/lop-hoc/{id}/store', 'ClassController@updateCalendar')->name('classes.updateCalendar');
+
+        Route::get('/xep-lop-hoc-lai/{id}', 'ReserveController@getInfoLearnAgain')->name('reserve.getInfoLearnAgain');
+        Route::post('/xep-lop-hoc-lai/{id}', 'ReserveController@updateLearnAgain')->name('reserve.updateLearnAgain');
     });
 });

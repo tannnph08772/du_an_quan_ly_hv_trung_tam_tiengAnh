@@ -39,7 +39,10 @@
 					@else
 					<tr>
 						<td></td>
-						<td class="text-center">Đã xác nhận</td>
+						<td class="text-center">
+							Đã xác nhận
+							<a href="{{ route('reserve.getInfoLearnAgain', ['id' => $reserve->id]) }}" class="btn btn-primary ml-3">Xếp lớp học lại</a>
+						</td>
 					</tr>
 					@endif
 				</table>

@@ -9,6 +9,9 @@
         @if (Session::has('success'))
             <div class="alert alert-success">{{ Session::get('success') }}</div>
         @endif
+        @if (Session::has('updateLearnAgain'))
+            <div class="alert alert-success">{{ Session::get('updateLearnAgain') }}</div>
+        @endif
         <div class="table-responsive">
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                 <thead>
