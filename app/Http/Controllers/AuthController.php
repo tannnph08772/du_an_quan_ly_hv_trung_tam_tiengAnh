@@ -120,20 +120,20 @@ class AuthController extends Controller
         $hoc_vien_chuyen = $request->danh_sach_hv;
         foreach ($hoc_vien_chuyen as $key => $value) {
             $hoc_vien = WaitList::find($value);
-            if($hoc_vien['student_id'] == 0 ){
-            $hoc_vien['role'] = 4;
-            $hoc_vien['status'] = 1;
-            $hoc_vien['password'] = Hash::make('123456');
-            $id = User::create($hoc_vien->toArray())->id;
-            $hoc_vien['class_id'] = $lop_id;
-            $hoc_vien['user_id'] = $id;
-            Student::create($hoc_vien->toArray());
-            }else{
+            if($hoc_vien['student_id']){
                 $student = Student::find($hoc_vien->student_id);
                 $student['class_id'] = $lop_id;
                 $student['course_id'] = $hoc_vien->course_id;
                 $student['status'] = 1;
                 $student->save();
+            }else{
+                $hoc_vien['role'] = 4;
+                $hoc_vien['status'] = 1;
+                $hoc_vien['password'] = Hash::make('123456');
+                $id = User::create($hoc_vien->toArray())->id;
+                $hoc_vien['class_id'] = $lop_id;
+                $hoc_vien['user_id'] = $id;
+                Student::create($hoc_vien->toArray());
             }
             WaitList::destroy($value);
             $link = route('auth.login');

@@ -23,7 +23,7 @@
                 @include('layouts/header') 
                 <!-- End of Header -->   
                 <div class="container-fluid"> 
-                <div class="ccc" style="min-height:500px;">
+                <div class="ccc" style="min-height:600px;">
                     @yield('content')
                 </div>
                 </div>      

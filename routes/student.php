@@ -40,6 +40,7 @@ Route::group([
         Route::post('/huy-dang-ky/{id}', 'UserController@xoaDk')->name('xoaDk');
         Route::get('hoc-vien/bang-diem','IndexController@showPointByClass')->name('student.showPointByClass');
         Route::get('hoc-vien/lich-su-hoc','IndexController@historyLesson')->name('student.historyLesson');
+        Route::get('hoc-vien/lich-su-dong-tien','TuitionController@LsDongTien')->name('student.LsDongTien');
     });
 });
 Route::get('/download/{file}', 'HomeWorkController@download')->name('download');

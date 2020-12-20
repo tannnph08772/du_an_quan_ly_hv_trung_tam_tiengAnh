@@ -48,4 +48,8 @@ class ClassRoom extends Model
     public function homeworks(){
     	return $this->hasMany(Homework::class, 'class_id');
     }
+
+    public function tuition(){
+    	return $this->hasOne(Tuition::class, 'class_id');
+    }
 }
