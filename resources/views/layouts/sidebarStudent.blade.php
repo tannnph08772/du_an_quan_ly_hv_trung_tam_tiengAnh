@@ -91,6 +91,14 @@
                 </a>
             </div>
         </div>
+        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+            <div class="collapse-inner rounded">
+                <a class="collapse-item" href="{{ route('student.LsDongTien') }}">
+                    <i class="fas fa-circle"></i>
+                    <span>Lịch sử đóng tiền</span>
+                </a>
+            </div>
+        </div>
     </li>
     <hr class="sidebar-divider d-none d-md-block">
     <!-- Sidebar Toggler (Sidebar) -->

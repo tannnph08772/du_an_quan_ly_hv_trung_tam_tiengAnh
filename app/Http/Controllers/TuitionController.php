@@ -43,7 +43,7 @@ class TuitionController extends Controller
 		$params['status'] = 2;
         $student -> update($params);
 
-        return redirect()->route('tuition.hoaDon')->with('status','Đã thu học phí!');
+        return redirect()->route('tuition.hoaDon')->with('success','Đã thu học phí!');
     }
 
     public function hoaDon()
@@ -58,5 +58,14 @@ class TuitionController extends Controller
     public function exportHoaDon() 
     {
         return Excel::download(new HoaDonExport, 'ds-thu-hoc-phi.xlsx');
+    }
+
+    public function LsDongTien()
+    {
+       $tuition = Tuition::where('student_id', Auth::user()->student->id)->get();
+
+        return view('students/lich_su_dong_tien',[
+            'tuition' => $tuition,
+        ]);
     }
 }

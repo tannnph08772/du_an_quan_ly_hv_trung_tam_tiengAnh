@@ -90,7 +90,35 @@ class UserController extends Controller
     public function store($id, AddStudentRequest $request){
         $del = WaitList::find($id);
         $data = $request->all();
-        if($del->student_id == 0){
+        if($del->student_id){
+            $stu = Student::find($del->student_id);
+            $stu['class_id'] = $request->class_id;
+            $stu['course_id'] = $del->course_id;
+            $stu['status'] = 2;
+            $stu->save();
+            $tuition = \Arr::except($data,['_token', 'name', 'email', 'phone_number', 'sex', 'address', 'birthday', 'class_id','image','course_id', 'sum_money']);
+            $tuition['student_id'] = $stu['id'];
+            $tuition['user_id'] = Auth::user()->id;
+            $tuition['class_id'] = $stu['class_id'];
+            $hp = Tuition::create($tuition);
+            $tuitionDetail= \Arr::except($data,['_token', 'name', 'email', 'phone_number', 'sex', 'address', 'birthday', 'class_id','course_id']);;
+            $file = $request->file('image');
+            $filename = $file->getClientOriginalName();
+            $file->move(public_path('bill-image'), $filename);
+            $tuitionDetail['image'] = 'bill-image/'.$filename;
+            $tuitionDetail['tuition_id'] = $hp['id'];
+            $tuitionDetail['sum_money']= $request->get('sum_money');
+            TuitionDetail::create($tuitionDetail);
+            $link = route('auth.login');
+            Mail::send('email.email', [
+                'email' => $stu->user->email,
+                'link' => $link
+            ], function($mail) use($stu){
+                $mail->to($stu->user->email);
+                $mail->from('cheesehiep3110@gmail.com', 'Alibaba English Center');
+                $mail->subject('Tham gia lớp học thành công!');
+            });
+        }else{
             $param = \Arr::except($data,['_token','class_id','image','course_id']);
             $param['password'] = bcrypt(123456);
             $param['status'] = 1;
@@ -124,34 +152,7 @@ class UserController extends Controller
                 $mail->from('cheesehiep3110@gmail.com', 'Alibaba English Center');
                 $mail->subject('Tham gia lớp học thành công!');
             });
-        }else{
-            $stu = Student::find($del->student_id);
-            $stu['class_id'] = $request->class_id;
-            $stu['course_id'] = $del->course_id;
-            $stu['status'] = 2;
-            $stu->save();
-            $tuition = \Arr::except($data,['_token', 'name', 'email', 'phone_number', 'sex', 'address', 'birthday', 'class_id','image','course_id', 'sum_money']);
-            $tuition['student_id'] = $stu['id'];
-            $tuition['user_id'] = Auth::user()->id;
-            $tuition['class_id'] = $stu['class_id'];
-            $hp = Tuition::create($tuition);
-            $tuitionDetail= \Arr::except($data,['_token', 'name', 'email', 'phone_number', 'sex', 'address', 'birthday', 'class_id','course_id']);;
-            $file = $request->file('image');
-            $filename = $file->getClientOriginalName();
-            $file->move(public_path('bill-image'), $filename);
-            $tuitionDetail['image'] = 'bill-image/'.$filename;
-            $tuitionDetail['tuition_id'] = $hp['id'];
-            $tuitionDetail['sum_money']= $request->get('sum_money');
-            TuitionDetail::create($tuitionDetail);
-            $link = route('auth.login');
-            Mail::send('email.email', [
-                'email' => $stu->user->email,
-                'link' => $link
-            ], function($mail) use($stu){
-                $mail->to($stu->user->email);
-                $mail->from('cheesehiep3110@gmail.com', 'Alibaba English Center');
-                $mail->subject('Tham gia lớp học thành công!');
-            });
+            
         }
         $del->delete();
         

@@ -24,4 +24,8 @@ class Tuition extends Model
     public function user(){
     	return $this->belongsTo(User::class, 'user_id');
     }
+
+    public function class(){
+    	return $this->belongsTo(ClassRoom::class, 'class_id');
+    }
 }

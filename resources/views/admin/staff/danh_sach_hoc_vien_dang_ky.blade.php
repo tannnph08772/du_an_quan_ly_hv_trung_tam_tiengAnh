@@ -5,7 +5,7 @@
     <h1 class="h3 mb-2 text-gray-800">Danh sách học viên đăng ký</h1>
     <div class="card shadow mb-4">
         <img src="img/loading.gif" alt="" id="img-loading"
-            style="position: absolute;top: 10%;left: 50%;transform: translate(-50%, -50%); width:90px; display:none;z-index:99999">
+            style="position: absolute;top: 4%;left: 40%;transform: translate(-50%, -50%); width:90px; display:none;z-index:99999">
         <div class="card-header py-3 d-flex justify-content-between align-items-center">
             <!-- Button trigger modal -->
             <button type="button" class="btn btn-primary" onclick="kiemTraTrungKhoaHoc()">
