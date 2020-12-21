@@ -23,7 +23,7 @@
                                     echo 'selected';
                                 }
                             } 
-                        @endphp>{{ $course->name_course }}
+                        @endphp > {{ $course->name_course }}
                     </option>
                     @endforeach
                 </select>
