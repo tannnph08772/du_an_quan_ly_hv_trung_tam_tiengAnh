@@ -22,6 +22,7 @@
                     @php
                         $i = 1;
                     @endphp 
+                    @if(count($classes) > 0)
                     @foreach($classes as $class)
                     <tr>
                         <td>{{ $i++ }}</td>
@@ -60,6 +61,38 @@
                         <td>@foreach($class as $value) {{ $value->course->number_course }} @endforeach</td>
                     </tr>
                     @endforeach
+                    @else
+                    <tr>
+                        <td>{{ $i++ }}</td>
+                        <td>{{ $class->name_class }}</td>
+                        <td>{{ $class->course->name_course }}</td>
+                        <td>
+                            @if(count($points) > 0) 
+                            @foreach($points as $point)
+                            @if($point->class_id == $class->id)
+                                @php $exercise = ($point->exercise)*0.5 @endphp
+                            @endif
+                            @endforeach  
+
+                            @foreach($points as $point)
+                            @if($point->class_id == $class->id)
+                                @php $diligence = ($point->diligence)*0.1 @endphp
+                            @endif
+                            @endforeach
+
+                            @foreach($points as $point)
+                            @if($point->class_id == $class->id)
+                                @php $test = ($point->test)*0.4 @endphp
+                            @endif
+                            @endforeach
+                            
+                            {{ $exercise + $diligence + $test }}
+                            @endif
+                        </td>
+                        <td>@if($class->status == 3) <span class="text-success">Đã học</span> @else <span class="text-warning">Đang học</span> @endif</td>
+                        <td>{{ $class->course->number_course }}</td>
+                    </tr>
+                    @endif
                 </tbody>
             </table>
         </div>

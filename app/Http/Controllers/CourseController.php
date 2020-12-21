@@ -43,7 +43,7 @@ class CourseController extends Controller
     public function edit($id)
     {
         $edit = $this->CourseServices->findById($id);
-        return view('admin.Course.component.edit', compact('edit'));
+        return view('admin.course.component.edit', compact('edit'));
         
     }
     public function update(EditCourseRequest $request, $id )
