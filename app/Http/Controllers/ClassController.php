@@ -165,7 +165,7 @@ class ClassController extends Controller
 	public function storeTransfer($id) {
 		$sampleForm = SampleForm::find($id);
 		$sampleForm->status = 2;
-		// $sampleForm->save();
+		$sampleForm->save();
 		$student = Student::find($sampleForm->student_id);
 		$tuition = Tuition::where([
             ['student_id', $student->id],
