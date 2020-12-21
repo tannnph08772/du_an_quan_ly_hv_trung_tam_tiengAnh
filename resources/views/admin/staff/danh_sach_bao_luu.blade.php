@@ -50,7 +50,7 @@
                                 Đã xác nhận
                             @endif
                         </td>
-                        <td><a href="{{ route('staff.reserveById', ['id' => $reserve->id]) }}" class="text-success"><i class="fas fa-info-circle"></i></i></a></td>
+                        <td class="text-center"><a href="{{ route('staff.reserveById', ['id' => $reserve->id]) }}" class="text-success"><i class="fas fa-info-circle"></i></i></a></td>
                     </tr>
                     @endforeach
                     @endif
