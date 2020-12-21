@@ -8,6 +8,7 @@ use App\Models\ClassRoom;
 use App\Models\Student;
 use App\Models\Tuition;
 use Arr;
+use Mail;
 
 class ReserveController extends Controller
 {
@@ -31,8 +32,15 @@ class ReserveController extends Controller
         $reserve = Reserve::find($id);
 		$reserve->status = 2;
         $reserve->save();
+        Mail::send('email.tb_bao_luu', [
+            'email' => $reserve->student->user->email,
+        ], function($mail) use($reserve){
+            $mail->to($reserve->student->user->email);
+            $mail->from('cheesehiep3110@gmail.com', 'Alibaba English Center');
+            $mail->subject('Bảo lưu khóa học!');
+        });
         
-        return redirect()->route('staff.reserveList')->with('success', 'Bảo lưu thành công');
+        return redirect()->route('staff.reserveList')->with('success', 'Bảo lưu thành công cho học viên!');
     }
 
     public function getInfoLearnAgain($id) {
@@ -61,6 +69,7 @@ class ReserveController extends Controller
         $data = request()->all();
         $params = \Arr::except($data, ['_token']);
         $reserve = Reserve::find($id);
+        $class = ClassRoom::find(request()->get('class_id'));
 
         $student = Student::find($reserve->student_id);
         $student['class_id'] = request()->get('class_id');
@@ -73,8 +82,16 @@ class ReserveController extends Controller
 
         $tuition->save();
         $student->save();
+        Mail::send('email.UpdateKH', [
+            'email' => $student->user->email,
+            'class' => $class,
+        ], function($mail) use($student){
+            $mail->to($student->user->email);
+            $mail->from('cheesehiep3110@gmail.com', 'Alibaba English Center');
+            $mail->subject('Thông báo lịch đi học lại!');
+        });
         $reserve->delete();
 
-        return redirect()->route('staff.reserveList')->with('updateLearnAgain', 'Xếp lớp thành công');
+        return redirect("lop-hoc/chi-tiet-lop-hoc/".$class->id)->with('status','Đã thêm học viên vào lớp!');
     }
 }
