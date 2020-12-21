@@ -95,7 +95,12 @@
                                 @endforeach
                             </select>
                         @else
-                        <span>Chưa có lớp phù hợp</span>
+                        @error('class_id')
+                            <small style="color: red">{{ $message }}</small>
+                        @enderror
+                        <select class="custom-select mr-sm-2" name="class_id" id="inlineFormCustomSelect">
+                                <option value="">Chưa có lớp phù hợp</option>
+                            </select>
                         @endif
                         </td>
                     </tr>

@@ -36,7 +36,9 @@
                                 <small style="color: red">{{ $message }}</small>
                             @enderror
                             @if(empty($filteredArray))
-                            Chưa có lớp phù hợp
+                            <select class="form-control" name="class_id">
+                                <option value="">Chưa có lớp phù hợp</option>
+                            </select>
                             @else
                             <select class="form-control" name="class_id">
                                 @foreach($filteredArray as $class)

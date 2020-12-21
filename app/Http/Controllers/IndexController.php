@@ -107,13 +107,17 @@ class IndexController extends Controller
         $student_id = Auth::user()->student->id;
         $tuitions = Tuition::where('student_id', $student_id)->orderBy('id', 'desc')->get();
         $points = Point::where('student_id', $student_id)->get();
+        $class = ClassRoom::find(Auth::user()->student->class_id);
+        $classes = [];
         foreach($tuitions as $tuition) {
-            $classes[] = ClassRoom::where('id', $tuition->class_id)->get();
+            $data = ClassRoom::where('id', $tuition->class_id)->get();
+            array_push($classes, $data);
         }
 
         return view('students/bang_diem_theo_lop', [
             'classes' => $classes,
-            'points' => $points
+            'points' => $points,
+            'class' => $class
 		]);
     }
 
@@ -121,13 +125,17 @@ class IndexController extends Controller
         $student_id = Auth::user()->student->id;
         $tuitions = Tuition::where('student_id', $student_id)->orderBy('id', 'desc')->get();
         $points = Point::where('student_id', $student_id)->get();
+        $class = ClassRoom::find(Auth::user()->student->class_id);
+        $classes = [];
         foreach($tuitions as $tuition) {
-            $classes[] = ClassRoom::where('id', $tuition->class_id)->get();
+            $data = ClassRoom::where('id', $tuition->class_id)->get();
+            array_push($classes, $data);
         }
 
         return view('students/lich_su_hoc', [
             'classes' => $classes,
-            'points' => $points
+            'points' => $points,
+            'class' => $class
 		]);
     }
 }
