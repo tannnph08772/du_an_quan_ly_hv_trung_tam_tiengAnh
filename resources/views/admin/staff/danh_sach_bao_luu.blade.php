@@ -21,7 +21,7 @@
                         <th>Email</th>
                         <th>Lớp đang học</th>
                         <th>Khóa đang học</th>
-                        <th>Nội dung</th>
+                        <th>Ngày đăng ký</th>
                         <th>Trạng thái</th>
                         <th>Chi tiết</th>
                     </tr>
@@ -42,12 +42,12 @@
                         <td>{{ $reserve->student->user->email }}</td>
                         <td>{{ $reserve->student->class->name_class }} - {{ $reserve->student->class->schedule->name_schedule }} ({{ $reserve->student->class->schedule->start_time }} - {{ $reserve->student->class->schedule->end_time }})</td>
                         <td>{{ $reserve->course->name_course }}</td>
-                        <td>{{ $reserve->content }}</td>
+                        <td>{{date_format($reserve->created_at,"d/m/Y")}}</td>
                         <td>
                             @if($reserve->status == 1)  
-                                Chờ xác nhận
+                       <span class="text-warning">Chờ xác nhận</span> 
                             @else
-                                Đã xác nhận
+                            <span class="text-success">Đã xác nhận</span> 
                             @endif
                         </td>
                         <td class="text-center"><a href="{{ route('staff.reserveById', ['id' => $reserve->id]) }}" class="text-success"><i class="fas fa-info-circle"></i></i></a></td>
