@@ -68,6 +68,7 @@
                         <td>{{ $item->class->name_class }}</td>
                         <td>{{ $item->note }}</td>
                         <td><a href="{{route('homework.dsNopBai', ['id' => $item->id])}}">Chi tiết</a></td>
+                        <td><a href="{{route('homeworks.editBT',  ['id' => $item->id ])}}">Sửa</a></td>
                     </tr>
                     @endif
                     @endforeach
