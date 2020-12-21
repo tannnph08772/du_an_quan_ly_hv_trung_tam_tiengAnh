@@ -14,6 +14,7 @@ use App\Models\Place;
 use App\Models\Attendance;
 use App\Models\AttendanceDetail;
 use App\Models\SampleForm;
+use App\Models\Tuition;
 use Carbon\Carbon;
 use Auth;
 use Illuminate\Support\Facades\Mail;
@@ -164,11 +165,18 @@ class ClassController extends Controller
 	public function storeTransfer($id) {
 		$sampleForm = SampleForm::find($id);
 		$sampleForm->status = 2;
-		$sampleForm->save();
+		// $sampleForm->save();
 		$student = Student::find($sampleForm->student_id);
+		$tuition = Tuition::where([
+            ['student_id', $student->id],
+            ['class_id', $student->class_id]
+		])->first();
+		$tuition->class_id = $sampleForm->class_id;
+		$tuition->save();
+
 		$student->class_id = $sampleForm->class_id;
 		$student->save();
-
+		
 		$att_old = AttendanceDetail::where('student_id', $student->id)->get();
 		foreach($att_old as $value) {
 			$value->delete();
