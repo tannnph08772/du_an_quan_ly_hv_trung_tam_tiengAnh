@@ -16,7 +16,7 @@ class CheckReserve
      */
     public function handle($request, Closure $next)
     {
-        if (Auth::user()->student->reserves->status == 1) {
+        if (Auth::user()->student->reserves == null || Auth::user()->student->reserves->status == 1) {
             return $next($request);
         }
         abort(403, 'Bạn đang trong thời gian bảo lưu nên không thể truy cập chức năng này!');
