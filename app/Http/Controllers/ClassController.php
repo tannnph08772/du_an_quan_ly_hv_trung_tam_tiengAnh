@@ -15,6 +15,7 @@ use App\Models\Attendance;
 use App\Models\AttendanceDetail;
 use App\Models\SampleForm;
 use App\Models\Tuition;
+use App\Models\Point;
 use Carbon\Carbon;
 use Auth;
 use Illuminate\Support\Facades\Mail;
@@ -173,6 +174,12 @@ class ClassController extends Controller
 		])->first();
 		$tuition->class_id = $sampleForm->class_id;
 		$tuition->save();
+		$point = Point::where([
+            ['student_id', $student->id],
+            ['class_id', $student->class_id]
+		])->first();
+		$point->class_id = $sampleForm->class_id;
+		$point->save();
 
 		$student->class_id = $sampleForm->class_id;
 		$student->save();
